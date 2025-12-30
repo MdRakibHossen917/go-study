@@ -1,7 +1,7 @@
 export default function Home() {
   return (
     <div>
-      <h1 className="text-2xl font-bold text-center mt-5">Go Study Project</h1>
+      <h1 className="">Go Study Project</h1>
     </div>
   );
 }
