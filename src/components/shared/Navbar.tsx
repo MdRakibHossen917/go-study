@@ -9,6 +9,8 @@ import { getCloudinaryImageUrl } from "@/lib/cloudinary"
 import imageUniOne from "@/assests/Image/imageUniOne.jpg"
 import imageUniTwo from "@/assests/Image/imageUniTwo.jpg"
 import imageUniThree from "@/assests/Image/imageUniThree.jpg"
+import subjectImageOne from "@/assests/Image/subjectImageOne.jpg"
+import worksImageOne from "@/assests/Image/worksImageOne.jpg"
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -79,7 +81,7 @@ const Navbar = () => {
                                 translateX = '-100%'
                               }
                               
-                              return (
+  return (
                                 <Image
                                   key={index}
                                   src={image}
@@ -237,7 +239,7 @@ const Navbar = () => {
                       {/* Left side - Image (1/4 width) */}
                       <div className="w-1/4 relative min-h-[400px]">
                         <Image
-                          src={getCloudinaryImageUrl("subjects", { width: 400, quality: 80, format: "auto" }) || "/images/subjects.jpg"}
+                          src={subjectImageOne}
                           alt="Study Subjects"
                           fill
                           className="object-cover rounded-md"
@@ -381,7 +383,7 @@ const Navbar = () => {
                       {/* Left side - Image (1/4 width) */}
                       <div className="w-1/4 relative min-h-[400px]">
                         <Image
-                          src={getCloudinaryImageUrl("how-it-works", { width: 400, quality: 80, format: "auto" }) || "/images/how-it-works.jpg"}
+                          src={worksImageOne}
                           alt="How It Works"
                           fill
                           className="object-cover rounded-md"
