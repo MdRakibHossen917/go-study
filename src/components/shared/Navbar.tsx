@@ -2,10 +2,9 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import { Search, Menu, X, Facebook, Youtube, Instagram, Mail } from "lucide-react"
+import { Search, Menu, X, Facebook, Youtube, Instagram, Mail, Globe, BookOpen, Calendar, Settings, Info, MessageCircle, FileText } from "lucide-react"
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
-import { getCloudinaryImageUrl } from "@/lib/cloudinary"
 import imageUniOne from "@/assests/Image/imageUniOne.jpg"
 import imageUniTwo from "@/assests/Image/imageUniTwo.jpg"
 import imageUniThree from "@/assests/Image/imageUniThree.jpg"
@@ -51,13 +50,16 @@ const Navbar = () => {
     
     // Always set transition for smooth animation
     if (mainContent) {
-      mainContent.style.transition = 'transform 0.3s ease-in-out'
+      mainContent.style.transition = 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
+      mainContent.style.willChange = 'transform'
     }
     if (footer) {
-      footer.style.transition = 'transform 0.3s ease-in-out'
+      footer.style.transition = 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
+      footer.style.willChange = 'transform'
     }
     if (navbar) {
-      navbar.style.transition = 'transform 0.3s ease-in-out'
+      navbar.style.transition = 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
+      navbar.style.willChange = 'transform'
     }
     
     if (isMobileMenuOpen) {
@@ -71,6 +73,8 @@ const Navbar = () => {
         navbar.style.transform = 'translateX(80%)'
       }
       document.documentElement.style.overflow = 'hidden'
+      document.documentElement.style.overflowX = 'hidden'
+      document.body.style.overflowX = 'hidden'
     } else {
       if (mainContent) {
         mainContent.style.transform = 'translateX(0)'
@@ -82,21 +86,28 @@ const Navbar = () => {
         navbar.style.transform = 'translateX(0)'
       }
       document.documentElement.style.overflow = ''
+      document.documentElement.style.overflowX = ''
+      document.body.style.overflowX = ''
     }
     return () => {
       if (mainContent) {
         mainContent.style.transform = ''
         mainContent.style.transition = ''
+        mainContent.style.willChange = ''
       }
       if (footer) {
         footer.style.transform = ''
         footer.style.transition = ''
+        footer.style.willChange = ''
       }
       if (navbar) {
         navbar.style.transform = ''
         navbar.style.transition = ''
+        navbar.style.willChange = ''
       }
       document.documentElement.style.overflow = ''
+      document.documentElement.style.overflowX = ''
+      document.body.style.overflowX = ''
     }
   }, [isMobileMenuOpen])
   return (
@@ -106,71 +117,80 @@ const Navbar = () => {
         className={`fixed left-0 top-0 h-full w-[80%] bg-[#0D9488] z-50 transform transition-transform duration-300 ease-in-out md:hidden ${
           isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
+        style={{ willChange: 'transform' }}
       >
         <div className="h-full flex flex-col">
           {/* Mobile Navigation Menu */}
           <div className="flex-1 overflow-y-auto py-4 pt-[100px]">
             <Link
               href="/destinations"
-              className="block py-3 px-4 text-white text-sm font-semibold uppercase border-b border-teal-600/50 hover:bg-teal-600/50 transition-colors"
+              className="flex items-center gap-3 py-3 px-4 text-white text-sm font-semibold uppercase border-b border-teal-600/50 hover:bg-teal-600/50 transition-colors"
               onClick={() => setIsMobileMenuOpen(false)}
             >
+              <Globe className="h-5 w-5" />
               DESTINATIONS
             </Link>
 
             <Link
               href="/subjects"
-              className="block py-3 px-4 text-white text-sm font-semibold uppercase border-b border-teal-600/50 hover:bg-teal-600/50 transition-colors"
+              className="flex items-center gap-3 py-3 px-4 text-white text-sm font-semibold uppercase border-b border-teal-600/50 hover:bg-teal-600/50 transition-colors"
               onClick={() => setIsMobileMenuOpen(false)}
             >
+              <BookOpen className="h-5 w-5" />
               SUBJECTS
             </Link>
 
             <Link
               href="/terms"
-              className="block py-3 px-4 text-white text-sm font-semibold uppercase border-b border-teal-600/50 hover:bg-teal-600/50 transition-colors"
+              className="flex items-center gap-3 py-3 px-4 text-white text-sm font-semibold uppercase border-b border-teal-600/50 hover:bg-teal-600/50 transition-colors"
               onClick={() => setIsMobileMenuOpen(false)}
             >
+              <Calendar className="h-5 w-5" />
               TERMS
             </Link>
 
             <Link
               href="/how-it-works"
-              className="block py-3 px-4 text-white text-sm font-semibold uppercase border-b border-teal-600/50 hover:bg-teal-600/50 transition-colors"
+              className="flex items-center gap-3 py-3 px-4 text-white text-sm font-semibold uppercase border-b border-teal-600/50 hover:bg-teal-600/50 transition-colors"
               onClick={() => setIsMobileMenuOpen(false)}
             >
+              <Settings className="h-5 w-5" />
               HOW IT WORKS
             </Link>
 
             <Link
               href="/about"
-              className="block py-3 px-4 text-white text-sm font-semibold uppercase border-b border-teal-600/50 hover:bg-teal-600/50 transition-colors"
+              className="flex items-center gap-3 py-3 px-4 text-white text-sm font-semibold uppercase border-b border-teal-600/50 hover:bg-teal-600/50 transition-colors"
               onClick={() => setIsMobileMenuOpen(false)}
             >
+              <Info className="h-5 w-5" />
               ABOUT
             </Link>
 
             <Link
               href="/search"
-              className="block py-3 px-4 text-white text-sm font-semibold uppercase border-b border-teal-600/50 hover:bg-teal-600/50 transition-colors"
+              className="flex items-center gap-3 py-3 px-4 text-white text-sm font-semibold uppercase border-b border-teal-600/50 hover:bg-teal-600/50 transition-colors"
               onClick={() => setIsMobileMenuOpen(false)}
             >
+              <Search className="h-5 w-5" />
               SEARCH
             </Link>
 
             <Link
               href="/inquire"
-              className="block py-3 px-4 text-white text-sm font-semibold uppercase border-b border-teal-600/50 hover:bg-teal-600/50 transition-colors"
+              className="flex items-center gap-3 py-3 px-4 text-white text-sm font-semibold uppercase border-b border-teal-600/50 hover:bg-teal-600/50 transition-colors"
               onClick={() => setIsMobileMenuOpen(false)}
             >
+              <MessageCircle className="h-5 w-5" />
               INQUIRE
             </Link>
 
             <Link
               href="/apply"
-              className="block py-3 px-4 text-white text-sm font-semibold uppercase border-b border-teal-600/50 hover:bg-teal-600/50 transition-colors"
+              className="flex items-center gap-3 py-3 px-4 text-white text-sm font-semibold uppercase border-b border-teal-600/50 hover:bg-teal-600/50 transition-colors"
               onClick={() => setIsMobileMenuOpen(false)}
             >
+              <FileText className="h-5 w-5" />
               APPLY
             </Link>
           </div>
@@ -628,7 +648,7 @@ const Navbar = () => {
                             </NavigationMenuLink>
                             <NavigationMenuLink asChild>
                               <Link href="/how-it-works/what-youll-need" className="block text-xs sm:text-sm hover:text-primary py-1">
-                                What You'll Need
+                                What You&apos;ll Need
                               </Link>
                             </NavigationMenuLink>
                             <NavigationMenuLink asChild>
@@ -639,7 +659,7 @@ const Navbar = () => {
                           </div>
                           {/* Column 3 - THINGS YOU'LL NEED */}
                           <div className="space-y-2">
-                            <h4 className="font-semibold text-xs sm:text-sm mb-2">THINGS YOU'LL NEED</h4>
+                            <h4 className="font-semibold text-xs sm:text-sm mb-2">THINGS YOU&apos;LL NEED</h4>
                             <NavigationMenuLink asChild>
                               <Link href="/how-it-works/pre-departure-checklist" className="block text-xs sm:text-sm hover:text-primary py-1">
                                 Pre-Departure Checklist
@@ -676,7 +696,7 @@ const Navbar = () => {
                             <h4 className="font-semibold text-xs sm:text-sm mb-2">FUNDING YOUR PROGRAM</h4>
                             <NavigationMenuLink asChild>
                               <Link href="/how-it-works/what-youre-paying-for" className="block text-xs sm:text-sm hover:text-primary py-1">
-                                What You're Paying For
+                                What You&apos;re Paying For
                               </Link>
                             </NavigationMenuLink>
                             <NavigationMenuLink asChild>

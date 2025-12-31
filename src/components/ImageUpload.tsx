@@ -2,7 +2,7 @@
 
 export default function ImageUpload() {
   const openUploadWidget = () => {
-    // @ts-ignore
+    // @ts-expect-error - cloudinary is loaded from external script
     window.cloudinary.openUploadWidget(
       {
         cloudName: "dk8syjt2z",      
@@ -10,7 +10,7 @@ export default function ImageUpload() {
         folder: "gostudy",
         multiple: false,
       },
-      (error: any, result: any) => {
+      (error: Error | null, result: { event: string; info: { secure_url: string } } | null) => {
         if (!error && result.event === "success") {
           console.log("Uploaded Image URL:", result.info.secure_url);
           alert("Upload Successful!");
