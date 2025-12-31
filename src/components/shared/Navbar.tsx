@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import { Search } from "lucide-react"
+import { Search, Menu, X, Facebook, Youtube, Instagram, Mail } from "lucide-react"
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { getCloudinaryImageUrl } from "@/lib/cloudinary"
@@ -24,6 +24,7 @@ const Navbar = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const [isHovering, setIsHovering] = useState(false)
   const [isTransitioning, setIsTransitioning] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const destinationImages = [imageUniOne, imageUniTwo, imageUniThree]
 
   useEffect(() => {
@@ -41,17 +42,212 @@ const Navbar = () => {
       if (interval) clearInterval(interval)
     }
   }, [isHovering, destinationImages.length])
-  return (
-    <nav className="w-full  bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 relative">
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="flex h-16 items-center justify-between">
-          {/* Left side - Brand name */}
-          <Link href="/" className="flex items-center">
-            <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-primary">GoStudy</h1>
-          </Link>
 
-          {/* Middle - Navigation items */}
-          <NavigationMenu viewport={false} className="w-full">
+  // Handle page shift when mobile menu is open
+  useEffect(() => {
+    const mainContent = document.querySelector('main')
+    const footer = document.querySelector('footer')
+    const navbar = document.querySelector('nav')
+    
+    // Always set transition for smooth animation
+    if (mainContent) {
+      mainContent.style.transition = 'transform 0.3s ease-in-out'
+    }
+    if (footer) {
+      footer.style.transition = 'transform 0.3s ease-in-out'
+    }
+    if (navbar) {
+      navbar.style.transition = 'transform 0.3s ease-in-out'
+    }
+    
+    if (isMobileMenuOpen) {
+      if (mainContent) {
+        mainContent.style.transform = 'translateX(80%)'
+      }
+      if (footer) {
+        footer.style.transform = 'translateX(80%)'
+      }
+      if (navbar) {
+        navbar.style.transform = 'translateX(80%)'
+      }
+      document.documentElement.style.overflow = 'hidden'
+    } else {
+      if (mainContent) {
+        mainContent.style.transform = 'translateX(0)'
+      }
+      if (footer) {
+        footer.style.transform = 'translateX(0)'
+      }
+      if (navbar) {
+        navbar.style.transform = 'translateX(0)'
+      }
+      document.documentElement.style.overflow = ''
+    }
+    return () => {
+      if (mainContent) {
+        mainContent.style.transform = ''
+        mainContent.style.transition = ''
+      }
+      if (footer) {
+        footer.style.transform = ''
+        footer.style.transition = ''
+      }
+      if (navbar) {
+        navbar.style.transform = ''
+        navbar.style.transition = ''
+      }
+      document.documentElement.style.overflow = ''
+    }
+  }, [isMobileMenuOpen])
+  return (
+    <>
+      {/* Mobile Sidebar */}
+      <div
+        className={`fixed left-0 top-0 h-full w-[80%] bg-[#0D9488] z-50 transform transition-transform duration-300 ease-in-out md:hidden ${
+          isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
+        }`}
+      >
+        <div className="h-full flex flex-col">
+          {/* Mobile Navigation Menu */}
+          <div className="flex-1 overflow-y-auto py-4 pt-[100px]">
+            <Link
+              href="/destinations"
+              className="block py-3 px-4 text-white text-sm font-semibold uppercase border-b border-teal-600/50 hover:bg-teal-600/50 transition-colors"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              DESTINATIONS
+            </Link>
+
+            <Link
+              href="/subjects"
+              className="block py-3 px-4 text-white text-sm font-semibold uppercase border-b border-teal-600/50 hover:bg-teal-600/50 transition-colors"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              SUBJECTS
+            </Link>
+
+            <Link
+              href="/terms"
+              className="block py-3 px-4 text-white text-sm font-semibold uppercase border-b border-teal-600/50 hover:bg-teal-600/50 transition-colors"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              TERMS
+            </Link>
+
+            <Link
+              href="/how-it-works"
+              className="block py-3 px-4 text-white text-sm font-semibold uppercase border-b border-teal-600/50 hover:bg-teal-600/50 transition-colors"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              HOW IT WORKS
+            </Link>
+
+            <Link
+              href="/about"
+              className="block py-3 px-4 text-white text-sm font-semibold uppercase border-b border-teal-600/50 hover:bg-teal-600/50 transition-colors"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              ABOUT
+            </Link>
+
+            <Link
+              href="/search"
+              className="block py-3 px-4 text-white text-sm font-semibold uppercase border-b border-teal-600/50 hover:bg-teal-600/50 transition-colors"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              SEARCH
+            </Link>
+
+            <Link
+              href="/inquire"
+              className="block py-3 px-4 text-white text-sm font-semibold uppercase border-b border-teal-600/50 hover:bg-teal-600/50 transition-colors"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              INQUIRE
+            </Link>
+
+            <Link
+              href="/apply"
+              className="block py-3 px-4 text-white text-sm font-semibold uppercase border-b border-teal-600/50 hover:bg-teal-600/50 transition-colors"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              APPLY
+            </Link>
+          </div>
+
+          {/* Social Media Icons */}
+          <div className="py-6 px-4 border-t border-teal-600/50">
+            <div className="flex items-center justify-center gap-3">
+              <a
+                href="https://facebook.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full bg-white flex items-center justify-center hover:bg-teal-600/50 transition-colors group"
+                aria-label="Facebook"
+              >
+                <Facebook className="h-5 w-5 text-[#0D9488] group-hover:text-white" />
+              </a>
+              <a
+                href="https://youtube.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full bg-white flex items-center justify-center hover:bg-teal-600/50 transition-colors group"
+                aria-label="YouTube"
+              >
+                <Youtube className="h-5 w-5 text-[#0D9488] group-hover:text-white" />
+              </a>
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full bg-white flex items-center justify-center hover:bg-teal-600/50 transition-colors group"
+                aria-label="Instagram"
+              >
+                <Instagram className="h-5 w-5 text-[#0D9488] group-hover:text-white" />
+              </a>
+              <a
+                href="https://tiktok.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full bg-white flex items-center justify-center hover:bg-teal-600/50 transition-colors group"
+                aria-label="TikTok"
+              >
+                <svg className="h-5 w-5 text-[#0D9488] group-hover:text-white" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+                </svg>
+              </a>
+              <a
+                href="mailto:info@gostudy.com"
+                className="w-10 h-10 rounded-full bg-white flex items-center justify-center hover:bg-teal-600/50 transition-colors group"
+                aria-label="Email"
+              >
+                <Mail className="h-5 w-5 text-[#0D9488] group-hover:text-white" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Overlay - Click to close menu */}
+      {isMobileMenuOpen && (
+        <div
+          className="fixed inset-0 bg-transparent z-40 md:hidden transition-opacity duration-300"
+          onClick={() => setIsMobileMenuOpen(false)}
+          style={{ left: '80%' }}
+        />
+      )}
+
+      {/* Desktop Navbar */}
+      <nav className="w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 relative md:relative fixed bottom-0 md:bottom-auto md:top-0 z-30 border-t md:border-t-0 md:border-b">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="flex h-16 items-center justify-between">
+            {/* Left side - Brand name */}
+            <Link href="/" className="flex items-center">
+              <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-primary">GoStudy</h1>
+            </Link>
+
+            {/* Middle - Navigation items (hidden on mobile) */}
+            <NavigationMenu viewport={false} className="hidden md:flex w-full">
             <NavigationMenuList>
               {/* Destinations */}
               <NavigationMenuItem>
@@ -559,8 +755,8 @@ const Navbar = () => {
             </NavigationMenuList>
           </NavigationMenu>
 
-          {/* Right side - Action buttons */}
-          <div className="flex items-center gap-4">
+          {/* Right side - Action buttons (hidden on mobile) */}
+          <div className="hidden md:flex items-center gap-4">
             <Button variant="ghost" size="sm" className="text-xs sm:text-sm">
               <Search className="h-3 w-3 sm:h-4 sm:w-4" />
               <span className="hidden sm:inline">SEARCH</span>
@@ -573,9 +769,24 @@ const Navbar = () => {
               APPLY
             </Button>
           </div>
+
+          {/* Mobile Hamburger Menu Button */}
+          <Button
+            variant="ghost"
+            size="icon"
+            className="md:hidden"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? (
+              <X className="h-6 w-6" />
+            ) : (
+              <Menu className="h-6 w-6" />
+            )}
+          </Button>
         </div>
       </div>
     </nav>
+    </>
   )
 }
 
