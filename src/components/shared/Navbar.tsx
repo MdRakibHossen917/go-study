@@ -42,8 +42,10 @@ const Navbar = () => {
     }
   }, [isHovering, destinationImages.length])
 
-  // Handle page shift when mobile menu is open
+  // Handle page shift when mobile menu is open (client-side only)
   useEffect(() => {
+    if (typeof window === 'undefined') return
+    
     const mainContent = document.querySelector('main')
     const footer = document.querySelector('footer')
     const navbar = document.querySelector('nav')
@@ -297,7 +299,7 @@ const Navbar = () => {
                                 translateX = '-100%'
                               }
                               
-  return (
+                              return (
                                 <Image
                                   key={index}
                                   src={image}

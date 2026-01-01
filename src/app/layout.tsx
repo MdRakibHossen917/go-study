@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import Navbar from "@/components/shared/Navbar";
 import Footer from "@/components/shared/Footer";
@@ -25,18 +26,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        suppressHydrationWarning
       >
         <Navbar/>
         <main className="min-h-screen max-w-7xl mx-auto px-4">
         {children}
         </main>
         <Footer/>
-         {/* Cloudinary Upload Widget */}
-  <script src="https://widget.cloudinary.com/v2.0/global/all.js" async />
-        
+        {/* Cloudinary Upload Widget */}
+        <Script 
+          src="https://widget.cloudinary.com/v2.0/global/all.js" 
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );
