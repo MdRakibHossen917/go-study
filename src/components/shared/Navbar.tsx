@@ -787,9 +787,11 @@ const Navbar = () => {
               <span className="hidden sm:inline">INQUERY</span>
               <span className="sm:hidden">INQ</span>
             </Button>
-            <Button variant="default" size="sm" className="text-xs sm:text-sm">
-              APPLY
-            </Button>
+            <Link href="/apply">
+              <Button variant="default" size="sm" className="text-xs sm:text-sm">
+                APPLY
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile Hamburger Menu Button */}
