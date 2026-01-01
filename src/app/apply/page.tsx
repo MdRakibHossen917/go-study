@@ -131,7 +131,7 @@ export default function ApplyPage() {
 
   return (
     <div className="min-h-screen py-8 md:py-12">
-      <div className="max-w-4xl mx-auto px-4">
+      <div className="max-w-6xl mx-auto  ">
         {/* Header */}
         <div className="text-center mb-8 space-y-4">
           <div className="pt-6">
@@ -146,7 +146,7 @@ export default function ApplyPage() {
 
         <form onSubmit={handleSubmit} className="space-y-8">
           {/* Personal Information */}
-          <section className="bg-card border border-border rounded-lg p-6 md:p-8">
+          <section className="bg-card border border-border rounded p-4 md:p-8">
             <div className="flex items-center gap-2 mb-6">
               <FileText className="h-5 w-5 text-primary" />
               <h2 className="text-2xl font-semibold text-foreground">
@@ -166,7 +166,7 @@ export default function ApplyPage() {
                   value={formData.legalFirstName}
                   onChange={handleChange}
                   placeholder="Enter First Name"
-                  className={`w-full px-4 py-2 border rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring ${
+                  className={`w-full px-4 py-2 border rounded bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring ${
                     errors.legalFirstName ? "border-destructive" : "border-input"
                   }`}
                 />
@@ -186,7 +186,7 @@ export default function ApplyPage() {
                   value={formData.legalLastName}
                   onChange={handleChange}
                   placeholder="Enter Last Name"
-                  className={`w-full px-4 py-2 border rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring ${
+                  className={`w-full px-4 py-2 border rounded bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring ${
                     errors.legalLastName ? "border-destructive" : "border-input"
                   }`}
                 />
@@ -206,7 +206,7 @@ export default function ApplyPage() {
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="Enter Email Address"
-                  className={`w-full px-4 py-2 border rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring ${
+                  className={`w-full px-4 py-2 border rounded bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring ${
                     errors.email ? "border-destructive" : "border-input"
                   }`}
                 />
@@ -227,7 +227,7 @@ export default function ApplyPage() {
                   value={formData.city}
                   onChange={handleChange}
                   placeholder="Enter City"
-                  className={`w-full px-4 py-2 border rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring ${
+                  className={`w-full px-4 py-2 border rounded bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring ${
                     errors.city ? "border-destructive" : "border-input"
                   }`}
                 />
@@ -247,7 +247,7 @@ export default function ApplyPage() {
                   value={formData.stateProvince}
                   onChange={handleChange}
                   placeholder="Enter State/Province/Region"
-                  className={`w-full px-4 py-2 border rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring ${
+                  className={`w-full px-4 py-2 border rounded bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring ${
                     errors.stateProvince ? "border-destructive" : "border-input"
                   }`}
                 />
@@ -267,7 +267,7 @@ export default function ApplyPage() {
                   value={formData.zipCode}
                   onChange={handleChange}
                   placeholder="ZIP/Postal code"
-                  className={`w-full px-4 py-2 border rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring ${
+                  className={`w-full px-4 py-2 border rounded bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring ${
                     errors.zipCode ? "border-destructive" : "border-input"
                   }`}
                 />
@@ -285,7 +285,7 @@ export default function ApplyPage() {
                   name="country"
                   value={formData.country}
                   onChange={handleChange}
-                  className={`w-full px-4 py-2 border rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring ${
+                  className={`w-full px-4 py-2 border rounded bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring ${
                     errors.country ? "border-destructive" : "border-input"
                   }`}
                 >
@@ -316,7 +316,7 @@ export default function ApplyPage() {
                   value={formData.phone}
                   onChange={handleChange}
                   placeholder="Enter phone number"
-                  className={`w-full px-4 py-2 border rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring ${
+                  className={`w-full px-4 py-2 border rounded bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring ${
                     errors.phone ? "border-destructive" : "border-input"
                   }`}
                 />
@@ -334,7 +334,7 @@ export default function ApplyPage() {
                   name="genderOnPassport"
                   value={formData.genderOnPassport}
                   onChange={handleChange}
-                  className={`w-full px-4 py-2 border rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring ${
+                  className={`w-full px-4 py-2 border rounded bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring ${
                     errors.genderOnPassport ? "border-destructive" : "border-input"
                   }`}
                 >
@@ -358,7 +358,7 @@ export default function ApplyPage() {
                   name="dateOfBirth"
                   value={formData.dateOfBirth}
                   onChange={handleChange}
-                  className={`w-full px-4 py-2 border rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring ${
+                  className={`w-full px-4 py-2 border rounded bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring ${
                     errors.dateOfBirth ? "border-destructive" : "border-input"
                   }`}
                 />
@@ -376,7 +376,7 @@ export default function ApplyPage() {
                   name="countryOfCitizenship"
                   value={formData.countryOfCitizenship}
                   onChange={handleChange}
-                  className={`w-full px-4 py-2 border rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring ${
+                  className={`w-full px-4 py-2 border rounded bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring ${
                     errors.countryOfCitizenship ? "border-destructive" : "border-input"
                   }`}
                 >
@@ -405,7 +405,7 @@ export default function ApplyPage() {
                   name="firstLanguage"
                   value={formData.firstLanguage}
                   onChange={handleChange}
-                  className={`w-full px-4 py-2 border rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring ${
+                  className={`w-full px-4 py-2 border rounded bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring ${
                     errors.firstLanguage ? "border-destructive" : "border-input"
                   }`}
                 >
@@ -434,7 +434,7 @@ export default function ApplyPage() {
                   name="speakOtherLanguages"
                   value={formData.speakOtherLanguages}
                   onChange={handleChange}
-                  className={`w-full px-4 py-2 border rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring ${
+                  className={`w-full px-4 py-2 border rounded bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring ${
                     errors.speakOtherLanguages ? "border-destructive" : "border-input"
                   }`}
                 >
@@ -459,7 +459,7 @@ export default function ApplyPage() {
                     value={formData.otherLanguages}
                     onChange={handleChange}
                     placeholder="Enter languages"
-                    className="w-full px-4 py-2 border border-input rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+                    className="w-full px-4 py-2 border border-input rounded bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
                   />
                 </div>
               )}
@@ -473,7 +473,7 @@ export default function ApplyPage() {
                   name="validPassport"
                   value={formData.validPassport}
                   onChange={handleChange}
-                  className={`w-full px-4 py-2 border rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring ${
+                  className={`w-full px-4 py-2 border rounded bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring ${
                     errors.validPassport ? "border-destructive" : "border-input"
                   }`}
                 >
@@ -490,12 +490,12 @@ export default function ApplyPage() {
           </section>
 
           {/* Education Information */}
-          <section className="bg-card border border-border rounded-lg p-6 md:p-8">
+          <section className="bg-card border border-border rounded p-6 md:p-8">
             <h2 className="text-2xl font-semibold text-foreground mb-6">
               Education Information
             </h2>
             
-            <div className="space-y-6">
+            <div className="space-y-4">
               <div>
                 <label htmlFor="currentlyStudent" className="block text-sm font-medium text-foreground mb-2">
                   Are you currently a student? <span className="text-destructive">*</span>
@@ -505,7 +505,7 @@ export default function ApplyPage() {
                   name="currentlyStudent"
                   value={formData.currentlyStudent}
                   onChange={handleChange}
-                  className={`w-full md:w-1/2 px-4 py-2 border rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring ${
+                  className={`w-full md:w-1/2 px-4 py-2 border rounded bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring ${
                     errors.currentlyStudent ? "border-destructive" : "border-input"
                   }`}
                 >
@@ -519,8 +519,8 @@ export default function ApplyPage() {
               </div>
 
               {/* SSC */}
-              <div className="border-t pt-6">
-                <h3 className="text-lg font-semibold text-foreground mb-4">SSC (Secondary School Certificate)</h3>
+              <div className="border-t pt-4">
+                <h3 className="text-lg font-semibold text-foreground mb-2">SSC (Secondary School Certificate)</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label htmlFor="sscGPA" className="block text-sm font-medium text-foreground mb-2">
@@ -533,7 +533,7 @@ export default function ApplyPage() {
                       value={formData.sscGPA}
                       onChange={handleChange}
                       placeholder="Enter GPA/CGPA"
-                      className="w-full px-4 py-2 border border-input rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+                      className="w-full px-4 py-2 border border-input rounded bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
                     />
                   </div>
                   <div>
@@ -546,7 +546,7 @@ export default function ApplyPage() {
                       name="sscMarksheet"
                       accept=".pdf,.jpg,.jpeg,.png"
                       onChange={handleChange}
-                      className="w-full px-4 py-2 border border-input rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-medium file:bg-primary file:text-primary-foreground hover:file:bg-primary/90"
+                      className="w-full px-4 py-2 border border-input rounded bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-medium file:bg-primary file:text-primary-foreground hover:file:bg-primary/90"
                     />
                     {formData.sscMarksheet && (
                       <p className="text-sm text-muted-foreground mt-1">
@@ -558,8 +558,8 @@ export default function ApplyPage() {
               </div>
 
               {/* HSC */}
-              <div className="border-t pt-6">
-                <h3 className="text-lg font-semibold text-foreground mb-4">HSC (Higher Secondary Certificate)</h3>
+              <div className="border-t pt-4">
+                <h3 className="text-lg font-semibold text-foreground mb-2">HSC (Higher Secondary Certificate)</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label htmlFor="hscGPA" className="block text-sm font-medium text-foreground mb-2">
@@ -572,7 +572,7 @@ export default function ApplyPage() {
                       value={formData.hscGPA}
                       onChange={handleChange}
                       placeholder="Enter GPA/CGPA"
-                      className="w-full px-4 py-2 border border-input rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+                      className="w-full px-4 py-2 border border-input rounded bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
                     />
                   </div>
                   <div>
@@ -585,7 +585,7 @@ export default function ApplyPage() {
                       name="hscMarksheet"
                       accept=".pdf,.jpg,.jpeg,.png"
                       onChange={handleChange}
-                      className="w-full px-4 py-2 border border-input rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-medium file:bg-primary file:text-primary-foreground hover:file:bg-primary/90"
+                      className="w-full px-4 py-2 border border-input rounded bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-medium file:bg-primary file:text-primary-foreground hover:file:bg-primary/90"
                     />
                     {formData.hscMarksheet && (
                       <p className="text-sm text-muted-foreground mt-1">
@@ -597,9 +597,9 @@ export default function ApplyPage() {
               </div>
 
               {/* BSc / Honors / Degree */}
-              <div className="border-t pt-6">
+              <div className="border-t pt-4">
                 <h3 className="text-lg font-semibold text-foreground mb-4">BSc / Honors / Degree (Bachelor of Science / Honors / Degree)</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-2">
                   <div>
                     <label htmlFor="bscDegree" className="block text-sm font-medium text-foreground mb-2">
                       Degree Name
@@ -611,7 +611,7 @@ export default function ApplyPage() {
                       value={formData.bscDegree}
                       onChange={handleChange}
                       placeholder="e.g., BSC, BBA, B.A., B.Eng, etc."
-                      className="w-full px-4 py-2 border border-input rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+                      className="w-full px-4 py-2 border border-input rounded bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
                     />
                   </div>
                   <div>
@@ -625,7 +625,7 @@ export default function ApplyPage() {
                       value={formData.bscGPA}
                       onChange={handleChange}
                       placeholder="Enter GPA/CGPA"
-                      className="w-full px-4 py-2 border border-input rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+                      className="w-full px-4 py-2 border border-input rounded bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
                     />
                   </div>
                 </div>
@@ -639,7 +639,7 @@ export default function ApplyPage() {
                     name="bscMarksheet"
                     accept=".pdf,.jpg,.jpeg,.png"
                     onChange={handleChange}
-                    className="w-full px-4 py-2 border border-input rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-medium file:bg-primary file:text-primary-foreground hover:file:bg-primary/90"
+                    className="w-full px-4 py-2 border border-input rounded bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-medium file:bg-primary file:text-primary-foreground hover:file:bg-primary/90"
                   />
                   {formData.bscMarksheet && (
                     <p className="text-sm text-muted-foreground mt-1">
@@ -650,9 +650,9 @@ export default function ApplyPage() {
               </div>
 
               {/* MSc or Equivalent */}
-              <div className="border-t pt-6">
-                <h3 className="text-lg font-semibold text-foreground mb-4">MSc or Equivalent (Master of Science or Equivalent)</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+              <div className="border-t pt-4">
+                <h3 className="text-lg font-semibold text-foreground mb-2">MSc or Equivalent (Master of Science or Equivalent)</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-2">
                   <div>
                     <label htmlFor="mscDegree" className="block text-sm font-medium text-foreground mb-2">
                       Degree Name
@@ -664,7 +664,7 @@ export default function ApplyPage() {
                       value={formData.mscDegree}
                       onChange={handleChange}
                       placeholder="e.g., MSC, MBA, M.A., M.Eng, etc."
-                      className="w-full px-4 py-2 border border-input rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+                      className="w-full px-4 py-2 border border-input rounded bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
                     />
                   </div>
                   <div>
@@ -678,7 +678,7 @@ export default function ApplyPage() {
                       value={formData.mscGPA}
                       onChange={handleChange}
                       placeholder="Enter GPA/CGPA"
-                      className="w-full px-4 py-2 border border-input rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+                      className="w-full px-4 py-2 border border-input rounded bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
                     />
                   </div>
                 </div>
@@ -692,7 +692,7 @@ export default function ApplyPage() {
                     name="mscMarksheet"
                     accept=".pdf,.jpg,.jpeg,.png"
                     onChange={handleChange}
-                    className="w-full px-4 py-2 border border-input rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-medium file:bg-primary file:text-primary-foreground hover:file:bg-primary/90"
+                    className="w-full px-4 py-2 border border-input rounded bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-medium file:bg-primary file:text-primary-foreground hover:file:bg-primary/90"
                   />
                   {formData.mscMarksheet && (
                     <p className="text-sm text-muted-foreground mt-1">
@@ -705,8 +705,8 @@ export default function ApplyPage() {
           </section>
 
           {/* Program Preferences */}
-          <section className="bg-card border border-border rounded-lg p-6 md:p-8">
-            <h2 className="text-2xl font-semibold text-foreground mb-6">
+          <section className="bg-card border border-border rounded p-4 md:p-8">
+            <h2 className="text-2xl font-semibold text-foreground mb-2 md:mb-6">
               Program Preferences
             </h2>
             
@@ -720,7 +720,7 @@ export default function ApplyPage() {
                   name="studyAbroadLocation"
                   value={formData.studyAbroadLocation}
                   onChange={handleChange}
-                  className={`w-full px-4 py-2 border rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring ${
+                  className={`w-full px-4 py-2 border rounded bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring ${
                     errors.studyAbroadLocation ? "border-destructive" : "border-input"
                   }`}
                 >
@@ -751,7 +751,7 @@ export default function ApplyPage() {
                   value={formData.studyAreas}
                   onChange={handleChange}
                   placeholder="Enter your preferences"
-                  className={`w-full px-4 py-2 border rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring ${
+                  className={`w-full px-4 py-2 border rounded bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring ${
                     errors.studyAreas ? "border-destructive" : "border-input"
                   }`}
                 />
@@ -769,7 +769,7 @@ export default function ApplyPage() {
                   name="programDuration"
                   value={formData.programDuration}
                   onChange={handleChange}
-                  className={`w-full px-4 py-2 border rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring ${
+                  className={`w-full px-4 py-2 border rounded bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring ${
                     errors.programDuration ? "border-destructive" : "border-input"
                   }`}
                 >
@@ -793,7 +793,7 @@ export default function ApplyPage() {
                   name="preferredStartMonth"
                   value={formData.preferredStartMonth}
                   onChange={handleChange}
-                  className={`w-full px-4 py-2 border rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring ${
+                  className={`w-full px-4 py-2 border rounded bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring ${
                     errors.preferredStartMonth ? "border-destructive" : "border-input"
                   }`}
                 >
@@ -825,7 +825,7 @@ export default function ApplyPage() {
                   name="preferredStartYear"
                   value={formData.preferredStartYear}
                   onChange={handleChange}
-                  className={`w-full px-4 py-2 border rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring ${
+                  className={`w-full px-4 py-2 border rounded bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring ${
                     errors.preferredStartYear ? "border-destructive" : "border-input"
                   }`}
                 >
@@ -850,7 +850,7 @@ export default function ApplyPage() {
                   name="specificProgram"
                   value={formData.specificProgram}
                   onChange={handleChange}
-                  className={`w-full px-4 py-2 border rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring ${
+                  className={`w-full px-4 py-2 border rounded bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring ${
                     errors.specificProgram ? "border-destructive" : "border-input"
                   }`}
                 >
@@ -866,12 +866,12 @@ export default function ApplyPage() {
           </section>
 
           {/* Other Information */}
-          <section className="bg-card border border-border rounded-lg p-6 md:p-8">
-            <h2 className="text-2xl font-semibold text-foreground mb-6">
+          <section className="bg-card border border-border rounded p-4 md:p-8">
+            <h2 className="text-2xl font-semibold text-foreground mb-2 md:mb-6">
               Other Information
             </h2>
             
-            <div className="space-y-4">
+            <div className="space-y-2">
               <div>
                 <label htmlFor="specificQuestions" className="block text-sm font-medium text-foreground mb-2">
                   Do you have any specific questions for us right now?
@@ -883,7 +883,7 @@ export default function ApplyPage() {
                   value={formData.specificQuestions}
                   onChange={handleChange}
                   placeholder="Enter your questions"
-                  className="w-full px-4 py-2 border border-input rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring resize-none"
+                  className="w-full px-4 py-2 border border-input rounded bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring resize-none"
                 />
               </div>
 
@@ -898,14 +898,14 @@ export default function ApplyPage() {
                   value={formData.disabilitiesMedical}
                   onChange={handleChange}
                   placeholder="Enter your information"
-                  className="w-full px-4 py-2 border border-input rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring resize-none"
+                  className="w-full px-4 py-2 border border-input rounded bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring resize-none"
                 />
               </div>
             </div>
           </section>
 
           {/* Consent */}
-          <section className="bg-card border border-border rounded-lg p-6 md:p-8">
+          <section className="bg-card border border-border rounded p-4 md:p-8">
             <div className="flex items-start gap-3">
               <input
                 type="checkbox"

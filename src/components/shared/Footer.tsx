@@ -8,7 +8,7 @@ const Footer = () => {
           {/* Brand Section */}
           <div className="space-y-4">
             <Link href="/" className="flex items-center">
-              <h2 className="text-2xl font-bold text-primary">goStudy</h2>
+              <h2 className="text-2xl font-bold text-primary">AbroadGuideBD</h2>
             </Link>
             <p className="text-sm text-muted-foreground">
               Your gateway to quality education and learning opportunities.
@@ -112,7 +112,7 @@ const Footer = () => {
         {/* Bottom Section */}
         <div className="mt-8 pt-8 border-t flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} goStudy. All rights reserved.
+            © {new Date().getFullYear()} AbroadGuideBD. All rights reserved.
           </p>
           <div className="flex items-center gap-4">
             <Link
