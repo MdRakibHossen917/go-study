@@ -173,7 +173,6 @@ const Footer = () => {
                   id="newsletterConsent" 
                   checked={consentChecked}
                   onCheckedChange={setConsentChecked}
-                  required
                 />
                 <label htmlFor="newsletterConsent" className="text-sm text-foreground leading-relaxed cursor-pointer">
                   <span className="text-destructive">*</span> By checking this box, I consent to StudyAbroad.com collecting and storing my data through the submission of this form, sending marketing communications, and I agree to the StudyAbroad.com Privacy Policy.
