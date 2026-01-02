@@ -2,6 +2,13 @@ import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
+import { CheckCircle, FileText, Phone, Mail, CreditCard, Luggage } from "lucide-react"
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion"
 import {
   Carousel,
   CarouselContent,
@@ -9,7 +16,13 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel"
+import { ReviewsCarousel } from "@/components/reviews-carousel"
+import { DestinationsCarousel } from "@/components/destinations-carousel"
 import japanImage from "@/assests/Image/japanImage.jpg"
+import sushiImage from "@/assests/Image/Sushi.jpg"
+import tokyoImage from "@/assests/Image/tokyo.jpg"
+import karaokeImage from "@/assests/Image/Karaoke.jpg"
+import sakuraImage from "@/assests/Image/Sakura.jpg"
 
 export const metadata: Metadata = {
   title: "Study in Japan - AbroadGuideBD",
@@ -20,12 +33,12 @@ export default function JapanPage() {
   return (
     <div className="min-h-screen">
       {/* Hero Image Header */}
-      <div className="relative w-full h-[82vh]">
+      <div className="relative w-full h-[82vh] overflow-hidden">
         <Image
           src={japanImage}
           alt="Aerial view of Tokyo cityscape with Fuji mountain in Japan"
           fill
-          className="object-cover"
+          className="object-cover animate-zoom-out"
           priority
         />
         <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
@@ -78,7 +91,7 @@ export default function JapanPage() {
         </div>
 
         {/* Overview Section */}
-        <section id="overview" className="mb-12">
+        <section id="overview" className="mb-12 scroll-mt-28">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div className="lg:col-span-2">
               <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
@@ -144,7 +157,7 @@ export default function JapanPage() {
         </section>
 
         {/* Reviews Section */}
-        <section id="reviews" className="mb-12">
+        <section id="reviews" className="mb-12 scroll-mt-28">
           <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
             Student Reviews
           </h2>
@@ -153,109 +166,27 @@ export default function JapanPage() {
             this incredible experience.
           </p>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-card border border-border rounded p-6">
-              <div className="flex items-center gap-2 mb-3">
-                <div className="text-yellow-500 text-xl">★★★★★</div>
-                <span className="text-sm text-muted-foreground">5.0</span>
-              </div>
-              <p className="text-foreground mb-4">
-                "Studying in Japan was the best decision I ever made! The combination of cutting-edge 
-                technology education and rich cultural experiences was incredible. The universities 
-                are world-class, and the people are so welcoming."
-              </p>
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
-                  <span className="text-primary font-semibold">SM</span>
-                </div>
-                <div>
-                  <p className="font-semibold text-foreground">Sarah M.</p>
-                  <p className="text-sm text-muted-foreground">Engineering Student, Tokyo</p>
-                </div>
-              </div>
-            </div>
-            
-            <div className="bg-card border border-border rounded p-6">
-              <div className="flex items-center gap-2 mb-3">
-                <div className="text-yellow-500 text-xl">★★★★★</div>
-                <span className="text-sm text-muted-foreground">5.0</span>
-              </div>
-              <p className="text-foreground mb-4">
-                "The academic rigor and cultural immersion in Japan exceeded all my expectations. 
-                Learning Japanese while studying business gave me a unique edge in my career. 
-                The safety and cleanliness of the country made it perfect for international students."
-              </p>
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
-                  <span className="text-primary font-semibold">JD</span>
-                </div>
-                <div>
-                  <p className="font-semibold text-foreground">James D.</p>
-                  <p className="text-sm text-muted-foreground">Business Student, Osaka</p>
-                </div>
-              </div>
-            </div>
-            
-            <div className="bg-card border border-border rounded p-6">
-              <div className="flex items-center gap-2 mb-3">
-                <div className="text-yellow-500 text-xl">★★★★★</div>
-                <span className="text-sm text-muted-foreground">5.0</span>
-              </div>
-              <p className="text-foreground mb-4">
-                "Japan's blend of tradition and innovation is unmatched. From ancient temples to 
-                high-tech labs, every day was an adventure. The support from the university and 
-                the study abroad program was exceptional throughout my journey."
-              </p>
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
-                  <span className="text-primary font-semibold">EM</span>
-                </div>
-                <div>
-                  <p className="font-semibold text-foreground">Emma L.</p>
-                  <p className="text-sm text-muted-foreground">Arts Student, Kyoto</p>
-                </div>
-              </div>
-            </div>
-            
-            <div className="bg-card border border-border rounded p-6">
-              <div className="flex items-center gap-2 mb-3">
-                <div className="text-yellow-500 text-xl">★★★★★</div>
-                <span className="text-sm text-muted-foreground">5.0</span>
-              </div>
-              <p className="text-foreground mb-4">
-                "The quality of education in Japan is outstanding, and the cultural experiences 
-                are life-changing. I made lifelong friends and gained skills that have been 
-                invaluable in my career. Highly recommend studying abroad in Japan!"
-              </p>
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
-                  <span className="text-primary font-semibold">RK</span>
-                </div>
-                <div>
-                  <p className="font-semibold text-foreground">Ryan K.</p>
-                  <p className="text-sm text-muted-foreground">Technology Student, Tokyo</p>
-                </div>
-              </div>
-            </div>
-          </div>
+          <ReviewsCarousel />
         </section>
 
         {/* Programs Section */}
-        <section id="programs" className="mb-12">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <section id="programs" className="mb-12 scroll-mt-28">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
             {/* Left Half - Title and Description */}
-            <div>
+            <div className="flex flex-col justify-center">
               <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
                 Our Japan Study Abroad Programs
               </h2>
               <p className="text-muted-foreground mb-6">
                 Discover the dynamic culture, breathtaking landscapes, and affordable living of Japan through our immersive study abroad programs.
               </p>
-              <Link href="/apply">
-                <Button size="lg" className="w-full sm:w-auto">
-                  VIEW ALL AVAILABLE PROGRAMS
-                </Button>
-              </Link>
+              <div className="flex justify-center">
+                <Link href="/apply">
+                  <Button size="lg" className="w-full sm:w-auto">
+                    VIEW ALL AVAILABLE PROGRAMS
+                  </Button>
+                </Link>
+              </div>
             </div>
 
             {/* Right Half - Program Cards Carousel */}
@@ -380,7 +311,7 @@ export default function JapanPage() {
         </section>
 
         {/* Activities Section */}
-        <section id="activities" className="mb-12">
+        <section id="activities" className="mb-12 scroll-mt-28">
           <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
             What to do in Japan in your free time
           </h2>
@@ -389,121 +320,194 @@ export default function JapanPage() {
             enjoying world-class cuisine, and visiting stunning natural landscapes.
           </p>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-card border border-border rounded p-6">
-              <h3 className="text-xl font-semibold text-foreground mb-3">
-                Explore Ancient Temples and Shrines
-              </h3>
-              <p className="text-foreground">
-                Visit historic sites like Kyoto's Fushimi Inari Shrine, Tokyo's Senso-ji Temple, 
-                and Nara's Todai-ji. Experience traditional architecture and spiritual practices 
-                that have been preserved for centuries.
-              </p>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+            {/* Sushi Card */}
+            <div className="group relative bg-gradient-to-br from-rose-50 to-pink-50 dark:from-rose-950/20 dark:to-pink-950/20 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-rose-100/50 dark:border-rose-900/30">
+              <div className="relative h-56 overflow-hidden">
+                <Image
+                  src={sushiImage}
+                  alt="Sushi"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                <div className="absolute bottom-1 left-2 right-4">
+                  <h3 className="text-lg font-bold text-white drop-shadow-lg">
+                    Sushi
+                  </h3>
+                </div>
+              </div>
+              <div className="p-2">
+                <p className="text-foreground/80 leading-relaxed">
+                  From sushi and ramen to kaiseki dining, explore Japan's incredible food scene. 
+                  Experience everything from street food to Michelin-starred restaurants.
+                </p>
+              </div>
             </div>
             
-            <div className="bg-card border border-border rounded p-6">
-              <h3 className="text-xl font-semibold text-foreground mb-3">
-                Experience Traditional Culture
-              </h3>
-              <p className="text-foreground">
-                Participate in tea ceremonies, watch traditional Kabuki theater, try on a kimono, 
-                or learn calligraphy. Immerse yourself in Japan's rich cultural traditions.
-              </p>
+            {/* Explore Tokyo Card */}
+            <div className="group relative bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950/20 dark:to-indigo-950/20 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-blue-100/50 dark:border-blue-900/30">
+              <div className="relative h-56 overflow-hidden">
+                <Image
+                  src={tokyoImage}
+                  alt="Explore Tokyo"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                <div className="absolute bottom-1 left-2 right-4">
+                  <h3 className="text-lg font-bold text-white drop-shadow-lg">
+                    Explore Tokyo
+                  </h3>
+                </div>
+              </div>
+              <div className="p-2">
+                <p className="text-foreground/80 leading-relaxed">
+                  Discover the vibrant energy of Tokyo with its modern skyscrapers, bustling streets, 
+                  cutting-edge technology, and endless entertainment options.
+                </p>
+              </div>
             </div>
             
-            <div className="bg-card border border-border rounded p-6">
-              <h3 className="text-xl font-semibold text-foreground mb-3">
-                Enjoy World-Class Cuisine
-              </h3>
-              <p className="text-foreground">
-                From sushi and ramen to kaiseki dining, explore Japan's incredible food scene. 
-                Experience everything from street food to Michelin-starred restaurants.
-              </p>
+            {/* Karaoke Fun Card */}
+            <div className="group relative bg-gradient-to-br from-purple-50 to-fuchsia-50 dark:from-purple-950/20 dark:to-fuchsia-950/20 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-purple-100/50 dark:border-purple-900/30">
+              <div className="relative h-56 overflow-hidden">
+                <Image
+                  src={karaokeImage}
+                  alt="Karaoke Fun"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                <div className="absolute bottom-1 left-2 right-4">
+                  <h3 className="text-lg font-bold text-white drop-shadow-lg">
+                    Karaoke Fun
+                  </h3>
+                </div>
+              </div>
+              <div className="p-2">
+                <p className="text-foreground/80 leading-relaxed">
+                  Join friends for karaoke nights, enjoy anime and manga culture, visit gaming arcades, 
+                  and immerse yourself in Japan's unique entertainment scene.
+                </p>
+              </div>
             </div>
             
-            <div className="bg-card border border-border rounded p-6">
-              <h3 className="text-xl font-semibold text-foreground mb-3">
-                Visit Stunning Natural Landscapes
-              </h3>
-              <p className="text-foreground">
-                See Mount Fuji, relax in natural hot springs (onsen), explore beautiful gardens, 
-                and experience Japan's four distinct seasons in scenic locations.
-              </p>
+            {/* Sakura Viewing Card */}
+            <div className="group relative bg-gradient-to-br from-pink-50 to-rose-50 dark:from-pink-950/20 dark:to-rose-950/20 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-pink-100/50 dark:border-pink-900/30">
+              <div className="relative h-56 overflow-hidden">
+                <Image
+                  src={sakuraImage}
+                  alt="Sakura Viewing"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                <div className="absolute bottom-1 left-2 right-4">
+                  <h3 className="text-lg font-bold text-white drop-shadow-lg">
+                    Sakura Viewing
+                  </h3>
+                </div>
+              </div>
+              <div className="p-2">
+                <p className="text-foreground/80 leading-relaxed">
+                  Experience the breathtaking cherry blossoms in spring, visit beautiful gardens, 
+                  relax in natural hot springs, and enjoy Japan's four distinct seasons.
+                </p>
+              </div>
             </div>
           </div>
         </section>
 
         {/* How to Apply Section */}
-        <section id="how-to-apply" className="mb-12">
+        <section id="how-to-apply" className="mb-12 scroll-mt-28">
           <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-6">
             How to Apply
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="bg-card border border-border rounded p-6">
-              <div className="text-4xl font-bold text-primary mb-2">1</div>
-              <h3 className="text-lg font-semibold text-foreground mb-2">
-                Confirm your program of interest
-              </h3>
-              <p className="text-muted-foreground">
-                Browse our available programs and select the one that matches your academic goals.
-              </p>
+            <div className="bg-card border border-border rounded-2xl p-6">
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0">
+                  <CheckCircle className="h-8 w-8 text-primary" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-lg font-semibold text-foreground">
+                    1. Confirm your program of interest
+                  </h3>
+                </div>
+              </div>
             </div>
             
-            <div className="bg-card border border-border rounded p-6">
-              <div className="text-4xl font-bold text-primary mb-2">2</div>
-              <h3 className="text-lg font-semibold text-foreground mb-2">
-                Submit your completed application form
-              </h3>
-              <p className="text-muted-foreground">
-                Fill out the application with all required documents and information.
-              </p>
+            <div className="bg-card border border-border rounded-2xl p-6">
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0">
+                  <FileText className="h-8 w-8 text-primary" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-lg font-semibold text-foreground">
+                    2. Submit your completed application form
+                  </h3>
+                </div>
+              </div>
             </div>
             
-            <div className="bg-card border border-border rounded p-6">
-              <div className="text-4xl font-bold text-primary mb-2">3</div>
-              <h3 className="text-lg font-semibold text-foreground mb-2">
-                Speak to one of our study abroad experts
-              </h3>
-              <p className="text-muted-foreground">
-                Our advisors will guide you through the process and answer any questions.
-              </p>
+            <div className="bg-card border border-border rounded-2xl p-6">
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0">
+                  <Phone className="h-8 w-8 text-primary" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-lg font-semibold text-foreground">
+                    3. Speak to one of our study abroad experts
+                  </h3>
+                </div>
+              </div>
             </div>
             
-            <div className="bg-card border border-border rounded p-6">
-              <div className="text-4xl font-bold text-primary mb-2">4</div>
-              <h3 className="text-lg font-semibold text-foreground mb-2">
-                Wait for program acceptance
-              </h3>
-              <p className="text-muted-foreground">
-                Receive confirmation and prepare for your study abroad journey.
-              </p>
+            <div className="bg-card border border-border rounded-2xl p-6">
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0">
+                  <Mail className="h-8 w-8 text-primary" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-lg font-semibold text-foreground">
+                    4. Wait for program acceptance
+                  </h3>
+                </div>
+              </div>
             </div>
             
-            <div className="bg-card border border-border rounded p-6">
-              <div className="text-4xl font-bold text-primary mb-2">5</div>
-              <h3 className="text-lg font-semibold text-foreground mb-2">
-                Pay your program deposit
-              </h3>
-              <p className="text-muted-foreground">
-                Secure your spot by completing the payment process.
-              </p>
+            <div className="bg-card border border-border rounded-2xl p-6">
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0">
+                  <CreditCard className="h-8 w-8 text-primary" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-lg font-semibold text-foreground">
+                    5. Pay your program deposit
+                  </h3>
+                </div>
+              </div>
             </div>
             
-            <div className="bg-card border border-border rounded p-6">
-              <div className="text-4xl font-bold text-primary mb-2">6</div>
-              <h3 className="text-lg font-semibold text-foreground mb-2">
-                Get ready for the experience of a lifetime!
-              </h3>
-              <p className="text-muted-foreground">
-                Prepare for your adventure and start your journey to Japan.
-              </p>
+            <div className="bg-card border border-border rounded-2xl p-6">
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0">
+                  <Luggage className="h-8 w-8 text-primary" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-lg font-semibold text-foreground">
+                    6. Get ready for the experience of a lifetime!
+                  </h3>
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
         {/* FAQs Section */}
-        <section id="faqs" className="mb-12">
+        <section id="faqs" className="mb-12 scroll-mt-28">
           <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
             Study Abroad in Japan FAQs
           </h2>
@@ -512,53 +516,75 @@ export default function JapanPage() {
             kickstart your journey with confidence!
           </p>
           
-          <div className="space-y-4">
-            <div className="bg-card border border-border rounded p-6">
-              <h3 className="text-lg font-semibold text-foreground mb-2">
-                What are the benefits of studying abroad in Japan?
-              </h3>
-              <p className="text-foreground">
-                Studying in Japan offers access to world-class universities, cutting-edge technology, 
-                and rich cultural experiences. You'll learn in one of the world's safest countries 
-                while gaining valuable language skills and global perspectives that enhance your 
-                career prospects.
-              </p>
-            </div>
+          <Accordion type="single" collapsible className="w-full space-y-4">
+            <AccordionItem value="item-1" className="border-none">
+              <div className="bg-card border border-border rounded-2xl px-6">
+                <AccordionTrigger className="text-lg font-semibold text-foreground hover:no-underline py-4">
+                  What are the benefits of studying abroad in Japan?
+                </AccordionTrigger>
+                <AccordionContent className="text-foreground/80 pb-4">
+                  Studying in Japan offers access to world-class universities, cutting-edge technology, 
+                  and rich cultural experiences. You'll learn in one of the world's safest countries 
+                  while gaining valuable language skills and global perspectives that enhance your 
+                  career prospects.
+                </AccordionContent>
+              </div>
+            </AccordionItem>
             
-            <div className="bg-card border border-border rounded p-6">
-              <h3 className="text-lg font-semibold text-foreground mb-2">
-                What are the costs associated with studying in Japan?
-              </h3>
-              <p className="text-foreground">
-                Costs include tuition fees, which vary by program and university. Living expenses 
-                in major cities like Tokyo can be higher, but many programs offer affordable options. 
-                Additional costs include visa fees, health insurance, and personal expenses. 
-                Scholarships are available for qualified students.
-              </p>
-            </div>
+            <AccordionItem value="item-2" className="border-none">
+              <div className="bg-card border border-border rounded-2xl px-6">
+                <AccordionTrigger className="text-lg font-semibold text-foreground hover:no-underline py-4">
+                  What are the costs associated with studying in Japan?
+                </AccordionTrigger>
+                <AccordionContent className="text-foreground/80 pb-4">
+                  Costs include tuition fees, which vary by program and university. Living expenses 
+                  in major cities like Tokyo can be higher, but many programs offer affordable options. 
+                  Additional costs include visa fees, health insurance, and personal expenses. 
+                  Scholarships are available for qualified students.
+                </AccordionContent>
+              </div>
+            </AccordionItem>
             
-            <div className="bg-card border border-border rounded p-6">
-              <h3 className="text-lg font-semibold text-foreground mb-2">
-                Do I need a student visa to study in Japan?
-              </h3>
-              <p className="text-foreground">
-                Yes, international students typically need a student visa. The process requires 
-                proof of enrollment, financial documentation, and a valid passport. Our advisors 
-                will guide you through the visa application process.
-              </p>
-            </div>
+            <AccordionItem value="item-3" className="border-none">
+              <div className="bg-card border border-border rounded-2xl px-6">
+                <AccordionTrigger className="text-lg font-semibold text-foreground hover:no-underline py-4">
+                  Do I need a student visa to study in Japan?
+                </AccordionTrigger>
+                <AccordionContent className="text-foreground/80 pb-4">
+                  Yes, international students typically need a student visa. The process requires 
+                  proof of enrollment, financial documentation, and a valid passport. Our advisors 
+                  will guide you through the visa application process.
+                </AccordionContent>
+              </div>
+            </AccordionItem>
             
-            <div className="bg-card border border-border rounded p-6">
-              <h3 className="text-lg font-semibold text-foreground mb-2">
-                What should I know about living in Japan as an international student?
-              </h3>
-              <p className="text-foreground">
-                Japan offers excellent public transportation, safe cities, and a high quality of life. 
-                While Japanese is the primary language, many universities offer English-taught programs. 
-                Be prepared for cultural differences, seasonal weather changes, and the opportunity to 
-                experience one of the world's most unique cultures.
-              </p>
-            </div>
+            <AccordionItem value="item-4" className="border-none">
+              <div className="bg-card border border-border rounded-2xl px-6">
+                <AccordionTrigger className="text-lg font-semibold text-foreground hover:no-underline py-4">
+                  What should I know about living in Japan as an international student?
+                </AccordionTrigger>
+                <AccordionContent className="text-foreground/80 pb-4">
+                  Japan offers excellent public transportation, safe cities, and a high quality of life. 
+                  While Japanese is the primary language, many universities offer English-taught programs. 
+                  Be prepared for cultural differences, seasonal weather changes, and the opportunity to 
+                  experience one of the world's most unique cultures.
+                </AccordionContent>
+              </div>
+            </AccordionItem>
+          </Accordion>
+        </section>
+
+        {/* Explore Alternative Destinations Section */}
+        <section className="mb-12">
+          <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+            Explore Alternative Study Abroad Destinations
+          </h2>
+          <p className="text-muted-foreground mb-6">
+            Discover other incredible study abroad opportunities around the world.
+          </p>
+
+          <div className="relative">
+            <DestinationsCarousel />
           </div>
         </section>
 

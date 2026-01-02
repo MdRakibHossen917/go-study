@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import { Search, Menu, X, Facebook, Youtube, Instagram, Mail, Globe, BookOpen, Calendar, Settings, Info, MessageCircle, FileText } from "lucide-react"
+import { Search, Menu, X, Facebook, Youtube, Instagram, Mail, Globe, BookOpen, Calendar, Settings, Info, MessageCircle, FileText, ChevronDown, ChevronUp } from "lucide-react"
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import imageUniOne from "@/assests/Image/imageUniOne.jpg"
@@ -24,7 +24,13 @@ const Navbar = () => {
   const [isHovering, setIsHovering] = useState(false)
   const [isTransitioning, setIsTransitioning] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [openMobileSubmenu, setOpenMobileSubmenu] = useState<string | null>(null)
+  const [isScrolled, setIsScrolled] = useState(false)
   const destinationImages = [imageUniOne, imageUniTwo, imageUniThree]
+
+  const toggleMobileSubmenu = (menu: string) => {
+    setOpenMobileSubmenu(openMobileSubmenu === menu ? null : menu)
+  }
 
   useEffect(() => {
     let interval: NodeJS.Timeout | null = null
@@ -112,6 +118,26 @@ const Navbar = () => {
       document.body.style.overflowX = ''
     }
   }, [isMobileMenuOpen])
+
+  // Reset submenu when mobile menu closes
+  useEffect(() => {
+    if (!isMobileMenuOpen) {
+      setOpenMobileSubmenu(null)
+    }
+  }, [isMobileMenuOpen])
+
+  // Handle scroll to add shadow when scrolled
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50)
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   return (
     <>
       {/* Mobile Sidebar */}
@@ -123,51 +149,372 @@ const Navbar = () => {
         <div className="h-full flex flex-col">
           {/* Mobile Navigation Menu */}
           <div className="flex-1 overflow-y-auto py-4 pt-[100px]">
-            <Link
-              href="/destinations"
-              className="flex items-center gap-3 py-3 px-4 text-white text-sm font-semibold uppercase border-b border-teal-600/50 hover:bg-teal-600/50 transition-colors"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
+            {/* DESTINATIONS - Expandable */}
+            <div>
+              <button
+                onClick={() => toggleMobileSubmenu('destinations')}
+                className="w-full flex items-center justify-between gap-3 py-3 px-4 text-white text-sm font-semibold uppercase border-b border-teal-600/50 hover:bg-teal-600/50 transition-colors"
+              >
+                <div className="flex items-center gap-3">
               <Globe className="h-5 w-5" />
               DESTINATIONS
+                </div>
+                {openMobileSubmenu === 'destinations' ? (
+                  <ChevronUp className="h-4 w-4" />
+                ) : (
+                  <ChevronDown className="h-4 w-4" />
+                )}
+              </button>
+              {openMobileSubmenu === 'destinations' && (
+                <div className="bg-teal-700/30 border-b border-teal-600/50">
+                  {/* ASIA */}
+                  <div className="px-4 py-2">
+                    <div className="text-xs font-bold text-white/80 uppercase mb-2">ASIA</div>
+                    <div className="space-y-1 pl-4">
+                      <Link href="/destinations/japan" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-sm text-white/90 hover:text-white hover:bg-teal-600/30 px-2 rounded">
+                        Japan
             </Link>
+                      <Link href="/destinations/china" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-sm text-white/90 hover:text-white hover:bg-teal-600/30 px-2 rounded">
+                        China
+                      </Link>
+                      <Link href="/destinations/south-korea" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-sm text-white/90 hover:text-white hover:bg-teal-600/30 px-2 rounded">
+                        South Korea
+                      </Link>
+                    </div>
+                  </div>
+                  {/* EUROPE */}
+                  <div className="px-4 py-2">
+                    <div className="text-xs font-bold text-white/80 uppercase mb-2">EUROPE</div>
+                    <div className="space-y-1 pl-4">
+                      <Link href="/destinations/united-kingdom" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-sm text-white/90 hover:text-white hover:bg-teal-600/30 px-2 rounded">
+                        United Kingdom
+                      </Link>
+                      <Link href="/destinations/france" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-sm text-white/90 hover:text-white hover:bg-teal-600/30 px-2 rounded">
+                        France
+                      </Link>
+                      <Link href="/destinations/germany" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-sm text-white/90 hover:text-white hover:bg-teal-600/30 px-2 rounded">
+                        Germany
+                      </Link>
+                      <Link href="/destinations/italy" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-sm text-white/90 hover:text-white hover:bg-teal-600/30 px-2 rounded">
+                        Italy
+                      </Link>
+                    </div>
+                  </div>
+                  {/* NORTH AMERICA */}
+                  <div className="px-4 py-2">
+                    <div className="text-xs font-bold text-white/80 uppercase mb-2">NORTH AMERICA</div>
+                    <div className="space-y-1 pl-4">
+                      <Link href="/destinations/united-states" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-sm text-white/90 hover:text-white hover:bg-teal-600/30 px-2 rounded">
+                        United States
+                      </Link>
+                      <Link href="/destinations/canada" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-sm text-white/90 hover:text-white hover:bg-teal-600/30 px-2 rounded">
+                        Canada
+                      </Link>
+                      <Link href="/destinations/mexico" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-sm text-white/90 hover:text-white hover:bg-teal-600/30 px-2 rounded">
+                        Mexico
+                      </Link>
+                      <Link href="/destinations/costa-rica" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-sm text-white/90 hover:text-white hover:bg-teal-600/30 px-2 rounded">
+                        Costa Rica
+                      </Link>
+                    </div>
+                  </div>
+                  {/* SOUTH AMERICA */}
+                  <div className="px-4 py-2">
+                    <div className="text-xs font-bold text-white/80 uppercase mb-2">SOUTH AMERICA</div>
+                    <div className="space-y-1 pl-4">
+                      <Link href="/destinations/argentina" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-sm text-white/90 hover:text-white hover:bg-teal-600/30 px-2 rounded">
+                        Argentina
+                      </Link>
+                      <Link href="/destinations/brazil" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-sm text-white/90 hover:text-white hover:bg-teal-600/30 px-2 rounded">
+                        Brazil
+                      </Link>
+                      <Link href="/destinations/chile" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-sm text-white/90 hover:text-white hover:bg-teal-600/30 px-2 rounded">
+                        Chile
+                      </Link>
+                      <Link href="/destinations/colombia" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-sm text-white/90 hover:text-white hover:bg-teal-600/30 px-2 rounded">
+                        Colombia
+                      </Link>
+                    </div>
+                  </div>
+                  {/* OCEANIA */}
+                  <div className="px-4 py-2">
+                    <div className="text-xs font-bold text-white/80 uppercase mb-2">OCEANIA</div>
+                    <div className="space-y-1 pl-4">
+                      <Link href="/destinations/australia" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-sm text-white/90 hover:text-white hover:bg-teal-600/30 px-2 rounded">
+                        Australia
+                      </Link>
+                      <Link href="/destinations/new-zealand" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-sm text-white/90 hover:text-white hover:bg-teal-600/30 px-2 rounded">
+                        New Zealand
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
 
-            <Link
-              href="/subjects"
-              className="flex items-center gap-3 py-3 px-4 text-white text-sm font-semibold uppercase border-b border-teal-600/50 hover:bg-teal-600/50 transition-colors"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
+            {/* SUBJECTS - Expandable */}
+            <div>
+              <button
+                onClick={() => toggleMobileSubmenu('subjects')}
+                className="w-full flex items-center justify-between gap-3 py-3 px-4 text-white text-sm font-semibold uppercase border-b border-teal-600/50 hover:bg-teal-600/50 transition-colors"
+              >
+                <div className="flex items-center gap-3">
               <BookOpen className="h-5 w-5" />
               SUBJECTS
+                </div>
+                {openMobileSubmenu === 'subjects' ? (
+                  <ChevronUp className="h-4 w-4" />
+                ) : (
+                  <ChevronDown className="h-4 w-4" />
+                )}
+              </button>
+              {openMobileSubmenu === 'subjects' && (
+                <div className="bg-teal-700/30 border-b border-teal-600/50">
+                  <div className="px-4 py-2">
+                    <div className="text-xs font-bold text-white/80 uppercase mb-2">ENGINEERING</div>
+                    <div className="space-y-1 pl-4">
+                      <Link href="/subjects/art-design" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-sm text-white/90 hover:text-white hover:bg-teal-600/30 px-2 rounded">
+                        Art & Design
             </Link>
+                      <Link href="/subjects/business-economics" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-sm text-white/90 hover:text-white hover:bg-teal-600/30 px-2 rounded">
+                        Business & Economics
+                      </Link>
+                      <Link href="/subjects/communications" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-sm text-white/90 hover:text-white hover:bg-teal-600/30 px-2 rounded">
+                        Communications
+                      </Link>
+                      <Link href="/subjects/education" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-sm text-white/90 hover:text-white hover:bg-teal-600/30 px-2 rounded">
+                        Education
+                      </Link>
+                      <Link href="/subjects/engineering" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-sm text-white/90 hover:text-white hover:bg-teal-600/30 px-2 rounded">
+                        Engineering
+                      </Link>
+                    </div>
+                  </div>
+                  <div className="px-4 py-2">
+                    <div className="text-xs font-bold text-white/80 uppercase mb-2">SCIENCES</div>
+                    <div className="space-y-1 pl-4">
+                      <Link href="/subjects/health" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-sm text-white/90 hover:text-white hover:bg-teal-600/30 px-2 rounded">
+                        Health
+                      </Link>
+                      <Link href="/subjects/humanities" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-sm text-white/90 hover:text-white hover:bg-teal-600/30 px-2 rounded">
+                        Humanities
+                      </Link>
+                      <Link href="/subjects/international-studies" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-sm text-white/90 hover:text-white hover:bg-teal-600/30 px-2 rounded">
+                        International Studies
+                      </Link>
+                      <Link href="/subjects/math" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-sm text-white/90 hover:text-white hover:bg-teal-600/30 px-2 rounded">
+                        Math
+                      </Link>
+                      <Link href="/subjects/natural-applied-sciences" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-sm text-white/90 hover:text-white hover:bg-teal-600/30 px-2 rounded">
+                        Natural & Applied Sciences
+                      </Link>
+                    </div>
+                  </div>
+                  <div className="px-4 py-2">
+                    <div className="text-xs font-bold text-white/80 uppercase mb-2">SOCIAL & CULTURAL</div>
+                    <div className="space-y-1 pl-4">
+                      <Link href="/subjects/social-sciences" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-sm text-white/90 hover:text-white hover:bg-teal-600/30 px-2 rounded">
+                        Social Sciences
+                      </Link>
+                      <Link href="/subjects/tourism-hospitality" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-sm text-white/90 hover:text-white hover:bg-teal-600/30 px-2 rounded">
+                        Tourism and Hospitality
+                      </Link>
+                      <Link href="/subjects/visual-performing-arts" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-sm text-white/90 hover:text-white hover:bg-teal-600/30 px-2 rounded">
+                        Visual and Performing Arts
+                      </Link>
+                      <Link href="/subjects/world-languages" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-sm text-white/90 hover:text-white hover:bg-teal-600/30 px-2 rounded">
+                        World Languages
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
 
-            <Link
-              href="/terms"
-              className="flex items-center gap-3 py-3 px-4 text-white text-sm font-semibold uppercase border-b border-teal-600/50 hover:bg-teal-600/50 transition-colors"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
+            {/* TERMS - Expandable */}
+            <div>
+              <button
+                onClick={() => toggleMobileSubmenu('terms')}
+                className="w-full flex items-center justify-between gap-3 py-3 px-4 text-white text-sm font-semibold uppercase border-b border-teal-600/50 hover:bg-teal-600/50 transition-colors"
+              >
+                <div className="flex items-center gap-3">
               <Calendar className="h-5 w-5" />
               TERMS
+                </div>
+                {openMobileSubmenu === 'terms' ? (
+                  <ChevronUp className="h-4 w-4" />
+                ) : (
+                  <ChevronDown className="h-4 w-4" />
+                )}
+              </button>
+              {openMobileSubmenu === 'terms' && (
+                <div className="bg-teal-700/30 border-b border-teal-600/50">
+                  <div className="space-y-1 pl-4 py-2">
+                    <Link href="/terms/academic-year" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-sm text-white/90 hover:text-white hover:bg-teal-600/30 px-2 rounded">
+                      Academic Year
             </Link>
+                    <Link href="/terms/fall-semester" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-sm text-white/90 hover:text-white hover:bg-teal-600/30 px-2 rounded">
+                      Fall Semester
+                    </Link>
+                    <Link href="/terms/spring-semester" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-sm text-white/90 hover:text-white hover:bg-teal-600/30 px-2 rounded">
+                      Spring Semester
+                    </Link>
+                    <Link href="/terms/summer-break" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-sm text-white/90 hover:text-white hover:bg-teal-600/30 px-2 rounded">
+                      Summer Break
+                    </Link>
+                    <Link href="/terms/winter-break" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-sm text-white/90 hover:text-white hover:bg-teal-600/30 px-2 rounded">
+                      Winter Break
+                    </Link>
+                  </div>
+                </div>
+              )}
+            </div>
 
-            <Link
-              href="/how-it-works"
-              className="flex items-center gap-3 py-3 px-4 text-white text-sm font-semibold uppercase border-b border-teal-600/50 hover:bg-teal-600/50 transition-colors"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
+            {/* HOW IT WORKS - Expandable */}
+            <div>
+              <button
+                onClick={() => toggleMobileSubmenu('how-it-works')}
+                className="w-full flex items-center justify-between gap-3 py-3 px-4 text-white text-sm font-semibold uppercase border-b border-teal-600/50 hover:bg-teal-600/50 transition-colors"
+              >
+                <div className="flex items-center gap-3">
               <Settings className="h-5 w-5" />
               HOW IT WORKS
+                </div>
+                {openMobileSubmenu === 'how-it-works' ? (
+                  <ChevronUp className="h-4 w-4" />
+                ) : (
+                  <ChevronDown className="h-4 w-4" />
+                )}
+              </button>
+              {openMobileSubmenu === 'how-it-works' && (
+                <div className="bg-teal-700/30 border-b border-teal-600/50">
+                  <div className="px-4 py-2">
+                    <div className="text-xs font-bold text-white/80 uppercase mb-2">HOW IT WORKS</div>
+                    <div className="space-y-1 pl-4">
+                      <Link href="/how-it-works/pick-program" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-sm text-white/90 hover:text-white hover:bg-teal-600/30 px-2 rounded">
+                        How to Pick a Program
             </Link>
+                      <Link href="/how-it-works/apply" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-sm text-white/90 hover:text-white hover:bg-teal-600/30 px-2 rounded">
+                        How to Apply
+                      </Link>
+                      <Link href="/how-it-works/costs-deadlines" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-sm text-white/90 hover:text-white hover:bg-teal-600/30 px-2 rounded">
+                        Costs and Deadlines
+                      </Link>
+                      <Link href="/how-it-works/online-application" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-sm text-white/90 hover:text-white hover:bg-teal-600/30 px-2 rounded">
+                        Online Application
+                      </Link>
+                    </div>
+                  </div>
+                  <div className="px-4 py-2">
+                    <div className="text-xs font-bold text-white/80 uppercase mb-2">AFTER APPLYING</div>
+                    <div className="space-y-1 pl-4">
+                      <Link href="/how-it-works/what-to-expect" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-sm text-white/90 hover:text-white hover:bg-teal-600/30 px-2 rounded">
+                        What to Expect After Applying
+                      </Link>
+                      <Link href="/how-it-works/what-you-get" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-sm text-white/90 hover:text-white hover:bg-teal-600/30 px-2 rounded">
+                        What You Get
+                      </Link>
+                      <Link href="/how-it-works/what-youll-need" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-sm text-white/90 hover:text-white hover:bg-teal-600/30 px-2 rounded">
+                        What You'll Need
+                      </Link>
+                      <Link href="/how-it-works/cancellation-policy" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-sm text-white/90 hover:text-white hover:bg-teal-600/30 px-2 rounded">
+                        Cancellation Policy
+                      </Link>
+                    </div>
+                  </div>
+                  <div className="px-4 py-2">
+                    <div className="text-xs font-bold text-white/80 uppercase mb-2">THINGS YOU'LL NEED</div>
+                    <div className="space-y-1 pl-4">
+                      <Link href="/how-it-works/pre-departure-checklist" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-sm text-white/90 hover:text-white hover:bg-teal-600/30 px-2 rounded">
+                        Pre-Departure Checklist
+                      </Link>
+                      <Link href="/how-it-works/passport" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-sm text-white/90 hover:text-white hover:bg-teal-600/30 px-2 rounded">
+                        How to Get a Passport
+                      </Link>
+                      <Link href="/how-it-works/visa" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-sm text-white/90 hover:text-white hover:bg-teal-600/30 px-2 rounded">
+                        Visa Information
+                      </Link>
+                      <Link href="/how-it-works/flights" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-sm text-white/90 hover:text-white hover:bg-teal-600/30 px-2 rounded">
+                        Booking Flights
+                      </Link>
+                      <Link href="/how-it-works/travel-insurance" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-sm text-white/90 hover:text-white hover:bg-teal-600/30 px-2 rounded">
+                        Travel Insurance
+                      </Link>
+                      <Link href="/how-it-works/traveler-guide" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-sm text-white/90 hover:text-white hover:bg-teal-600/30 px-2 rounded">
+                        Traveler Guide
+                      </Link>
+                    </div>
+                  </div>
+                  <div className="px-4 py-2">
+                    <div className="text-xs font-bold text-white/80 uppercase mb-2">FUNDING YOUR PROGRAM</div>
+                    <div className="space-y-1 pl-4">
+                      <Link href="/how-it-works/what-youre-paying-for" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-sm text-white/90 hover:text-white hover:bg-teal-600/30 px-2 rounded">
+                        What You're Paying For
+                      </Link>
+                      <Link href="/how-it-works/how-to-pay" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-sm text-white/90 hover:text-white hover:bg-teal-600/30 px-2 rounded">
+                        How to Pay for Study abroad
+                      </Link>
+                      <Link href="/how-it-works/scholarships" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-sm text-white/90 hover:text-white hover:bg-teal-600/30 px-2 rounded">
+                        Scholarships
+                      </Link>
+                      <Link href="/how-it-works/grants" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-sm text-white/90 hover:text-white hover:bg-teal-600/30 px-2 rounded">
+                        Grants
+                      </Link>
+                      <Link href="/how-it-works/financial-aid" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-sm text-white/90 hover:text-white hover:bg-teal-600/30 px-2 rounded">
+                        Paying with Financial Aid
+                      </Link>
+                      <Link href="/how-it-works/crowdfunding" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-sm text-white/90 hover:text-white hover:bg-teal-600/30 px-2 rounded">
+                        Crowdfunding Guide
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
 
-            <Link
-              href="/about"
-              className="flex items-center gap-3 py-3 px-4 text-white text-sm font-semibold uppercase border-b border-teal-600/50 hover:bg-teal-600/50 transition-colors"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
+            {/* ABOUT - Expandable */}
+            <div>
+              <button
+                onClick={() => toggleMobileSubmenu('about')}
+                className="w-full flex items-center justify-between gap-3 py-3 px-4 text-white text-sm font-semibold uppercase border-b border-teal-600/50 hover:bg-teal-600/50 transition-colors"
+              >
+                <div className="flex items-center gap-3">
               <Info className="h-5 w-5" />
               ABOUT
+                </div>
+                {openMobileSubmenu === 'about' ? (
+                  <ChevronUp className="h-4 w-4" />
+                ) : (
+                  <ChevronDown className="h-4 w-4" />
+                )}
+              </button>
+              {openMobileSubmenu === 'about' && (
+                <div className="bg-teal-700/30 border-b border-teal-600/50">
+                  <div className="space-y-1 pl-4 py-2">
+                    <Link href="/about" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-sm text-white/90 hover:text-white hover:bg-teal-600/30 px-2 rounded">
+                      About goStudy
             </Link>
+                    <Link href="/about/reviews" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-sm text-white/90 hover:text-white hover:bg-teal-600/30 px-2 rounded">
+                      Study Abroad Reviews
+                    </Link>
+                    <Link href="/about/health-safety" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-sm text-white/90 hover:text-white hover:bg-teal-600/30 px-2 rounded">
+                      Health & Safety Abroad
+                    </Link>
+                    <Link href="/about/blogs" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-sm text-white/90 hover:text-white hover:bg-teal-600/30 px-2 rounded">
+                      Blogs and Resources
+                    </Link>
+                    <Link href="/about/faq" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-sm text-white/90 hover:text-white hover:bg-teal-600/30 px-2 rounded">
+                      FAQs
+                    </Link>
+                    <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-sm text-white/90 hover:text-white hover:bg-teal-600/30 px-2 rounded">
+                      Contact Us
+                    </Link>
+                  </div>
+                </div>
+              )}
+            </div>
 
+            {/* Simple Links */}
             <Link
               href="/search"
               className="flex items-center gap-3 py-3 px-4 text-white text-sm font-semibold uppercase border-b border-teal-600/50 hover:bg-teal-600/50 transition-colors"
@@ -259,7 +606,9 @@ const Navbar = () => {
       )}
 
       {/* Desktop Navbar */}
-      <nav className="w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 relative md:relative fixed bottom-0 md:bottom-auto md:top-0 z-30  ">
+      <nav className={`w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled ? 'shadow-lg' : ''
+      }`}>
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex h-16 items-center justify-between">
             {/* Left side - Brand name */}
@@ -272,9 +621,9 @@ const Navbar = () => {
               <NavigationMenuList>
                 {/* Destinations */}
                 <NavigationMenuItem>
-                  <NavigationMenuTrigger className="text-left text-xs sm:text-sm  md:text-base">DESTINATIONS</NavigationMenuTrigger>
+                  <NavigationMenuTrigger className="text-left text-xs sm:text-sm md:text-base bg-transparent hover:bg-transparent focus:bg-transparent data-[state=open]:bg-transparent data-[state=open]:hover:bg-transparent data-[state=open]:font-bold">DESTINATIONS</NavigationMenuTrigger>
                   <NavigationMenuContent
-                    className="group-data-[viewport=false]/navigation-menu:!w-11/12 group-data-[viewport=false]/navigation-menu:!left-1/2 group-data-[viewport=false]/navigation-menu:!-translate-x-1/2 group-data-[viewport=false]/navigation-menu:!fixed group-data-[viewport=false]/navigation-menu:!top-16"
+                    className="group-data-[viewport=false]/navigation-menu:!w-11/12 group-data-[viewport=false]/navigation-menu:!left-1/2 group-data-[viewport=false]/navigation-menu:!-translate-x-1/2 group-data-[viewport=false]/navigation-menu:!fixed group-data-[viewport=false]/navigation-menu:!top-14.5"
                     onMouseEnter={() => setIsHovering(true)}
                     onMouseLeave={() => setIsHovering(false)}
                   >
@@ -448,8 +797,8 @@ const Navbar = () => {
 
                 {/* Subjects */}
                 <NavigationMenuItem>
-                  <NavigationMenuTrigger className="text-left text-xs sm:text-sm md:text-base">SUBJECTS</NavigationMenuTrigger>
-                  <NavigationMenuContent className="group-data-[viewport=false]/navigation-menu:!w-11/12 group-data-[viewport=false]/navigation-menu:!left-1/2 group-data-[viewport=false]/navigation-menu:!-translate-x-1/2 group-data-[viewport=false]/navigation-menu:!fixed group-data-[viewport=false]/navigation-menu:!top-16">
+                  <NavigationMenuTrigger className="text-left text-xs sm:text-sm md:text-base bg-transparent hover:bg-transparent focus:bg-transparent data-[state=open]:bg-transparent data-[state=open]:hover:bg-transparent data-[state=open]:font-bold">SUBJECTS</NavigationMenuTrigger>
+                  <NavigationMenuContent className="group-data-[viewport=false]/navigation-menu:!w-11/12 group-data-[viewport=false]/navigation-menu:!left-1/2 group-data-[viewport=false]/navigation-menu:!-translate-x-1/2 group-data-[viewport=false]/navigation-menu:!fixed group-data-[viewport=false]/navigation-menu:!top-14.5">
                     <div className="max-w-7xl mx-auto px-4 ">
                       <div className="flex gap-4 ">
                         {/* Left side - Image (1/4 width) */}
@@ -556,9 +905,9 @@ const Navbar = () => {
 
                 {/* Terms */}
                 <NavigationMenuItem>
-                <NavigationMenuTrigger className="text-left text-xs sm:text-sm md:text-base">TERMS</NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <div className="w-[200px] p-4">
+                <NavigationMenuTrigger className="text-left text-xs sm:text-sm md:text-base bg-transparent hover:bg-transparent focus:bg-transparent data-[state=open]:bg-transparent data-[state=open]:hover:bg-transparent data-[state=open]:font-bold">TERMS</NavigationMenuTrigger>
+                <NavigationMenuContent className="group-data-[viewport=false]/navigation-menu:!top-11">
+                  <div className="w-[200px]  ">
                     <div className="space-y-2">
                       <NavigationMenuLink asChild>
                         <Link href="/terms/academic-year" className="block text-xs sm:text-sm hover:text-primary">
@@ -592,8 +941,8 @@ const Navbar = () => {
 
                  {/* How It Works */}
                 <NavigationMenuItem>
-                  <NavigationMenuTrigger className="text-left text-xs sm:text-sm md:text-base">HOW IT WORKS</NavigationMenuTrigger>
-                  <NavigationMenuContent  className="group-data-[viewport=false]/navigation-menu:!w-11/12 group-data-[viewport=false]/navigation-menu:!left-1/2 group-data-[viewport=false]/navigation-menu:!-translate-x-1/2 group-data-[viewport=false]/navigation-menu:!fixed group-data-[viewport=false]/navigation-menu:!top-16">
+                  <NavigationMenuTrigger className="text-left text-xs sm:text-sm md:text-base bg-transparent hover:bg-transparent focus:bg-transparent data-[state=open]:bg-transparent data-[state=open]:hover:bg-transparent data-[state=open]:font-bold">HOW IT WORKS</NavigationMenuTrigger>
+                  <NavigationMenuContent  className="group-data-[viewport=false]/navigation-menu:!w-11/12 group-data-[viewport=false]/navigation-menu:!left-1/2 group-data-[viewport=false]/navigation-menu:!-translate-x-1/2 group-data-[viewport=false]/navigation-menu:!fixed group-data-[viewport=false]/navigation-menu:!top-14.5">
                     <div className="max-w-7xl mx-auto px-4">
                       <div className="flex gap-4">
                         {/* Left side - Image (1/4 width) */}
@@ -735,8 +1084,8 @@ const Navbar = () => {
                 
               {/* About */}
               <NavigationMenuItem>
-                <NavigationMenuTrigger className="text-left text-xs sm:text-sm md:text-base">ABOUT</NavigationMenuTrigger>
-                <NavigationMenuContent>
+                <NavigationMenuTrigger className="text-left text-xs sm:text-sm md:text-base bg-transparent hover:bg-transparent focus:bg-transparent data-[state=open]:bg-transparent data-[state=open]:hover:bg-transparent data-[state=open]:font-bold">ABOUT</NavigationMenuTrigger>
+                <NavigationMenuContent className="group-data-[viewport=false]/navigation-menu:!top-11">
                   <div className="w-[200px] p-4">
                     <div className="space-y-2">
                       <NavigationMenuLink asChild>
