@@ -420,7 +420,7 @@ export default function JapanPage() {
         </section>
 
         {/* How to Apply Section */}
-        <section id="how-to-apply" className="mb-12 scroll-mt-28">
+        <section id="how-to-apply" className="mb-12 scroll-mt-28 bg-muted/30 rounded-2xl p-6 md:p-8">
           <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-6">
             How to Apply
           </h2>
@@ -575,7 +575,7 @@ export default function JapanPage() {
         </section>
 
         {/* Explore Alternative Destinations Section */}
-        <section className="mb-12">
+        <section className="mb-12 bg-muted/30 rounded-2xl p-6 md:p-8">
           <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
             Explore Alternative Study Abroad Destinations
           </h2>

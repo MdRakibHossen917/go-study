@@ -572,7 +572,7 @@ export default function UnitedKingdomPage() {
         </section>
 
         {/* Explore Alternative Destinations Section */}
-        <section className="mb-12">
+        <section className="mb-12 bg-muted/30 rounded-2xl p-6 md:p-8">
           <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
             Explore Alternative Study Abroad Destinations
           </h2>
