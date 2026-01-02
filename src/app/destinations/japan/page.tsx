@@ -43,7 +43,7 @@ export default function JapanPage() {
         />
         <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
           <div className="text-center text-white px-4">
-            <h4 className="text-sm md:text-base font-semibold uppercase tracking-wider mb-2">
+            <h4 className="text-sm md:text-2xl font-bold uppercase tracking-wider mb-2">
               JAPAN
             </h4>
             <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4">
