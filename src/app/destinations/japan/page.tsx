@@ -173,12 +173,12 @@ export default function JapanPage() {
         <section id="programs" className="mb-12 scroll-mt-28">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
             {/* Left Half - Title and Description */}
-            <div className="flex flex-col justify-center">
-              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+            <div className="flex flex-col justify-center ">
+              <h2 className="text-2xl md:text-3xl text-center font-bold text-foreground mb-2">
                 Our Japan Study Abroad Programs
               </h2>
-              <p className="text-muted-foreground mb-6">
-                Discover the dynamic culture, breathtaking landscapes, and affordable living of Japan through our immersive study abroad programs.
+              <p className="text-muted-foreground mb-4">
+              “Discover the dynamic culture, breathtaking landscapes, and affordable living of Japan through our immersive, globally recognized study abroad programs.”
               </p>
               <div className="flex justify-center">
                 <Link href="/apply">
