@@ -18,21 +18,25 @@ import {
 } from "@/components/ui/carousel"
 import { ReviewsCarousel } from "@/components/reviews-carousel"
 import { DestinationsCarousel } from "@/components/destinations-carousel"
-import ukImage from "@/assests/Image/ukImage.jpg"
+import japanImage from "@/assests/Image/japanImage.jpg"
+import sushiImage from "@/assests/Image/Sushi.jpg"
+import tokyoImage from "@/assests/Image/tokyo.jpg"
+import karaokeImage from "@/assests/Image/Karaoke.jpg"
+import sakuraImage from "@/assests/Image/Sakura.jpg"
 
 export const metadata: Metadata = {
-  title: "Study in United Kingdom - AbroadGuideBD",
-  description: "Discover study abroad opportunities in the United Kingdom. Explore top universities and programs in UK.",
+  title: "Study in Japan - AbroadGuideBD",
+  description: "Discover study abroad opportunities in Japan. Explore top universities and programs in Japan.",
 }
 
-export default function UnitedKingdomPage() {
+export default function JapanPage() {
   return (
     <div className="min-h-screen">
       {/* Hero Image Header */}
       <div className="relative w-full h-[82vh] overflow-hidden">
         <Image
-          src={ukImage}
-          alt="Beautiful landscape of United Kingdom"
+          src={japanImage}
+          alt="Aerial view of Tokyo cityscape with Fuji mountain in Japan"
           fill
           className="object-cover animate-zoom-out"
           priority
@@ -40,13 +44,13 @@ export default function UnitedKingdomPage() {
         <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
           <div className="text-center text-white px-4">
             <h4 className="text-sm md:text-2xl font-bold uppercase tracking-wider mb-2">
-              UNITED KINGDOM
+              JAPAN
             </h4>
             <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4">
-              Study Abroad in United Kingdom
+              Study Abroad in Japan
             </h1>
             <p className="text-lg md:text-xl font-medium">
-              Prestigious. Historic. World-Class.
+              Innovative. Cultural. Transformative.
             </p>
           </div>
         </div>
@@ -83,7 +87,7 @@ export default function UnitedKingdomPage() {
         <div className="mb-6 text-sm text-muted-foreground">
           <Link href="/" className="hover:text-primary">Home</Link>
           <span className="mx-2">|</span>
-          <span>Study Abroad in United Kingdom</span>
+          <span>Study Abroad in Japan</span>
         </div>
 
         {/* Overview Section */}
@@ -91,25 +95,24 @@ export default function UnitedKingdomPage() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div className="lg:col-span-2">
               <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-                What to expect when you Study Abroad in United Kingdom
+                What to expect when you Study Abroad in Japan
               </h2>
               <div className="space-y-4 text-foreground">
                 <p>
-                  Studying abroad in the United Kingdom offers an unparalleled educational experience 
-                  in one of the world's most prestigious academic destinations. Expect to immerse yourself 
-                  in a country with rich history, diverse culture, and world-renowned universities like 
-                  Oxford, Cambridge, and Imperial College London.
+                  Studying abroad in Japan offers a unique blend of cutting-edge technology, 
+                  ancient traditions, and world-class education. Expect to immerse yourself in 
+                  a culture that seamlessly combines innovation with rich cultural heritage.
                 </p>
                 <p>
-                  You'll experience life in a country that seamlessly blends centuries of tradition 
-                  with cutting-edge innovation. From the historic streets of London and Edinburgh to the 
-                  vibrant university cities of Manchester and Bristol, the UK offers diverse experiences 
-                  for every student.
+                  You'll experience life in one of the world's safest and most advanced countries, 
+                  from bustling metropolises like Tokyo and Osaka to serene traditional towns. 
+                  Japanese universities are globally recognized for their excellence in engineering, 
+                  technology, business, and the arts.
                 </p>
                 <p>
-                  The opportunity to study in English, explore stunning landscapes, engage with a multicultural 
-                  community, and benefit from globally recognized degrees will enhance your academic journey. 
-                  Be prepared for an adventure that combines rigorous academics with unforgettable cultural 
+                  The opportunity to learn Japanese, explore stunning natural landscapes, and 
+                  engage with a welcoming community will enhance your academic journey. Be prepared 
+                  for an adventure that combines rigorous academics with unforgettable cultural 
                   experiences and personal growth!
                 </p>
               </div>
@@ -133,16 +136,16 @@ export default function UnitedKingdomPage() {
                 </h3>
                 <ul className="space-y-3 text-sm text-foreground">
                   <li>
-                    <strong>Language:</strong> English
+                    <strong>Language:</strong> Japanese (English programs available)
                   </li>
                   <li>
-                    <strong>Currency:</strong> British Pound (GBP)
+                    <strong>Currency:</strong> Japanese Yen (JPY)
                   </li>
                   <li>
-                    <strong>Time Zone:</strong> GMT (UTC+0)
+                    <strong>Time Zone:</strong> JST (UTC+9)
                   </li>
                   <li>
-                    <strong>Climate:</strong> Temperate maritime climate
+                    <strong>Climate:</strong> Temperate with four distinct seasons
                   </li>
                   <li>
                     <strong>Safety:</strong> One of the safest countries globally
@@ -159,7 +162,7 @@ export default function UnitedKingdomPage() {
             Student Reviews
           </h2>
           <p className="text-muted-foreground mb-8">
-            Hear from students who have studied abroad in United Kingdom and transformed their lives through 
+            Hear from students who have studied abroad in Japan and transformed their lives through 
             this incredible experience.
           </p>
           
@@ -172,10 +175,10 @@ export default function UnitedKingdomPage() {
             {/* Left Half - Title and Description */}
             <div className="flex flex-col justify-center ">
               <h2 className="text-2xl md:text-3xl text-center font-bold text-foreground mb-2">
-                Our United Kingdom Study Abroad Programs
+                Our Japan Study Abroad Programs
               </h2>
               <p className="text-muted-foreground mb-4">
-              "Discover the prestigious universities, rich history, and world-class education of the United Kingdom through our immersive, globally recognized study abroad programs."
+              “Discover the dynamic culture, breathtaking landscapes, and affordable living of Japan through our immersive, globally recognized study abroad programs.”
               </p>
               <div className="flex justify-center">
                 <Link href="/apply">
@@ -195,18 +198,18 @@ export default function UnitedKingdomPage() {
                     <div className="bg-card border border-border rounded overflow-hidden hover:shadow-lg transition-shadow">
                       <div className="relative w-full h-48">
                         <Image
-                          src={ukImage}
-                          alt="Business & Management Program"
+                          src={japanImage}
+                          alt="Engineering & Technology Program"
                           fill
                           className="object-cover"
                         />
                       </div>
                       <div className="p-6">
                         <h3 className="text-xl font-semibold text-foreground mb-2">
-                          Business & Management Programs
+                          Engineering & Technology Programs
                         </h3>
                         <p className="text-sm text-muted-foreground mb-3">
-                          London School of Economics
+                          University of Tokyo
                         </p>
                         <div className="flex gap-2 mb-4 pb-4 border-b border-border">
                           <span className="px-3 py-1 bg-primary/10 text-primary text-xs font-medium rounded">
@@ -217,11 +220,11 @@ export default function UnitedKingdomPage() {
                           </span>
                         </div>
                         <p className="text-foreground mb-4 text-sm leading-relaxed">
-                          Study at top business schools with world-class facilities and renowned faculty. Immerse yourself in the UK's global business hub while experiencing the perfect blend of traditional academic excellence and modern business practices.
+                          Study at top engineering universities with state-of-the-art facilities and cutting-edge research opportunities. Immerse yourself in Japan's world-renowned technology sector while experiencing the perfect blend of traditional culture and modern innovation.
                         </p>
                         <div className="bg-muted/50 rounded p-4 -mx-6 -mb-6">
                           <p className="text-lg font-bold text-primary">
-                            SEMESTER: $12,500
+                            SEMESTER: $9,800
                           </p>
                         </div>
                       </div>
@@ -233,18 +236,18 @@ export default function UnitedKingdomPage() {
                     <div className="bg-card border border-border rounded overflow-hidden hover:shadow-lg transition-shadow">
                       <div className="relative w-full h-48">
                         <Image
-                          src={ukImage}
-                          alt="Engineering & Technology Program"
+                          src={japanImage}
+                          alt="Business & Economics Program"
                           fill
                           className="object-cover"
                         />
                       </div>
                       <div className="p-6">
                         <h3 className="text-xl font-semibold text-foreground mb-2">
-                          Engineering & Technology Programs
+                          Business & Economics Programs
                         </h3>
                         <p className="text-sm text-muted-foreground mb-3">
-                          Imperial College London
+                          Waseda University
                         </p>
                         <div className="flex gap-2 mb-4 pb-4 border-b border-border">
                           <span className="px-3 py-1 bg-primary/10 text-primary text-xs font-medium rounded">
@@ -255,10 +258,10 @@ export default function UnitedKingdomPage() {
                           </span>
                         </div>
                         <p className="text-foreground mb-4 text-sm leading-relaxed">
-                          Learn from leading engineering institutions and gain insights into cutting-edge research and innovation. Experience world-class facilities with experienced faculty and industry connections in one of the world's top engineering destinations.
+                          Learn from leading business schools and gain insights into Japan's global economy and business practices. Experience the unique corporate culture while studying in modern facilities with experienced faculty and industry connections.
                         </p>
                         <p className="text-lg font-bold text-primary">
-                          SEMESTER: $12,500
+                          SEMESTER: $9,800
                         </p>
                       </div>
                     </div>
@@ -269,18 +272,18 @@ export default function UnitedKingdomPage() {
                     <div className="bg-card border border-border rounded overflow-hidden hover:shadow-lg transition-shadow">
                       <div className="relative w-full h-48">
                         <Image
-                          src={ukImage}
-                          alt="Arts & Humanities Program"
+                          src={japanImage}
+                          alt="Arts & Culture Program"
                           fill
                           className="object-cover"
                         />
                       </div>
                       <div className="p-6">
                         <h3 className="text-xl font-semibold text-foreground mb-2">
-                          Arts & Humanities Programs
+                          Arts & Culture Programs
                         </h3>
                         <p className="text-sm text-muted-foreground mb-3">
-                          University of Oxford
+                          Kyoto University
                         </p>
                         <div className="flex gap-2 mb-4 pb-4 border-b border-border">
                           <span className="px-3 py-1 bg-primary/10 text-primary text-xs font-medium rounded">
@@ -291,10 +294,10 @@ export default function UnitedKingdomPage() {
                           </span>
                         </div>
                         <p className="text-foreground mb-4 text-sm leading-relaxed">
-                          Explore the UK's rich cultural heritage through literature, history, philosophy, and the arts. Study in historic Oxford and Cambridge while experiencing authentic British culture, from Shakespeare to contemporary art scenes.
+                          Explore Japan's rich cultural heritage through traditional arts, literature, and modern creative expressions. Study in historic Kyoto while experiencing authentic Japanese culture, from tea ceremonies to contemporary art scenes.
                         </p>
                         <p className="text-lg font-bold text-primary">
-                          SEMESTER: $12,500
+                          SEMESTER: $9,800
                         </p>
                       </div>
                     </div>
@@ -310,106 +313,106 @@ export default function UnitedKingdomPage() {
         {/* Activities Section */}
         <section id="activities" className="mb-12 scroll-mt-28">
           <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-            What to do in United Kingdom in your free time
+            What to do in Japan in your free time
           </h2>
           <p className="text-muted-foreground mb-8">
-            Discover the United Kingdom by exploring historic landmarks, experiencing rich culture, 
-            enjoying world-class cuisine, and visiting stunning landscapes.
+            Discover Japan by exploring ancient temples, experiencing traditional culture, 
+            enjoying world-class cuisine, and visiting stunning natural landscapes.
           </p>
           
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-            {/* British Cuisine Card */}
+            {/* Sushi Card */}
             <div className="group relative bg-gradient-to-br from-rose-50 to-pink-50 dark:from-rose-950/20 dark:to-pink-950/20 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-rose-100/50 dark:border-rose-900/30">
               <div className="relative h-56 overflow-hidden">
                 <Image
-                  src={ukImage}
-                  alt="British Cuisine"
+                  src={sushiImage}
+                  alt="Sushi"
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
                 <div className="absolute bottom-1 left-2 right-4">
                   <h3 className="text-lg font-bold text-white drop-shadow-lg">
-                    British Cuisine
+                    Sushi
                   </h3>
                 </div>
               </div>
               <div className="p-2">
                 <p className="text-foreground/80 leading-relaxed">
-                  From fish and chips to afternoon tea, explore the UK's diverse food scene. 
-                  Experience everything from traditional pubs to Michelin-starred restaurants in London.
+                  From sushi and ramen to kaiseki dining, explore Japan's incredible food scene. 
+                  Experience everything from street food to Michelin-starred restaurants.
                 </p>
               </div>
             </div>
             
-            {/* Explore London Card */}
+            {/* Explore Tokyo Card */}
             <div className="group relative bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950/20 dark:to-indigo-950/20 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-blue-100/50 dark:border-blue-900/30">
               <div className="relative h-56 overflow-hidden">
                 <Image
-                  src={ukImage}
-                  alt="Explore London"
+                  src={tokyoImage}
+                  alt="Explore Tokyo"
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
                 <div className="absolute bottom-1 left-2 right-4">
                   <h3 className="text-lg font-bold text-white drop-shadow-lg">
-                    Explore London
+                    Explore Tokyo
                   </h3>
                 </div>
               </div>
               <div className="p-2">
                 <p className="text-foreground/80 leading-relaxed">
-                  Discover the vibrant energy of London with its historic landmarks, world-class museums, 
-                  West End theaters, and diverse neighborhoods.
+                  Discover the vibrant energy of Tokyo with its modern skyscrapers, bustling streets, 
+                  cutting-edge technology, and endless entertainment options.
                 </p>
               </div>
             </div>
             
-            {/* Cultural Heritage Card */}
+            {/* Karaoke Fun Card */}
             <div className="group relative bg-gradient-to-br from-purple-50 to-fuchsia-50 dark:from-purple-950/20 dark:to-fuchsia-950/20 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-purple-100/50 dark:border-purple-900/30">
               <div className="relative h-56 overflow-hidden">
                 <Image
-                  src={ukImage}
-                  alt="Cultural Heritage"
+                  src={karaokeImage}
+                  alt="Karaoke Fun"
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
                 <div className="absolute bottom-1 left-2 right-4">
                   <h3 className="text-lg font-bold text-white drop-shadow-lg">
-                    Cultural Heritage
+                    Karaoke Fun
                   </h3>
                 </div>
               </div>
               <div className="p-2">
                 <p className="text-foreground/80 leading-relaxed">
-                  Visit historic castles, royal palaces, ancient cathedrals, and world-renowned museums. 
-                  Immerse yourself in the UK's rich history and cultural traditions.
+                  Join friends for karaoke nights, enjoy anime and manga culture, visit gaming arcades, 
+                  and immerse yourself in Japan's unique entertainment scene.
                 </p>
               </div>
             </div>
             
-            {/* Countryside & Nature Card */}
+            {/* Sakura Viewing Card */}
             <div className="group relative bg-gradient-to-br from-pink-50 to-rose-50 dark:from-pink-950/20 dark:to-rose-950/20 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-pink-100/50 dark:border-pink-900/30">
               <div className="relative h-56 overflow-hidden">
                 <Image
-                  src={ukImage}
-                  alt="Countryside & Nature"
+                  src={sakuraImage}
+                  alt="Sakura Viewing"
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
                 <div className="absolute bottom-1 left-2 right-4">
                   <h3 className="text-lg font-bold text-white drop-shadow-lg">
-                    Countryside & Nature
+                    Sakura Viewing
                   </h3>
                 </div>
               </div>
               <div className="p-2">
                 <p className="text-foreground/80 leading-relaxed">
-                  Experience the breathtaking countryside, visit the Scottish Highlands, explore the Lake District, 
-                  and enjoy the UK's beautiful natural landscapes and four distinct seasons.
+                  Experience the breathtaking cherry blossoms in spring, visit beautiful gardens, 
+                  relax in natural hot springs, and enjoy Japan's four distinct seasons.
                 </p>
               </div>
             </div>
@@ -506,10 +509,10 @@ export default function UnitedKingdomPage() {
         {/* FAQs Section */}
         <section id="faqs" className="mb-12 scroll-mt-28">
           <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-            Study Abroad in United Kingdom FAQs
+            Study Abroad in Japan FAQs
           </h2>
           <p className="text-muted-foreground mb-6">
-            Got questions about studying abroad in United Kingdom? Get all the answers you need to 
+            Got questions about studying abroad in Japan? Get all the answers you need to 
             kickstart your journey with confidence!
           </p>
           
@@ -517,12 +520,12 @@ export default function UnitedKingdomPage() {
             <AccordionItem value="item-1" className="border-none">
               <div className="bg-card border border-border rounded-2xl px-6">
                 <AccordionTrigger className="text-lg font-semibold text-foreground hover:no-underline py-4">
-                  What are the benefits of studying abroad in United Kingdom?
+                  What are the benefits of studying abroad in Japan?
                 </AccordionTrigger>
                 <AccordionContent className="text-foreground/80 pb-4">
-                  Studying in the UK offers access to world-class universities, globally recognized degrees, 
-                  and rich cultural experiences. You'll learn in one of the world's most prestigious academic 
-                  destinations while gaining valuable skills and global perspectives that enhance your 
+                  Studying in Japan offers access to world-class universities, cutting-edge technology, 
+                  and rich cultural experiences. You'll learn in one of the world's safest countries 
+                  while gaining valuable language skills and global perspectives that enhance your 
                   career prospects.
                 </AccordionContent>
               </div>
@@ -531,11 +534,11 @@ export default function UnitedKingdomPage() {
             <AccordionItem value="item-2" className="border-none">
               <div className="bg-card border border-border rounded-2xl px-6">
                 <AccordionTrigger className="text-lg font-semibold text-foreground hover:no-underline py-4">
-                  What are the costs associated with studying in United Kingdom?
+                  What are the costs associated with studying in Japan?
                 </AccordionTrigger>
                 <AccordionContent className="text-foreground/80 pb-4">
                   Costs include tuition fees, which vary by program and university. Living expenses 
-                  in major cities like London can be higher, but many programs offer affordable options. 
+                  in major cities like Tokyo can be higher, but many programs offer affordable options. 
                   Additional costs include visa fees, health insurance, and personal expenses. 
                   Scholarships are available for qualified students.
                 </AccordionContent>
@@ -545,7 +548,7 @@ export default function UnitedKingdomPage() {
             <AccordionItem value="item-3" className="border-none">
               <div className="bg-card border border-border rounded-2xl px-6">
                 <AccordionTrigger className="text-lg font-semibold text-foreground hover:no-underline py-4">
-                  Do I need a student visa to study in United Kingdom?
+                  Do I need a student visa to study in Japan?
                 </AccordionTrigger>
                 <AccordionContent className="text-foreground/80 pb-4">
                   Yes, international students typically need a student visa. The process requires 
@@ -558,13 +561,13 @@ export default function UnitedKingdomPage() {
             <AccordionItem value="item-4" className="border-none">
               <div className="bg-card border border-border rounded-2xl px-6">
                 <AccordionTrigger className="text-lg font-semibold text-foreground hover:no-underline py-4">
-                  What should I know about living in United Kingdom as an international student?
+                  What should I know about living in Japan as an international student?
                 </AccordionTrigger>
                 <AccordionContent className="text-foreground/80 pb-4">
-                  The UK offers excellent public transportation, safe cities, and a high quality of life. 
-                  English is the primary language, making it accessible for international students. 
-                  Be prepared for cultural differences, variable weather, and the opportunity to 
-                  experience one of the world's most historic and culturally rich countries.
+                  Japan offers excellent public transportation, safe cities, and a high quality of life. 
+                  While Japanese is the primary language, many universities offer English-taught programs. 
+                  Be prepared for cultural differences, seasonal weather changes, and the opportunity to 
+                  experience one of the world's most unique cultures.
                 </AccordionContent>
               </div>
             </AccordionItem>
@@ -605,3 +608,4 @@ export default function UnitedKingdomPage() {
     </div>
   )
 }
+

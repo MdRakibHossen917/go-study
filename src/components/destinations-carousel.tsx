@@ -3,27 +3,29 @@
 import React, { useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
+import japanImage from "@/assests/Image/japanImage.jpg"
 import chinaImage from "@/assests/Image/chinaImage.jpg"
 import southKoreaImage from "@/assests/Image/southKoreaImage.jpg"
 
 // Placeholder for countries without images - using gradient backgrounds
-const countryData = [
+type CountryData = {
+  name: string
+  href: string
+  image: typeof japanImage
+  hasImage: true
+  gradient?: never
+} | {
+  name: string
+  href: string
+  image?: never
+  hasImage: false
+  gradient: string
+}
+
+const countryData: CountryData[] = [
+  { name: "Japan", href: "/destinations/japan", image: japanImage, hasImage: true },
   { name: "China", href: "/destinations/china", image: chinaImage, hasImage: true },
   { name: "South Korea", href: "/destinations/south-korea", image: southKoreaImage, hasImage: true },
-  { name: "United Kingdom", href: "/destinations/united-kingdom", gradient: "from-blue-600 to-blue-800", hasImage: false },
-  { name: "France", href: "/destinations/france", gradient: "from-blue-500 to-blue-700", hasImage: false },
-  { name: "Germany", href: "/destinations/germany", gradient: "from-black to-yellow-600", hasImage: false },
-  { name: "Italy", href: "/destinations/italy", gradient: "from-green-600 to-red-600", hasImage: false },
-  { name: "United States", href: "/destinations/united-states", gradient: "from-blue-700 to-red-600", hasImage: false },
-  { name: "Canada", href: "/destinations/canada", gradient: "from-red-600 to-red-800", hasImage: false },
-  { name: "Mexico", href: "/destinations/mexico", gradient: "from-green-700 to-red-700", hasImage: false },
-  { name: "Costa Rica", href: "/destinations/costa-rica", gradient: "from-blue-700 to-blue-900", hasImage: false },
-  { name: "Argentina", href: "/destinations/argentina", gradient: "from-blue-500 to-blue-700", hasImage: false },
-  { name: "Brazil", href: "/destinations/brazil", gradient: "from-green-600 to-yellow-600", hasImage: false },
-  { name: "Chile", href: "/destinations/chile", gradient: "from-blue-600 to-red-600", hasImage: false },
-  { name: "Colombia", href: "/destinations/colombia", gradient: "from-yellow-600 to-blue-700", hasImage: false },
-  { name: "Australia", href: "/destinations/australia", gradient: "from-blue-600 to-blue-800", hasImage: false },
-  { name: "New Zealand", href: "/destinations/new-zealand", gradient: "from-blue-700 to-blue-900", hasImage: false },
 ]
 
 export function DestinationsCarousel() {
@@ -68,7 +70,7 @@ export function DestinationsCarousel() {
                 </div>
               </div>
             ) : (
-              <div className={`relative w-full h-full bg-gradient-to-br ${country.gradient}`}>
+              <div className={`relative w-full h-full bg-gradient-to-br ${country.gradient || "from-gray-400 to-gray-600"}`}>
                 <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-colors duration-300" />
                 <div className="absolute inset-0 flex items-center justify-center">
                   <h3 className="text-white text-lg sm:text-xl md:text-2xl font-bold drop-shadow-lg text-center px-4 group-hover:scale-110 transition-transform duration-500">
