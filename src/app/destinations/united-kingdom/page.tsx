@@ -188,10 +188,10 @@ export default function UnitedKingdomPage() {
 
             {/* Right Half - Program Cards Carousel */}
             <div className="relative">
-              <Carousel className="w-full">
+              <Carousel className="w-full" opts={{ align: "start", containScroll: "trimSnaps" }}>
                 <CarouselContent>
                   {/* Program Card 1 */}
-                  <CarouselItem>
+                  <CarouselItem className="basis-3/4">
                     <div className="bg-card border border-border rounded overflow-hidden hover:shadow-lg transition-shadow">
                       <div className="relative w-full h-48">
                         <Image
@@ -229,7 +229,7 @@ export default function UnitedKingdomPage() {
                   </CarouselItem>
 
                   {/* Program Card 2 */}
-                  <CarouselItem>
+                  <CarouselItem className="basis-3/4">
                     <div className="bg-card border border-border rounded overflow-hidden hover:shadow-lg transition-shadow">
                       <div className="relative w-full h-48">
                         <Image
@@ -257,15 +257,17 @@ export default function UnitedKingdomPage() {
                         <p className="text-foreground mb-4 text-sm leading-relaxed">
                           Learn from leading engineering institutions and gain insights into cutting-edge research and innovation. Experience world-class facilities with experienced faculty and industry connections in one of the world's top engineering destinations.
                         </p>
-                        <p className="text-lg font-bold text-primary">
-                          SEMESTER: $12,500
-                        </p>
+                        <div className="bg-muted/50 rounded p-4 -mx-6 -mb-6">
+                          <p className="text-lg font-bold text-primary">
+                            SEMESTER: $12,500
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </CarouselItem>
 
                   {/* Program Card 3 */}
-                  <CarouselItem>
+                  <CarouselItem className="basis-3/4">
                     <div className="bg-card border border-border rounded overflow-hidden hover:shadow-lg transition-shadow">
                       <div className="relative w-full h-48">
                         <Image
@@ -293,15 +295,15 @@ export default function UnitedKingdomPage() {
                         <p className="text-foreground mb-4 text-sm leading-relaxed">
                           Explore the UK's rich cultural heritage through literature, history, philosophy, and the arts. Study in historic Oxford and Cambridge while experiencing authentic British culture, from Shakespeare to contemporary art scenes.
                         </p>
-                        <p className="text-lg font-bold text-primary">
-                          SEMESTER: $12,500
-                        </p>
+                        <div className="bg-muted/50 rounded p-4 -mx-6 -mb-6">
+                          <p className="text-lg font-bold text-primary">
+                            SEMESTER: $12,500
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </CarouselItem>
                 </CarouselContent>
-                <CarouselPrevious className="left-0" />
-                <CarouselNext className="right-0" />
               </Carousel>
             </div>
           </div>
@@ -605,3 +607,4 @@ export default function UnitedKingdomPage() {
     </div>
   )
 }
+ 

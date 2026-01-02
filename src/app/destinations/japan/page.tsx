@@ -2,7 +2,8 @@ import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { CheckCircle, FileText, Phone, Mail, CreditCard, Luggage } from "lucide-react"
+import { CheckCircle, FileText, Phone, Mail, CreditCard, Luggage, Bed, MessageCircle, Shield, Clock } from "lucide-react"
+import { InquiryForm } from "@/components/inquiry-form"
 import {
   Accordion,
   AccordionContent,
@@ -18,6 +19,7 @@ import {
 } from "@/components/ui/carousel"
 import { ReviewsCarousel } from "@/components/reviews-carousel"
 import { DestinationsCarousel } from "@/components/destinations-carousel"
+import { ImageCardCarousel } from "@/components/image-card-carousel"
 import japanImage from "@/assests/Image/japanImage.jpg"
 import sushiImage from "@/assests/Image/Sushi.jpg"
 import tokyoImage from "@/assests/Image/tokyo.jpg"
@@ -191,10 +193,10 @@ export default function JapanPage() {
 
             {/* Right Half - Program Cards Carousel */}
             <div className="relative">
-              <Carousel className="w-full">
+              <Carousel className="w-full" opts={{ align: "start", containScroll: "trimSnaps" }}>
                 <CarouselContent>
                   {/* Program Card 1 */}
-                  <CarouselItem>
+                  <CarouselItem className="basis-3/4">
                     <div className="bg-card border border-border rounded overflow-hidden hover:shadow-lg transition-shadow">
                       <div className="relative w-full h-48">
                         <Image
@@ -232,7 +234,7 @@ export default function JapanPage() {
                   </CarouselItem>
 
                   {/* Program Card 2 */}
-                  <CarouselItem>
+                  <CarouselItem className="basis-3/4">
                     <div className="bg-card border border-border rounded overflow-hidden hover:shadow-lg transition-shadow">
                       <div className="relative w-full h-48">
                         <Image
@@ -260,15 +262,17 @@ export default function JapanPage() {
                         <p className="text-foreground mb-4 text-sm leading-relaxed">
                           Learn from leading business schools and gain insights into Japan's global economy and business practices. Experience the unique corporate culture while studying in modern facilities with experienced faculty and industry connections.
                         </p>
-                        <p className="text-lg font-bold text-primary">
-                          SEMESTER: $9,800
-                        </p>
+                        <div className="bg-muted/50 rounded p-4 -mx-6 -mb-6">
+                          <p className="text-lg font-bold text-primary">
+                            SEMESTER: $9,800
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </CarouselItem>
 
                   {/* Program Card 3 */}
-                  <CarouselItem>
+                  <CarouselItem className="basis-3/4">
                     <div className="bg-card border border-border rounded overflow-hidden hover:shadow-lg transition-shadow">
                       <div className="relative w-full h-48">
                         <Image
@@ -296,15 +300,15 @@ export default function JapanPage() {
                         <p className="text-foreground mb-4 text-sm leading-relaxed">
                           Explore Japan's rich cultural heritage through traditional arts, literature, and modern creative expressions. Study in historic Kyoto while experiencing authentic Japanese culture, from tea ceremonies to contemporary art scenes.
                         </p>
-                        <p className="text-lg font-bold text-primary">
-                          SEMESTER: $9,800
-                        </p>
+                        <div className="bg-muted/50 rounded p-4 -mx-6 -mb-6">
+                          <p className="text-lg font-bold text-primary">
+                            SEMESTER: $9,800
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </CarouselItem>
                 </CarouselContent>
-                <CarouselPrevious className="left-0" />
-                <CarouselNext className="right-0" />
               </Carousel>
             </div>
           </div>
@@ -416,6 +420,71 @@ export default function JapanPage() {
                 </p>
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* Support all the way Section */}
+        <section className="mb-12 scroll-mt-28 bg-card border border-border rounded-2xl p-6 md:p-8 shadow-lg">
+          <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-8 text-center">
+            Support all the way
+          </h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            {/* Feature 1 - Accommodations */}
+            <div className="flex flex-col items-center text-center relative p-8">
+              <div className="mb-4 p-4 rounded-full bg-primary/10">
+                <Bed className="h-8 w-8 text-primary" />
+              </div>
+              <p className="text-foreground text-sm leading-relaxed">
+                Vetted accommodations selected with quality and safety in mind
+              </p>
+              <div className="hidden lg:block absolute right-0 top-0 bottom-0 w-px bg-border"></div>
+            </div>
+
+            {/* Feature 2 - Advisor */}
+            <div className="flex flex-col items-center text-center relative p-8">
+              <div className="mb-4 p-4 rounded-full bg-primary/10">
+                <MessageCircle className="h-8 w-8 text-primary" />
+              </div>
+              <p className="text-foreground text-sm leading-relaxed">
+                Dedicated one-on-one advisor and local on-site coordinator
+              </p>
+              <div className="hidden lg:block absolute right-0 top-0 bottom-0 w-px bg-border"></div>
+            </div>
+
+            {/* Feature 3 - Insurance */}
+            <div className="flex flex-col items-center text-center relative p-8">
+              <div className="mb-4 p-4 rounded-full bg-primary/10">
+                <Shield className="h-8 w-8 text-primary" />
+              </div>
+              <p className="text-foreground text-sm leading-relaxed">
+                Comprehensive travel medical insurance
+              </p>
+              <div className="hidden lg:block absolute right-0 top-0 bottom-0 w-px bg-border"></div>
+            </div>
+
+            {/* Feature 4 - 24/7 Assistance */}
+            <div className="flex flex-col items-center text-center p-8">
+              <div className="mb-4 p-4 rounded-full bg-primary/10">
+                <Clock className="h-8 w-8 text-primary" />
+              </div>
+              <p className="text-foreground text-sm leading-relaxed">
+                24/7 emergency travel assistance
+              </p>
+            </div>
+          </div>
+
+          <div className="text-center">
+            <Link href="/about/health-safety" className="text-black hover:text-black/80 underline underline-offset-4 decoration-black font-semibold inline-block">
+              HEALTH & SAFETY ABROAD
+            </Link>
+          </div>
+        </section>
+
+        {/* Image Card Carousel Section */}
+        <section className="mb-12 scroll-mt-28">
+          <div className="relative w-full overflow-hidden">
+            <ImageCardCarousel />
           </div>
         </section>
 
@@ -572,6 +641,37 @@ export default function JapanPage() {
               </div>
             </AccordionItem>
           </Accordion>
+          
+          <div className="mt-6 text-center">
+            <Link href="/about/faq" className="text-primary hover:text-primary/80 underline underline-offset-4 font-bold mt-1 inline-block">
+              VIEW ALL FAQS
+            </Link>
+          </div>
+        </section>
+
+        {/* Inquiry Form Section */}
+        <section className="mb-12">
+          <div className="bg-card border border-border rounded p-6 md:p-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              {/* Left Side - Text and Button */}
+              <div className="flex flex-col justify-center">
+                <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+                  Get more information
+                </h2>
+                <p className="text-muted-foreground mb-6">
+                  Craving more info? Discover how you can start your epic study abroad journey.
+                </p>
+                <Button size="lg" className="w-full sm:w-auto">
+                  SEND ME THE INFO!
+                </Button>
+              </div>
+
+              {/* Right Side - Form */}
+              <div className="bg-card border border-border rounded-lg p-6 shadow-lg">
+                <InquiryForm />
+              </div>
+            </div>
+          </div>
         </section>
 
         {/* Explore Alternative Destinations Section */}
@@ -585,23 +685,6 @@ export default function JapanPage() {
 
           <div className="relative">
             <DestinationsCarousel />
-          </div>
-        </section>
-
-        {/* Inquiry Form Section */}
-        <section className="mb-12">
-          <div className="bg-card border border-border rounded p-6 md:p-8">
-            <h2 className="text-2xl font-bold text-foreground mb-2">
-              Get more information
-            </h2>
-            <p className="text-muted-foreground mb-6">
-              Craving more info? Discover how you can start your epic study abroad journey.
-            </p>
-            <Link href="/inquiry">
-              <Button size="lg" className="w-full sm:w-auto">
-                SEND ME THE INFO!
-              </Button>
-            </Link>
           </div>
         </section>
       </div>
