@@ -4,6 +4,7 @@ import Script from "next/script";
 import "./globals.css";
 import Navbar from "@/components/shared/Navbar";
 import Footer from "@/components/shared/Footer";
+import { SocialCard } from "@/components/social-card";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,6 +36,7 @@ export default function RootLayout({
         <main className="min-h-screen max-w-7xl mx-auto px-4 pt-16">
         {children}
         </main>
+        <SocialCard />
         <Footer/>
         {/* Cloudinary Upload Widget */}
         <Script 

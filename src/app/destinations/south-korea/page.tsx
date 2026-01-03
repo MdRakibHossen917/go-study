@@ -2,7 +2,34 @@ import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
+import { CheckCircle, FileText, Phone, Mail, CreditCard, Luggage, Bed, MessageCircle, Shield, Clock, Utensils, Eye, MapPin, Music, Flower, ArrowRight, Sparkles } from "lucide-react"
+import { InquiryForm } from "@/components/inquiry-form"
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion"
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel"
+import { ReviewsCarousel } from "@/components/reviews-carousel"
+import { DestinationsCarousel } from "@/components/destinations-carousel"
+import { ImageCardCarousel } from "@/components/image-card-carousel"
+import { JapanProgramsCarousel } from "@/components/japan-programs-carousel"
 import southKoreaImage from "@/assests/Image/southKoreaImage.jpg"
+import datesAd from "@/assests/AdvertisementImage/dates.jpg"
+import sushiImage from "@/assests/Image/Sushi.jpg"
+import tokyoImage from "@/assests/Image/tokyo.jpg"
+import karaokeImage from "@/assests/Image/Karaoke.jpg"
+import sakuraImage from "@/assests/Image/Sakura.jpg"
+import universityTokyo from "@/assests/UniversityFreeImage/universityTokyo.jpg"
+import wasedaUniversity from "@/assests/UniversityFreeImage/wasedaUniversity.jpg"
+import kyotoUniversity from "@/assests/UniversityFreeImage/kyotoUniversity.jpg"
 
 export const metadata: Metadata = {
   title: "Study in South Korea - AbroadGuideBD",
@@ -13,24 +40,24 @@ export default function SouthKoreaPage() {
   return (
     <div className="min-h-screen">
       {/* Hero Image Header */}
-      <div className="relative w-full h-[82vh]">
+      <div className="relative w-full h-[82vh] overflow-hidden">
         <Image
           src={southKoreaImage}
-          alt="Beautiful landscape of South Korea"
+          alt="Aerial view of Seoul cityscape in South Korea"
           fill
-          className="object-cover"
+          className="object-cover animate-zoom-out"
           priority
         />
         <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
           <div className="text-center text-white px-4">
-            <h4 className="text-sm md:text-base font-semibold uppercase tracking-wider mb-2">
+            <h4 className="text-sm md:text-2xl font-bold uppercase tracking-wider mb-2">
               SOUTH KOREA
             </h4>
             <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4">
               Study Abroad in South Korea
             </h1>
             <p className="text-lg md:text-xl font-medium">
-              Innovative. Dynamic. Cultural.
+              Innovative. Trendy. Transformative.
             </p>
           </div>
         </div>
@@ -62,7 +89,7 @@ export default function SouthKoreaPage() {
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto px-4 py-8 md:py-12">
+      <div className="max-w-6xl mx-auto  py-8 md:py-12">
         {/* Breadcrumb */}
         <div className="mb-6 text-sm text-muted-foreground">
           <Link href="/" className="hover:text-primary">Home</Link>
@@ -71,7 +98,7 @@ export default function SouthKoreaPage() {
         </div>
 
         {/* Overview Section */}
-        <section id="overview" className="mb-12">
+        <section id="overview" className="mb-6 md-mb-12 scroll-mt-28">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div className="lg:col-span-2">
               <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
@@ -80,20 +107,20 @@ export default function SouthKoreaPage() {
               <div className="space-y-4 text-foreground">
                 <p>
                   Studying abroad in South Korea offers a unique blend of cutting-edge technology, 
-                  K-pop culture, and world-class education. Expect to immerse yourself in a culture 
-                  that seamlessly combines innovation with rich traditional heritage.
+                  K-pop culture, and world-class education. Expect to immerse yourself in 
+                  a culture that seamlessly combines traditional values with modern innovation.
                 </p>
                 <p>
-                  You'll experience life in one of Asia's most technologically advanced countries, 
-                  from bustling Seoul to historic cities like Busan and Gyeongju. South Korean 
-                  universities are globally recognized for their excellence in technology, engineering, 
-                  business, and the arts.
+                  You'll experience life in one of the world's most technologically advanced countries, 
+                  from vibrant cities like Seoul and Busan to beautiful coastal towns. 
+                  Korean universities are globally recognized for their excellence in technology, 
+                  business, engineering, and the arts.
                 </p>
                 <p>
-                  The opportunity to learn Korean, explore stunning natural landscapes, experience 
-                  vibrant K-pop and entertainment culture, and engage with a welcoming community will 
-                  enhance your academic journey. Be prepared for an adventure that combines rigorous 
-                  academics with unforgettable cultural experiences and personal growth!
+                  The opportunity to learn Korean, explore stunning landscapes, and 
+                  engage with a dynamic and welcoming community will enhance your academic journey. Be prepared 
+                  for an adventure that combines rigorous academics with unforgettable cultural 
+                  experiences and personal growth!
                 </p>
               </div>
               <div className="mt-6 flex flex-col sm:flex-row gap-4">
@@ -128,7 +155,7 @@ export default function SouthKoreaPage() {
                     <strong>Climate:</strong> Temperate with four distinct seasons
                   </li>
                   <li>
-                    <strong>Technology:</strong> World's fastest internet and tech infrastructure
+                    <strong>Safety:</strong> One of the safest countries globally
                   </li>
                 </ul>
               </div>
@@ -137,7 +164,7 @@ export default function SouthKoreaPage() {
         </section>
 
         {/* Reviews Section */}
-        <section id="reviews" className="mb-12">
+        <section id="reviews" className="mb-6 md-mb-12 scroll-mt-28">
           <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
             Student Reviews
           </h2>
@@ -146,331 +173,420 @@ export default function SouthKoreaPage() {
             this incredible experience.
           </p>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-card border border-border rounded p-6">
-              <div className="flex items-center gap-2 mb-3">
-                <div className="text-yellow-500 text-xl">★★★★★</div>
-                <span className="text-sm text-muted-foreground">5.0</span>
-              </div>
-              <p className="text-foreground mb-4">
-                "Studying in South Korea was incredible! The technology and innovation here are 
-                world-class, and experiencing K-pop culture firsthand was amazing. The universities 
-                have excellent facilities and the people are so friendly."
-              </p>
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
-                  <span className="text-primary font-semibold">JH</span>
-                </div>
-                <div>
-                  <p className="font-semibold text-foreground">Jessica H.</p>
-                  <p className="text-sm text-muted-foreground">Technology Student, Seoul</p>
-                </div>
-              </div>
-            </div>
-            
-            <div className="bg-card border border-border rounded p-6">
-              <div className="flex items-center gap-2 mb-3">
-                <div className="text-yellow-500 text-xl">★★★★★</div>
-                <span className="text-sm text-muted-foreground">5.0</span>
-              </div>
-              <p className="text-foreground mb-4">
-                "The combination of cutting-edge technology education and vibrant K-pop culture made 
-                my study abroad experience unforgettable. Learning Korean while studying business gave 
-                me unique career opportunities."
-              </p>
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
-                  <span className="text-primary font-semibold">BP</span>
-                </div>
-                <div>
-                  <p className="font-semibold text-foreground">Brian P.</p>
-                  <p className="text-sm text-muted-foreground">Business Student, Busan</p>
-                </div>
-              </div>
-            </div>
-            
-            <div className="bg-card border border-border rounded p-6">
-              <div className="flex items-center gap-2 mb-3">
-                <div className="text-yellow-500 text-xl">★★★★★</div>
-                <span className="text-sm text-muted-foreground">5.0</span>
-              </div>
-              <p className="text-foreground mb-4">
-                "South Korea's safe environment and modern infrastructure made it perfect for 
-                international students. The academic programs are rigorous, and the cultural 
-                experiences from K-dramas to traditional palaces were incredible."
-              </p>
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
-                  <span className="text-primary font-semibold">SN</span>
-                </div>
-                <div>
-                  <p className="font-semibold text-foreground">Sophie N.</p>
-                  <p className="text-sm text-muted-foreground">Arts Student, Seoul</p>
-                </div>
-              </div>
-            </div>
-            
-            <div className="bg-card border border-border rounded p-6">
-              <div className="flex items-center gap-2 mb-3">
-                <div className="text-yellow-500 text-xl">★★★★★</div>
-                <span className="text-sm text-muted-foreground">5.0</span>
-              </div>
-              <p className="text-foreground mb-4">
-                "The world's fastest internet and advanced technology in South Korea provided an 
-                amazing learning environment. The blend of traditional culture and modern innovation 
-                is unique. I highly recommend studying here!"
-              </p>
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
-                  <span className="text-primary font-semibold">TW</span>
-                </div>
-                <div>
-                  <p className="font-semibold text-foreground">Tom W.</p>
-                  <p className="text-sm text-muted-foreground">Engineering Student, Seoul</p>
-                </div>
-              </div>
-            </div>
-          </div>
+          <ReviewsCarousel />
         </section>
 
         {/* Programs Section */}
-        <section id="programs" className="mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-            Our South Korea Study Abroad Programs
-          </h2>
-          <p className="text-muted-foreground mb-6">
-            Discover innovative programs, cultural immersion, and academic excellence through 
-            our study abroad opportunities in South Korea.
-          </p>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-card border border-border rounded p-6 hover:shadow-lg transition-shadow">
-              <h3 className="text-xl font-semibold text-foreground mb-2">
-                Technology & IT Programs
-              </h3>
+        <section id="programs" className="mb-6 md-mb-12 scroll-mt-28">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+            {/* Left Half - Title and Description */}
+            <div className="flex flex-col justify-center ">
+              <h2 className="text-2xl md:text-3xl text-center font-bold text-foreground mb-2">
+                Our South Korea Study Abroad Programs
+              </h2>
               <p className="text-muted-foreground mb-4">
-                Study at top technology universities with state-of-the-art facilities and 
-                cutting-edge research in IT, engineering, and innovation.
+              "Discover the dynamic culture, K-pop scene, and affordable living of South Korea through our immersive, globally recognized study abroad programs."
               </p>
-              <p className="text-sm text-foreground font-medium">
-                Available Terms: Fall Semester, Spring Semester, Academic Year
-              </p>
+              <div className="flex justify-center">
+                <Link href="/apply">
+                  <Button size="lg" className="w-full sm:w-auto">
+                    VIEW ALL AVAILABLE PROGRAMS
+                  </Button>
+                </Link>
+              </div>
             </div>
-            
-            <div className="bg-card border border-border rounded p-6 hover:shadow-lg transition-shadow">
-              <h3 className="text-xl font-semibold text-foreground mb-2">
-                Business & Economics Programs
-              </h3>
-              <p className="text-muted-foreground mb-4">
-                Learn from leading business schools and gain insights into South Korea's global 
-                economy, chaebol system, and business practices.
-              </p>
-              <p className="text-sm text-foreground font-medium">
-                Available Terms: Fall Semester, Spring Semester, Academic Year
-              </p>
+
+            {/* Right Half - Program Cards Carousel */}
+            <div className="relative">
+              <JapanProgramsCarousel />
             </div>
           </div>
         </section>
 
         {/* Activities Section */}
-        <section id="activities" className="mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+        <section id="activities" className="mb-6 md-mb-12 scroll-mt-28">
+          <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3 md:mb-4">
             What to do in South Korea in your free time
           </h2>
-          <p className="text-muted-foreground mb-8">
-            Discover South Korea by exploring ancient palaces, experiencing K-pop culture, 
-            enjoying delicious cuisine, and visiting stunning natural and modern landscapes.
+          <p className="text-muted-foreground mb-4 md:mb-8">
+            Discover South Korea by exploring modern cities, experiencing K-pop culture, 
+            enjoying delicious cuisine, and visiting stunning natural landscapes.
           </p>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-card border border-border rounded p-6">
-              <h3 className="text-xl font-semibold text-foreground mb-3">
-                Explore Ancient Palaces and Temples
-              </h3>
-              <p className="text-foreground">
-                Visit historic sites like Gyeongbokgung Palace in Seoul, Bulguksa Temple in Gyeongju, 
-                and traditional hanok villages. Experience Korea's rich history and traditional architecture.
-              </p>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+            {/* Korean Food Card */}
+            <div className="group relative bg-gradient-to-br from-rose-50 to-pink-50 dark:from-rose-950/20 dark:to-pink-950/20 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-rose-100/50 dark:border-rose-900/30">
+              <div className="relative h-56 overflow-hidden">
+                <Image
+                  src={sushiImage}
+                  alt="Korean Cuisine"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                <div className="absolute bottom-1 left-2 right-4 flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <Utensils className="h-5 w-5 text-white drop-shadow-lg" />
+                    <h3 className="text-lg font-bold text-white drop-shadow-lg">
+                      Korean Cuisine
+                    </h3>
+                  </div>
+                  <Eye className="h-5 w-5 text-white drop-shadow-lg" />
+                </div>
+              </div>
+              <div className="p-4">
+                <p className="text-foreground/80 leading-relaxed">
+                  From kimchi and bibimbap to Korean BBQ and street food, explore South Korea's incredible food scene. 
+                  Experience everything from traditional dishes to modern fusion cuisine.
+                </p>
+              </div>
             </div>
             
-            <div className="bg-card border border-border rounded p-6">
-              <h3 className="text-xl font-semibold text-foreground mb-3">
-                Experience K-Pop and Entertainment Culture
-              </h3>
-              <p className="text-foreground">
-                Attend K-pop concerts, visit entertainment districts like Gangnam, explore K-drama 
-                filming locations, and immerse yourself in Korea's vibrant pop culture scene.
-              </p>
+            {/* Explore Seoul Card */}
+            <div className="group relative bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950/20 dark:to-indigo-950/20 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-blue-100/50 dark:border-blue-900/30">
+              <div className="relative h-56 overflow-hidden">
+                <Image
+                  src={tokyoImage}
+                  alt="Explore Seoul"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                <div className="absolute bottom-1 left-2 right-4 flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <MapPin className="h-5 w-5 text-white drop-shadow-lg" />
+                    <h3 className="text-lg font-bold text-white drop-shadow-lg">
+                      Explore Seoul
+                    </h3>
+                  </div>
+                  <Eye className="h-5 w-5 text-white drop-shadow-lg" />
+                </div>
+              </div>
+              <div className="p-4">
+                <p className="text-foreground/80 leading-relaxed">
+                  Discover the vibrant energy of Seoul with its modern skyscrapers, historic palaces, 
+                  K-pop culture, and endless entertainment options.
+                </p>
+              </div>
             </div>
             
-            <div className="bg-card border border-border rounded p-6">
-              <h3 className="text-xl font-semibold text-foreground mb-3">
-                Enjoy Korean Cuisine
-              </h3>
-              <p className="text-foreground">
-                From kimchi and bulgogi to Korean BBQ and street food, explore Korea's incredible 
-                food scene. Experience everything from traditional dishes to modern fusion cuisine.
-              </p>
+            {/* K-pop Culture Card */}
+            <div className="group relative bg-gradient-to-br from-purple-50 to-fuchsia-50 dark:from-purple-950/20 dark:to-fuchsia-950/20 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-purple-100/50 dark:border-purple-900/30">
+              <div className="relative h-56 overflow-hidden">
+                <Image
+                  src={karaokeImage}
+                  alt="K-pop Culture"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                <div className="absolute bottom-1 left-2 right-4 flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <Music className="h-5 w-5 text-white drop-shadow-lg" />
+                    <h3 className="text-lg font-bold text-white drop-shadow-lg">
+                      K-pop Culture
+                    </h3>
+                  </div>
+                  <Eye className="h-5 w-5 text-white drop-shadow-lg" />
+                </div>
+              </div>
+              <div className="p-4">
+                <p className="text-foreground/80 leading-relaxed">
+                  Experience K-pop concerts, visit entertainment districts, enjoy karaoke nights, 
+                  and immerse yourself in South Korea's unique pop culture scene.
+                </p>
+              </div>
             </div>
             
-            <div className="bg-card border border-border rounded p-6">
-              <h3 className="text-xl font-semibold text-foreground mb-3">
-                Visit Modern Cities and Natural Beauty
-              </h3>
-              <p className="text-foreground">
-                Experience futuristic Seoul, relax in natural hot springs (jjimjilbang), visit 
-                beautiful islands like Jeju, and see the contrast between ancient traditions and 
-                modern innovation.
-              </p>
+            {/* Traditional Culture Card */}
+            <div className="group relative bg-gradient-to-br from-pink-50 to-rose-50 dark:from-pink-950/20 dark:to-rose-950/20 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-pink-100/50 dark:border-pink-900/30">
+              <div className="relative h-56 overflow-hidden">
+                <Image
+                  src={sakuraImage}
+                  alt="Traditional Culture"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                <div className="absolute bottom-1 left-2 right-4 flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <Flower className="h-5 w-5 text-white drop-shadow-lg" />
+                    <h3 className="text-lg font-bold text-white drop-shadow-lg">
+                      Traditional Culture
+                    </h3>
+                  </div>
+                  <Eye className="h-5 w-5 text-white drop-shadow-lg" />
+                </div>
+              </div>
+              <div className="p-4">
+                <p className="text-foreground/80 leading-relaxed">
+                  Visit ancient temples, explore traditional hanok villages, experience tea ceremonies, 
+                  and enjoy South Korea's beautiful four distinct seasons.
+                </p>
+              </div>
             </div>
           </div>
         </section>
 
+        {/* Support all the way Section */}
+        <section className="mb-2 md:mb-12 scroll-mt-28 bg-card   p-6 md:p-8 ">
+          <h2 className="text-xl md:text-3xl font-bold text-foreground text-center mb-4">
+            Support all the way
+          </h2>
+          
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 mb-8 md:border md:border-border md:rounded-lg lg:border-0 lg:rounded-none">
+            {/* Feature 1 - Accommodations */}
+            <div className="flex flex-col items-center text-center p-2 md:p-4 lg:p-8 border-r border-b border-dotted border-border lg:border-r lg:border-b-0">
+              <div className="mb-3 p-4 rounded-full bg-primary/10">
+                <Bed className="h-6 md:h-8 w-6 md:w-8 text-primary" />
+              </div>
+              <p className="text-foreground text-xs md:text-sm leading-relaxed">
+                Accommodations with quality and safety
+              </p>
+            </div>
+
+            {/* Feature 2 - Advisor */}
+            <div className="flex flex-col items-center text-center p-2 md:p-4 lg:p-8 border-b border-dotted md:border-r lg:border-r lg:border-b-0 border-border">
+              <div className="mb-3 p-4 rounded-full bg-primary/10">
+                <MessageCircle className="h-6 md:h-8 w-6 md:w-8 text-primary" />
+              </div>
+              <p className="text-foreground text-xs md:text-sm leading-relaxed">
+                Dedicated advisor and on-site coordinator
+              </p>
+            </div>
+
+            {/* Feature 3 - Insurance */}
+            <div className="flex flex-col items-center text-center p-2 md:p-4 lg:p-8 border-r border-dotted md:border-b lg:border-r lg:border-b-0 border-border">
+              <div className="mb-3 p-4 rounded-full bg-primary/10">
+                <Shield className="h-6 md:h-8 w-6 md:w-8 text-primary" />
+              </div>
+              <p className="text-foreground text-xs md:text-sm leading-relaxed">
+                Comprehensive travel medical insurance
+              </p>
+            </div>
+
+            {/* Feature 4 - 24/7 Assistance */}
+            <div className="flex flex-col items-center text-center p-2 md:p-4 lg:p-8   lg:border-b-0 border-dotted border-border">
+              <div className="mb-3 p-4 rounded-full bg-primary/10">
+                <Clock className="h-6 md:h-8 w-6 md:w-8 text-primary" />
+              </div>
+              <p className="text-foreground text-xs md:text-sm leading-relaxed">
+                24/7 emergency travel assistance
+              </p>
+            </div>
+          </div>
+
+          <div className="text-center">
+            <Link href="/about/health-safety" className="text-black hover:text-black/80 underline underline-offset-4 decoration-black font-semibold inline-block">
+              HEALTH & SAFETY ABROAD
+            </Link>
+          </div>
+        </section>
+
+        {/* Image Card Carousel Section */}
+        <section className="mb-12 mt-12 md:mt-24 scroll-mt-28">
+          <div className="relative w-full overflow-hidden">
+            <ImageCardCarousel />
+          </div>
+        </section>
+
         {/* How to Apply Section */}
-        <section id="how-to-apply" className="mb-12">
+        <section id="how-to-apply" className="mb-12 scroll-mt-28 bg-muted/30 rounded-2xl p-6 md:p-8">
           <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-6">
             How to Apply
           </h2>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="bg-card border border-border rounded p-6">
-              <div className="text-4xl font-bold text-primary mb-2">1</div>
-              <h3 className="text-lg font-semibold text-foreground mb-2">
-                Confirm your program of interest
-              </h3>
-              <p className="text-muted-foreground">
-                Browse our available programs and select the one that matches your academic goals.
-              </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2  md:gap-4">
+            <div className="bg-card border border-border rounded-lg p-4 md:p-6">
+              <div className="flex items-start gap-3 md:gap-4">
+                <div className="flex-shrink-0">
+                  <CheckCircle className="h-8 w-8 text-primary" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-base md:text-lg font-semibold text-foreground">
+                    1. Confirm your program of interest
+                  </h3>
+                </div>
+              </div>
             </div>
             
-            <div className="bg-card border border-border rounded p-6">
-              <div className="text-4xl font-bold text-primary mb-2">2</div>
-              <h3 className="text-lg font-semibold text-foreground mb-2">
-                Submit your completed application form
-              </h3>
-              <p className="text-muted-foreground">
-                Fill out the application with all required documents and information.
-              </p>
+            <div className="bg-card border border-border rounded-lg p-4 md:p-6">
+              <div className="flex items-start gap-3 md:gap-4">
+                <div className="flex-shrink-0">
+                  <FileText className="h-8 w-8 text-primary" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-base md:text-lg font-semibold text-foreground">
+                    2. Submit your completed application form
+                  </h3>
+                </div>
+              </div>
             </div>
             
-            <div className="bg-card border border-border rounded p-6">
-              <div className="text-4xl font-bold text-primary mb-2">3</div>
-              <h3 className="text-lg font-semibold text-foreground mb-2">
-                Speak to one of our study abroad experts
-              </h3>
-              <p className="text-muted-foreground">
-                Our advisors will guide you through the process and answer any questions.
-              </p>
+            <div className="bg-card border border-border rounded-lg p-4 md:p-6">
+              <div className="flex items-start gap-3 md:gap-4">
+                <div className="flex-shrink-0">
+                  <Phone className="h-8 w-8 text-primary" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-base md:text-lg font-semibold text-foreground">
+                    3. Speak to one of our study abroad experts
+                  </h3>
+                </div>
+              </div>
             </div>
             
-            <div className="bg-card border border-border rounded p-6">
-              <div className="text-4xl font-bold text-primary mb-2">4</div>
-              <h3 className="text-lg font-semibold text-foreground mb-2">
-                Wait for program acceptance
-              </h3>
-              <p className="text-muted-foreground">
-                Receive confirmation and prepare for your study abroad journey.
-              </p>
+            <div className="bg-card border border-border rounded-lg p-4 md:p-6">
+              <div className="flex items-start gap-3 md:gap-4">
+                <div className="flex-shrink-0">
+                  <Mail className="h-8 w-8 text-primary" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-base md:text-lg font-semibold text-foreground">
+                    4. Wait for program acceptance
+                  </h3>
+                </div>
+              </div>
             </div>
             
-            <div className="bg-card border border-border rounded p-6">
-              <div className="text-4xl font-bold text-primary mb-2">5</div>
-              <h3 className="text-lg font-semibold text-foreground mb-2">
-                Pay your program deposit
-              </h3>
-              <p className="text-muted-foreground">
-                Secure your spot by completing the payment process.
-              </p>
+            <div className="bg-card border border-border rounded-lg p-4 md:p-6">
+              <div className="flex items-start gap-3 md:gap-4">
+                <div className="flex-shrink-0">
+                  <CreditCard className="h-8 w-8 text-primary" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-base md:text-lg font-semibold text-foreground">
+                    5. Pay your program deposit
+                  </h3>
+                </div>
+              </div>
             </div>
             
-            <div className="bg-card border border-border rounded p-6">
-              <div className="text-4xl font-bold text-primary mb-2">6</div>
-              <h3 className="text-lg font-semibold text-foreground mb-2">
-                Get ready for the experience of a lifetime!
-              </h3>
-              <p className="text-muted-foreground">
-                Prepare for your adventure and start your journey to South Korea.
-              </p>
+            <div className="bg-card border border-border rounded-lg p-4 md:p-6">
+              <div className="flex items-start gap-3 md:gap-4">
+                <div className="flex-shrink-0">
+                  <Luggage className="h-8 w-8 text-primary" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-base md:text-lg font-semibold text-foreground">
+                    6. Get ready for the experience of a lifetime!
+                  </h3>
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
         {/* FAQs Section */}
-        <section id="faqs" className="mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+        <section id="faqs" className="mb-12 scroll-mt-28">
+          <h2 className="text-xl md:text-3xl font-bold text-foreground mb-1 md:mb-4 p-1">
             Study Abroad in South Korea FAQs
           </h2>
-          <p className="text-muted-foreground mb-6">
+          <p className="text-muted-foreground mb-4 md:mb-6 text-sm md:text-base p-1">
             Got questions about studying abroad in South Korea? Get all the answers you need to 
             kickstart your journey with confidence!
           </p>
           
-          <div className="space-y-4">
-            <div className="bg-card border border-border rounded p-6">
-              <h3 className="text-lg font-semibold text-foreground mb-2">
-                What are the benefits of studying abroad in South Korea?
-              </h3>
-              <p className="text-foreground">
-                Studying in South Korea offers access to world-class universities, cutting-edge 
-                technology, and vibrant K-pop culture. You'll learn in one of Asia's most 
-                technologically advanced countries while gaining valuable Korean language skills 
-                and global perspectives that enhance your career prospects.
-              </p>
-            </div>
+          <Accordion type="single" collapsible className="w-full space-y-2 md:space-y-4 ">
+            <AccordionItem value="item-1" className="border-none">
+              <div className="bg-card border border-border rounded px-6">
+                <AccordionTrigger className="text-base md:text-lg font-semibold text-foreground hover:no-underline py-4">
+                  What are the benefits of studying abroad in South Korea?
+                </AccordionTrigger>
+                <AccordionContent className="text-foreground/80 pb-4">
+                  Studying in South Korea offers access to world-class universities, cutting-edge technology, 
+                  and rich cultural experiences including K-pop culture. You'll learn in one of the world's safest countries 
+                  while gaining valuable Korean language skills and global perspectives that enhance your 
+                  career prospects.
+                </AccordionContent>
+              </div>
+            </AccordionItem>
             
-            <div className="bg-card border border-border rounded p-6">
-              <h3 className="text-lg font-semibold text-foreground mb-2">
-                What are the costs associated with studying in South Korea?
-              </h3>
-              <p className="text-foreground">
-                Costs include tuition fees, which are generally competitive compared to Western 
-                countries. Living expenses in Seoul can be moderate, while other cities offer 
-                more affordable options. Additional costs include visa fees, health insurance, 
-                and personal expenses. Many scholarship programs are available for international 
-                students.
-              </p>
-            </div>
+            <AccordionItem value="item-2" className="border-none">
+              <div className="bg-card border border-border rounded px-6">
+                <AccordionTrigger className="text-base md:text-lg font-semibold text-foreground hover:no-underline py-4">
+                  What are the costs associated with studying in South Korea?
+                </AccordionTrigger>
+                <AccordionContent className="text-foreground/80 pb-4">
+                  Costs include tuition fees, which vary by program and university. Living expenses 
+                  in major cities like Seoul can be moderate compared to Western countries. 
+                  Additional costs include visa fees, health insurance, and personal expenses. 
+                  Scholarships are available for qualified students.
+                </AccordionContent>
+              </div>
+            </AccordionItem>
             
-            <div className="bg-card border border-border rounded p-6">
-              <h3 className="text-lg font-semibold text-foreground mb-2">
-                Do I need a student visa to study in South Korea?
-              </h3>
-              <p className="text-foreground">
-                Yes, international students typically need a student visa (D-2 visa). The process 
-                requires proof of enrollment, financial documentation, and a valid passport. Our 
-                advisors will guide you through the visa application process.
-              </p>
-            </div>
+            <AccordionItem value="item-3" className="border-none">
+              <div className="bg-card border border-border rounded px-6">
+                <AccordionTrigger className="text-base md:text-lg font-semibold text-foreground hover:no-underline py-4">
+                  Do I need a student visa to study in South Korea?
+                </AccordionTrigger>
+                <AccordionContent className="text-foreground/80 pb-4">
+                  Yes, international students typically need a student visa (D-2 visa). The process requires 
+                  proof of enrollment, financial documentation, and a valid passport. Our advisors 
+                  will guide you through the visa application process.
+                </AccordionContent>
+              </div>
+            </AccordionItem>
             
-            <div className="bg-card border border-border rounded p-6">
-              <h3 className="text-lg font-semibold text-foreground mb-2">
-                What should I know about living in South Korea as an international student?
-              </h3>
-              <p className="text-foreground">
-                South Korea offers excellent public transportation, safe cities, and a high quality 
-                of life. While Korean is the primary language, many universities offer English-taught 
-                programs. Be prepared for cultural differences, seasonal weather changes, and the 
-                opportunity to experience K-pop culture, delicious cuisine, and one of the world's 
-                most technologically advanced societies.
-              </p>
-            </div>
+            <AccordionItem value="item-4" className="border-none">
+              <div className="bg-card border border-border rounded px-6">
+                <AccordionTrigger className="text-base md:text-lg font-semibold text-foreground hover:no-underline py-4">
+                  What should I know about living in South Korea as an international student?
+                </AccordionTrigger>
+                <AccordionContent className="text-foreground/80 pb-4">
+                  South Korea offers excellent public transportation, safe cities, and a high quality of life. 
+                  While Korean is the primary language, many universities offer English-taught programs. 
+                  Be prepared for cultural differences, four distinct seasons, and the opportunity to 
+                  experience one of the world's most dynamic and innovative cultures.
+                </AccordionContent>
+              </div>
+            </AccordionItem>
+          </Accordion>
+          
+          <div className="mt-6 text-center">
+            <Link href="/about/faq" className="text-primary hover:text-primary/80 underline underline-offset-4 font-bold mt-1 inline-block">
+              VIEW ALL FAQS
+            </Link>
           </div>
         </section>
 
         {/* Inquiry Form Section */}
-        <section className="mb-12">
-          <div className="bg-card border border-border rounded p-6 md:p-8">
-            <h2 className="text-2xl font-bold text-foreground mb-2">
-              Get more information
-            </h2>
-            <p className="text-muted-foreground mb-6">
-              Craving more info? Discover how you can start your epic study abroad journey.
-            </p>
-            <Link href="/inquiry">
-              <Button size="lg" className="w-full sm:w-auto">
-                SEND ME THE INFO!
-              </Button>
-            </Link>
+        <section className="mb-6 md:mb-12">
+          <div className="bg-card border border-border rounded p-3 md:p-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
+              {/* Left Side - Text and Button */}
+              <div className="flex flex-col justify-center">
+                <h2 className="text-xl md:text-3xl font-bold text-foreground mb-4">
+                  Get more information
+                </h2>
+                <p className="text-muted-foreground mb-6">
+                  Craving more info? Discover how you can start your epic study abroad journey.
+                </p>
+                <Button size="lg" className="w-full sm:w-auto">
+                  SEND ME THE INFO!
+                </Button>
+              </div>
+
+              {/* Right Side - Form */}
+              <div className="bg-card border border-border rounded-lg p-4 md:p-6 shadow-lg">
+                <InquiryForm />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Explore Alternative Destinations Section */}
+        <section className="mb-6 md:mb-12 bg-muted/30 rounded-2xl p-6 md:p-8">
+          <h2 className="text-xl md:text-3xl font-bold text-foreground mb-2 md:mb-4">
+            Explore Alternative Study Abroad Destinations
+          </h2>
+          <p className="text-muted-foreground mb-4 md:mb-6">
+            Discover other incredible study abroad opportunities around the world.
+          </p>
+
+          <div className="relative">
+            <DestinationsCarousel />
           </div>
         </section>
       </div>

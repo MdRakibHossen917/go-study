@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { CheckCircle, FileText, Phone, Mail, CreditCard, Luggage, Bed, MessageCircle, Shield, Clock, Utensils, Eye, MapPin, Music, Flower } from "lucide-react"
+import { CheckCircle, FileText, Phone, Mail, CreditCard, Luggage, Bed, MessageCircle, Shield, Clock, Utensils, Eye, MapPin, Music, Flower, ArrowRight } from "lucide-react"
 import { InquiryForm } from "@/components/inquiry-form"
 import {
   Accordion,
@@ -20,6 +20,7 @@ import {
 import { ReviewsCarousel } from "@/components/reviews-carousel"
 import { DestinationsCarousel } from "@/components/destinations-carousel"
 import { ImageCardCarousel } from "@/components/image-card-carousel"
+import { JapanProgramsCarousel } from "@/components/japan-programs-carousel"
 import japanImage from "@/assests/Image/japanImage.jpg"
 import sushiImage from "@/assests/Image/Sushi.jpg"
 import tokyoImage from "@/assests/Image/tokyo.jpg"
@@ -196,123 +197,7 @@ export default function JapanPage() {
 
             {/* Right Half - Program Cards Carousel */}
             <div className="relative">
-              <Carousel className="w-full" opts={{ align: "start", containScroll: "trimSnaps" }}>
-                <CarouselContent>
-                  {/* Program Card 1 */}
-                  <CarouselItem className="basis-3/4">
-                    <div className="bg-card border border-border rounded overflow-hidden hover:shadow-lg transition-shadow flex flex-col h-full">
-                      <div className="relative w-full h-48">
-                        <Image
-                          src={universityTokyo}
-                          alt="Engineering & Technology Program"
-                          fill
-                          className="object-cover"
-                        />
-                      </div>
-                      <div className="p-4 md:p-6 flex flex-col flex-grow">
-                        <h3 className="text-base md:text-xl font-semibold text-foreground mb-2">
-                          Engineering & Technology Programs
-                        </h3>
-                        <p className="text-sm text-muted-foreground mb-3">
-                          University of Tokyo
-                        </p>
-                        <div className="flex gap-2 mb-2 md:mb-4 pb-2 md:pb-4 border-b border-border">
-                          <span className="px-3 py-1 bg-primary/10 text-primary text-xs font-medium rounded">
-                            FALL SEMESTER
-                          </span>
-                          <span className="px-3 py-1 bg-primary/10 text-primary text-xs font-medium rounded">
-                            SPRING SEMESTER
-                          </span>
-                        </div>
-                        <p className="text-foreground mb-2 md:mb-4 text-sm leading-relaxed flex-grow">
-                          Study at top engineering universities with state-of-the-art facilities and cutting-edge research opportunities. Immerse yourself in Japan's world-renowned technology sector while experiencing the perfect blend of traditional culture and modern innovation.
-                        </p>
-                        <div className="bg-muted/50 rounded p-4 -mx-4 md:-mx-4 -mb-6">
-                          <p className="text-sm md:text-lg font-bold text-primary">
-                            Program Fee: $9,800
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </CarouselItem>
-
-                  {/* Program Card 2 */}
-                  <CarouselItem className="basis-3/4">
-                    <div className="bg-card border border-border rounded overflow-hidden hover:shadow-lg transition-shadow flex flex-col h-full">
-                      <div className="relative w-full h-48">
-                        <Image
-                          src={wasedaUniversity}
-                          alt="Business & Economics Program"
-                          fill
-                          className="object-cover"
-                        />
-                      </div>
-                      <div className="p-4 md:p-6 flex flex-col flex-grow">
-                        <h3 className="text-base md:text-xl font-semibold text-foreground mb-2">
-                          Business & Economics Programs
-                        </h3>
-                        <p className="text-sm text-muted-foreground mb-3">
-                          Waseda University
-                        </p>
-                        <div className="flex gap-2 mb-2 md:mb-4 pb-2 md:pb-4 border-b border-border">
-                          <span className="px-3 py-1 bg-primary/10 text-primary text-xs font-medium rounded">
-                            FALL SEMESTER
-                          </span>
-                          <span className="px-3 py-1 bg-primary/10 text-primary text-xs font-medium rounded">
-                            SPRING SEMESTER
-                          </span>
-                        </div>
-                        <p className="text-foreground mb-2 md:mb-4 text-sm leading-relaxed flex-grow">
-                          Learn from leading business schools and gain insights into Japan's global economy and business practices. Experience the unique corporate culture while studying in modern facilities with experienced faculty and industry connections.
-                        </p>
-                        <div className="bg-muted/50 rounded p-4 -mx-4 md:-mx-4 -mb-6">
-                          <p className="text-sm md:text-lg font-bold text-primary">
-                            Program Fee: $9,800
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </CarouselItem>
-
-                  {/* Program Card 3 */}
-                  <CarouselItem className="basis-3/4">
-                    <div className="bg-card border border-border rounded overflow-hidden hover:shadow-lg transition-shadow flex flex-col h-full">
-                      <div className="relative w-full h-48">
-                        <Image
-                          src={kyotoUniversity}
-                          alt="Arts & Culture Program"
-                          fill
-                          className="object-cover"
-                        />
-                      </div>
-                      <div className="p-4 md:p-6 flex flex-col flex-grow">
-                        <h3 className="text-base md:text-xl font-semibold text-foreground mb-2">
-                          Arts & Culture Programs
-                        </h3>
-                        <p className="text-sm text-muted-foreground mb-3">
-                          Kyoto University
-                        </p>
-                        <div className="flex gap-2 mb-2 md:mb-4 pb-2 md:pb-4 border-b border-border">
-                          <span className="px-3 py-1 bg-primary/10 text-primary text-xs font-medium rounded">
-                            FALL SEMESTER
-                          </span>
-                          <span className="px-3 py-1 bg-primary/10 text-primary text-xs font-medium rounded">
-                            SPRING SEMESTER
-                          </span>
-                        </div>
-                        <p className="text-foreground mb-2 md:mb-4 text-sm leading-relaxed flex-grow">
-                          Explore Japan's rich cultural heritage through traditional arts, literature, and modern creative expressions. Study in historic Kyoto while experiencing authentic Japanese culture, from tea ceremonies to contemporary art scenes.
-                        </p>
-                        <div className="bg-muted/50 rounded p-4 -mx-4 md:-mx-4 -mb-6">
-                          <p className="text-sm md:text-lg font-bold text-primary">
-                            Program Fee: $9,800
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </CarouselItem>
-                </CarouselContent>
-              </Carousel>
+              <JapanProgramsCarousel />
             </div>
           </div>
         </section>
