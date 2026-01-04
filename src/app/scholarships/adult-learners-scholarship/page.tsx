@@ -9,7 +9,7 @@ export default function AdultLearnersScholarshipPage() {
   return (
     <div className="w-full min-h-screen">
       {/* Header Section with Background */}
-      <div className="w-full bg-[#F1F1E6] py-12 md:py-16">
+      <div className="w-full bg-[#F1F1E6] py-8 md:py-12">
         <div className="max-w-7xl mx-auto px-4 space-y-8">
           {/* Breadcrumb */}
           <div className="flex items-center gap-2 text-sm text-muted-foreground">

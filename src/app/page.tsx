@@ -6,11 +6,14 @@ import { Button } from "@/components/ui/button"
 import { Search, MapPin, ChevronLeft, ChevronRight, X } from "lucide-react"
 import logo from "@/assests/MainImage/logo.png"
 import { useState, useRef } from "react"
+import { BookOpen, Users, Star } from "lucide-react"
 import internationalStudentEurope from "@/assests/InternationalStudents/internationalStudentEurope.jpg.jpg"
 import internationalStudentUSA from "@/assests/InternationalStudents/internationalStudentUSA.jpg"
 import adultLearnersScholarship from "@/assests/InternationalStudents/adultLearnersScholarship.jpg"
 import womensScholarship from "@/assests/InternationalStudents/women'sScholarship.jpg"
 import youngWomenWalking from "@/assests/GirlsImage/young-women-walking-talking-street.jpg"
+import happyStudents from "@/assests/GirlsImage/happy-students-near-university-campus.jpg"
+import smileyWoman from "@/assests/GirlsImage/smiley-woman-working-laptop.jpg"
 
 // Import all university logo images
 import bostonUniversity from "@/assests/UniversityImageLogo/boston_university_qoxffs.png"
@@ -55,6 +58,7 @@ export default function Home() {
   const scrollContainerRef = useRef<HTMLDivElement>(null)
   const [showLeftArrow, setShowLeftArrow] = useState(false)
   const [showRightArrow, setShowRightArrow] = useState(true)
+  const [activeTab, setActiveTab] = useState<'what' | 'who' | 'why'>('what')
 
   const degreeTypes = [
     "Bachelor degrees",
@@ -95,7 +99,7 @@ export default function Home() {
           <div className="space-y-4">
             <h1 className="text-4xl md:text-3xl lg:text-4xl font-bold text-[#424242] leading-tight">
               110,000+ study abroad degrees, one perfect for you.
-            </h1>
+        </h1>
             <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold text-[#424242] my-5 md:my-0">
               Where will your studies take you?
             </h2>
@@ -304,41 +308,149 @@ export default function Home() {
         </div>
       </section>
 
-      {/* What is Study Abroad Section */}
-      <section className="w-full py-8 md:py-12">
+      {/* Study Abroad Tabs Section */}
+      <section className="w-full py-8 md:py-8">
         <div className="max-w-7xl mx-auto px-4">
+          {/* Tabs Navigation */}
+          <div className="flex items-center -mx-4 overflow-x-auto overflow-y-hidden sm:justify-center flex-nowrap mb-8">
+            <button
+              onClick={() => setActiveTab('what')}
+              className={`flex items-center flex-shrink-0 px-5 py-3 space-x-2 transition-colors ${
+                activeTab === 'what'
+                  ? 'border border-b-0 rounded-t-lg border-gray-400 dark:border-gray-600 text-gray-900 dark:text-gray-900'
+                  : 'border-b border-gray-400 dark:border-gray-600 text-gray-400 dark:text-gray-600'
+              }`}
+            >
+              <BookOpen className="w-4 h-4" />
+              <span>What is Study Abroad?</span>
+            </button>
+            <button
+              onClick={() => setActiveTab('who')}
+              className={`flex items-center flex-shrink-0 px-5 py-3 space-x-2 transition-colors ${
+                activeTab === 'who'
+                  ? 'border border-b-0 rounded-t-lg border-gray-400 dark:border-gray-600 text-gray-900 dark:text-gray-900'
+                  : 'border-b border-gray-400 dark:border-gray-600 text-gray-400 dark:text-gray-600'
+              }`}
+            >
+              <Users className="w-4 h-4" />
+              <span>Who can Study Abroad?</span>
+            </button>
+            <button
+              onClick={() => setActiveTab('why')}
+              className={`flex items-center flex-shrink-0 px-5 py-3 space-x-2 transition-colors ${
+                activeTab === 'why'
+                  ? 'border border-b-0 rounded-t-lg border-gray-400 dark:border-gray-600 text-gray-900 dark:text-gray-900'
+                  : 'border-b border-gray-400 dark:border-gray-600 text-gray-400 dark:text-gray-600'
+              }`}
+            >
+              <Star className="w-4 h-4" />
+              <span>Why Study Abroad?</span>
+            </button>
+          </div>
+
+          {/* Tab Content */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
             {/* Left Side - Content */}
             <div className="space-y-6">
-              <h2 className="text-3xl md:text-4xl font-bold text-[#424242]">
-                What is Study Abroad?
-              </h2>
-              <div className="space-y-4 text-[#424242]">
-                <p className="text-base leading-relaxed">
-                  Studying abroad is more than just earning credits in a new country—it's a life-changing adventure that reshapes how you see the world and yourself. It's about stepping outside your comfort zone, immersing yourself in new cultures, and experiencing different perspectives firsthand.
-                </p>
-                <p className="text-base leading-relaxed">
-                  Picture yourself exploring beaches in Bali or trying delicious street food in Seoul between classes. Beyond academics, you'll develop valuable life skills, expand your global network, and create unforgettable memories. This is education on your terms, in places that no textbook can capture.
-                </p>
-                <p className="text-base font-semibold">
-                  Ready to trade your traditional classroom for the world?
-                </p>
-              </div>
-              <div className="pt-4">
-                <Link 
-                  href="#" 
-                  className="inline-block bg-primary text-primary-foreground px-6 py-3 rounded-lg font-semibold hover:bg-primary/90 transition-colors"
-                >
-                  HOW TO PICK A PROGRAM
-                </Link>
-              </div>
+              {activeTab === 'what' && (
+                <>
+                  <h2 className="text-3xl md:text-4xl font-bold text-[#424242]">
+                    What is Study Abroad?
+                  </h2>
+                  <div className="space-y-4 text-[#424242]">
+                    <p className="text-base leading-relaxed">
+                      Studying abroad is more than just earning credits in a new country—it's a life-changing adventure that reshapes how you see the world and yourself. It's about stepping outside your comfort zone, immersing yourself in new cultures, and experiencing different perspectives firsthand.
+                    </p>
+                    <p className="text-base leading-relaxed">
+                      Picture yourself exploring beaches in Bali or trying delicious street food in Seoul between classes. Beyond academics, you'll develop valuable life skills, expand your global network, and create unforgettable memories. This is education on your terms, in places that no textbook can capture.
+                    </p>
+                    <p className="text-base font-semibold">
+                      Ready to trade your traditional classroom for the world?
+                    </p>
+                  </div>
+        <div className="pt-4">
+                    <Link 
+                      href="#" 
+                      className="inline-block bg-primary text-primary-foreground px-6 py-3 rounded-lg font-semibold hover:bg-primary/90 transition-colors"
+                    >
+                      HOW TO PICK A PROGRAM
+                    </Link>
+                  </div>
+                </>
+              )}
+
+              {activeTab === 'who' && (
+                <>
+                  <h2 className="text-3xl md:text-4xl font-bold text-[#424242]">
+                    Who can Study Abroad?
+                  </h2>
+                  <div className="space-y-4 text-[#424242]">
+                    <p className="text-base leading-relaxed">
+                      If you're curious about the world and eager to shake up your academic routine, studying abroad is for you. Whether you're a history lover, science enthusiast, art aficionado, or anything in between, there are programs designed to match your interests.
+                    </p>
+                    <p className="text-base leading-relaxed">
+                      Worried about costs? Don't be! With financial aid, scholarships, and budget-friendly programs available, studying abroad is more accessible than ever. Whether you want to master a new language, gain international experience, or simply immerse yourself in a new culture, there's a place for you.
+                    </p>
+                    <p className="text-base font-semibold">
+                      The world is your classroom—go explore it!
+                    </p>
+                  </div>
+                  <div className="pt-4">
+                    <Link 
+                      href="#" 
+                      className="inline-block bg-primary text-primary-foreground px-6 py-3 rounded-lg font-semibold hover:bg-primary/90 transition-colors"
+                    >
+                      HOW TO PICK A PROGRAM
+                    </Link>
+                  </div>
+                </>
+              )}
+
+              {activeTab === 'why' && (
+                <>
+                  <h2 className="text-3xl md:text-4xl font-bold text-[#424242]">
+                    Why Study Abroad?
+                  </h2>
+                  <div className="space-y-4 text-[#424242]">
+                    <p className="text-base leading-relaxed">
+                      The world is your classroom, and there's no better way to build life skills, expand your global perspective, and make your resume stand out. Picture yourself exploring sites and cities, trying new foods, and making lifelong friends in a culture completely different from your own.
+                    </p>
+                    <p className="text-base leading-relaxed">
+                      But studying abroad isn't just about Insta-worthy moments—it's about real growth. You'll gain adaptability, problem-solving skills, and the confidence to navigate new environments. Plus, you'll build a global network and experience the kind of learning no textbook can offer.
+                    </p>
+                    <p className="text-base leading-relaxed">
+                      Ready to step outside your comfort zone and create unforgettable stories? Your adventure starts now.
+                    </p>
+                  </div>
+                  <div className="pt-4">
+                    <Link 
+                      href="#" 
+                      className="inline-block bg-primary text-primary-foreground px-6 py-3 rounded-lg font-semibold hover:bg-primary/90 transition-colors"
+                    >
+                      HOW TO PICK A PROGRAM
+                    </Link>
+                  </div>
+                </>
+              )}
             </div>
 
             {/* Right Side - Image */}
             <div className="relative w-full h-96 lg:h-[500px] rounded-lg overflow-hidden">
               <Image
-                src={youngWomenWalking}
-                alt="Young women walking and talking on the street"
+                src={
+                  activeTab === 'who' 
+                    ? happyStudents 
+                    : activeTab === 'why' 
+                    ? smileyWoman 
+                    : youngWomenWalking
+                }
+                alt={
+                  activeTab === 'who' 
+                    ? "Happy students near university campus" 
+                    : activeTab === 'why'
+                    ? "Smiley woman working on laptop"
+                    : "Young women walking and talking on the street"
+                }
                 fill
                 className="object-cover"
               />
