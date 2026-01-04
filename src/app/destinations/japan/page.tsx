@@ -226,9 +226,9 @@ export default function JapanPage() {
                 <div className="absolute bottom-1 left-2 right-4 flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <Utensils className="h-5 w-5 text-white drop-shadow-lg" />
-                    <h3 className="text-lg font-bold text-white drop-shadow-lg">
-                      Sushi
-                    </h3>
+                  <h3 className="text-lg font-bold text-white drop-shadow-lg">
+                    Sushi
+                  </h3>
                   </div>
                   <Eye className="h-5 w-5 text-white drop-shadow-lg" />
                 </div>
@@ -254,9 +254,9 @@ export default function JapanPage() {
                 <div className="absolute bottom-1 left-2 right-4 flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <MapPin className="h-5 w-5 text-white drop-shadow-lg" />
-                    <h3 className="text-lg font-bold text-white drop-shadow-lg">
-                      Explore Tokyo
-                    </h3>
+                  <h3 className="text-lg font-bold text-white drop-shadow-lg">
+                    Explore Tokyo
+                  </h3>
                   </div>
                   <Eye className="h-5 w-5 text-white drop-shadow-lg" />
                 </div>
@@ -282,9 +282,9 @@ export default function JapanPage() {
                 <div className="absolute bottom-1 left-2 right-4 flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <Music className="h-5 w-5 text-white drop-shadow-lg" />
-                    <h3 className="text-lg font-bold text-white drop-shadow-lg">
-                      Karaoke Fun
-                    </h3>
+                  <h3 className="text-lg font-bold text-white drop-shadow-lg">
+                    Karaoke Fun
+                  </h3>
                   </div>
                   <Eye className="h-5 w-5 text-white drop-shadow-lg" />
                 </div>
@@ -310,9 +310,9 @@ export default function JapanPage() {
                 <div className="absolute bottom-1 left-2 right-4 flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <Flower className="h-5 w-5 text-white drop-shadow-lg" />
-                    <h3 className="text-lg font-bold text-white drop-shadow-lg">
-                      Sakura Viewing
-                    </h3>
+                  <h3 className="text-lg font-bold text-white drop-shadow-lg">
+                    Sakura Viewing
+                  </h3>
                   </div>
                   <Eye className="h-5 w-5 text-white drop-shadow-lg" />
                 </div>
