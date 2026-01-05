@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import { Search, Menu, X, Facebook, Youtube, Instagram, Mail, Globe, BookOpen, Calendar, Settings, Info, MessageCircle, FileText, ChevronDown, ChevronUp } from "lucide-react"
+import { Search, Menu, X, Facebook, Youtube, Instagram, Mail, Globe, BookOpen, Calendar, Settings, Info, MessageCircle, FileText, ChevronDown, ChevronUp, LogIn } from "lucide-react"
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import imageUniOne from "@/assests/Image/imageUniOne.jpg"
@@ -534,12 +534,12 @@ const Navbar = () => {
             </Link>
 
             <Link
-              href="/apply"
+              href="/login"
               className="flex items-center gap-3 py-3 px-4 text-white text-sm font-semibold uppercase border-b border-teal-600/50 hover:bg-teal-600/50 transition-colors"
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              <FileText className="h-5 w-5" />
-              APPLY
+              <LogIn className="h-5 w-5" />
+              LOGIN
             </Link>
           </div>
 
@@ -1146,9 +1146,9 @@ const Navbar = () => {
                   <span className="sm:hidden">INQ</span>
                 </Button>
               </Link>
-              <Link href="/apply">
+              <Link href="/login">
                 <Button variant="default" size="sm" className="text-xs sm:text-sm">
-                  APPLY
+                  LOGIN
                 </Button>
               </Link>
             </div>

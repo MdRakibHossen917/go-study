@@ -193,10 +193,20 @@ export default function BachelorsUSAScholarshipPage() {
             {/* CTA Button */}
             <div className="pt-6">
               <Link 
-                href="#" 
+                href="/apply" 
                 className="inline-block bg-primary text-primary-foreground px-8 py-3 rounded-lg font-semibold hover:bg-primary/90 transition-colors"
               >
-                Start your application here!
+                Take the First Step – Apply Now
+              </Link>
+            </div>
+
+            {/* View All Scholarships */}
+            <div className="pt-6 text-center">
+              <Link 
+                href="/scholarships" 
+                className="text-primary font-medium underline text-base hover:text-primary/80 transition-colors inline-flex items-center gap-1"
+              >
+                View all scholarships
               </Link>
             </div>
           </div>
