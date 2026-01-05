@@ -4,6 +4,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { Search, MapPin, ChevronLeft, ChevronRight, X, Compass, ClipboardCheck, FileText, Luggage } from "lucide-react"
 import logo from "@/assests/MainImage/logo.png"
 import { useState, useRef, useEffect } from "react"
@@ -1247,6 +1248,81 @@ export default function Home() {
           </div>
           
           <CommentCarousel />
+        </div>
+      </section>
+
+      {/* Study Abroad FAQs Section */}
+      <section className="w-full py-8 md:py-16">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-8 md:mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-[#144449] mb-4">
+              Study Abroad FAQs
+            </h2>
+            <div className="max-w-2xl mx-auto">
+              <p className="text-lg text-[#424242] text-center">
+                Got questions about studying abroad? Get all the answers you need to kickstart your journey with confidence!
+              </p>
+            </div>
+          </div>
+
+          <div className="max-w-4xl mx-auto">
+            <Accordion type="single" collapsible className="w-full space-y-4">
+              <AccordionItem value="item-1" className="border border-gray-200 rounded-lg px-6 bg-white shadow-sm">
+                <AccordionTrigger className="text-left text-lg font-semibold text-[#424242] hover:no-underline">
+                  How can I afford to study abroad?
+                </AccordionTrigger>
+                <AccordionContent className="text-base text-[#424242] leading-relaxed">
+                  <p>
+                    Think studying abroad is too pricey? Think again! There are tons of scholarships, grants, and financial aid options specifically for study abroad. Plus, choosing programs in less expensive countries can stretch your dollar further, making global education totally attainable.
+                  </p>
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="item-2" className="border border-gray-200 rounded-lg px-6 bg-white shadow-sm">
+                <AccordionTrigger className="text-left text-lg font-semibold text-[#424242] hover:no-underline">
+                  Will studying abroad delay my graduation?
+                </AccordionTrigger>
+                <AccordionContent className="text-base text-[#424242] leading-relaxed">
+                  <p>
+                    Nope, it doesn't have to! Most study abroad programs offer courses that can directly count towards your major or general education requirements. Just plan ahead with your academic advisor to ensure everything lines up, and you'll stay on track to graduate on time.
+                  </p>
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="item-3" className="border border-gray-200 rounded-lg px-6 bg-white shadow-sm">
+                <AccordionTrigger className="text-left text-lg font-semibold text-[#424242] hover:no-underline">
+                  Is it safe to study abroad?
+                </AccordionTrigger>
+                <AccordionContent className="text-base text-[#424242] leading-relaxed">
+                  <p>
+                    Absolutely, safety is a top priority! We offer thorough safety orientations that are constantly updated with the latest local safety guidelines. Plus, you'll have access to 24/7 support while abroad, so you can explore with peace of mind.
+                  </p>
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="item-4" className="border border-gray-200 rounded-lg px-6 bg-white shadow-sm">
+                <AccordionTrigger className="text-left text-lg font-semibold text-[#424242] hover:no-underline">
+                  How do I choose the right program?
+                </AccordionTrigger>
+                <AccordionContent className="text-base text-[#424242] leading-relaxed">
+                  <p>
+                    Focus on what lights your fire—whether it's a specific country, a new language, or career skills. Then talk to our advisors, we're here to help you every step of the way!
+                  </p>
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="item-5" className="border border-gray-200 rounded-lg px-6 bg-white shadow-sm">
+                <AccordionTrigger className="text-left text-lg font-semibold text-[#424242] hover:no-underline">
+                  Will I get a chance to travel and explore?
+                </AccordionTrigger>
+                <AccordionContent className="text-base text-[#424242] leading-relaxed">
+                  <p>
+                    Absolutely—exploring is part of the deal! While you'll have a class schedule, you'll also have ample free time to travel, discover new places, and soak in the culture beyond the classroom. It's the perfect blend of learning and adventure.
+                  </p>
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          </div>
         </div>
       </section>
     </div>
