@@ -14,6 +14,12 @@ import womensScholarship from "@/assests/InternationalStudents/women'sScholarshi
 import youngWomenWalking from "@/assests/GirlsImage/young-women-walking-talking-street.jpg"
 import happyStudents from "@/assests/GirlsImage/happy-students-near-university-campus.jpg"
 import smileyWoman from "@/assests/GirlsImage/smiley-woman-working-laptop.jpg"
+import udayanaUniversity from "@/assests/UniversityCampus/Udayana University.jpg"
+import lciBarcelona from "@/assests/UniversityCampus/LCI Barcelona.jpg"
+import universityOfPecs from "@/assests/UniversityCampus/University of Pécs.jpg"
+import universidadLCI from "@/assests/UniversityCampus/Universidad LCI.jpg"
+import alAkhawaynUniversity from "@/assests/UniversityCampus/Al Akhawayn University.jpg"
+import mahidolUniversity from "@/assests/UniversityCampus/Mahidol University.jpg"
 
 // Import all university logo images
 import bostonUniversity from "@/assests/UniversityImageLogo/boston_university_qoxffs.png"
@@ -249,6 +255,102 @@ export default function Home() {
                 />
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Study Abroad Programs Section */}
+      <section className="w-full py-8 md:py-12">
+        <div className="container mx-auto px-4">
+          <div className="text-left space-y-6 mb-8">
+            <h2 className="text-3xl md:text-4xl font-bold text-[#424242]">
+              Featured Study Abroad Programs
+            </h2>
+            <p className="text-lg text-[#424242] leading-relaxed">
+              Explore our featured study abroad programs, carefully curated to offer immersive educational experiences, while also exploring some of the most exciting a diverse destinations.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              {
+                image: udayanaUniversity,
+                title: "Study Abroad at Udayana University in Bali",
+                duration: "Fall Semester, Spring Semester",
+                description: "Explore vibrant Bali while studying at Udayana University. Experience rich culture, stunning landscapes, and a unique academic journey in paradise.",
+                price: "Semester: $9,995"
+              },
+              {
+                image: lciBarcelona,
+                title: "Study Abroad at LCI Barcelona in Spain",
+                duration: "Fall Semester, Spring Semester",
+                description: "Discover exciting study abroad opportunities at LCI Barcelona. Immerse yourself in a vibrant culture while advancing your education in a dynamic environment.",
+                price: "Semester: $14,495"
+              },
+              {
+                image: universityOfPecs,
+                title: "Study Abroad at University of Pécs in Hungary",
+                duration: "Fall Semester, Spring Semester, Summer Break",
+                description: "Explore exciting study abroad opportunities in Hungary at the University of Pecs. Immerse yourself in a vibrant culture while earning your degree.",
+                price: "Semester: $8,495"
+              },
+              {
+                image: universidadLCI,
+                title: "Study Abroad at Universidad LCI Veritas in Costa Rica",
+                duration: "Fall Semester, Spring Semester, Summer Break, Winter Break",
+                description: "Discover study abroad opportunities at Universidad LCI Veritas. Immerse yourself in vibrant culture, gain valuable experience, and enhance your education.",
+                price: "Semester: $10,995"
+              },
+              {
+                image: alAkhawaynUniversity,
+                title: "Study Abroad at Al Akhawayn University in Morocco",
+                duration: "Fall Semester, Spring Semester",
+                description: "Discover the charm of Morocco while studying at Al Akhawayn University. Experience a unique blend of culture, education, and adventure in a stunning setting.",
+                price: "Semester: $10,995"
+              },
+              {
+                image: mahidolUniversity,
+                title: "Study Abroad at Mahidol University in Thailand",
+                duration: "Fall Semester, Spring Semester, Summer Break",
+                description: "Discover unique study abroad opportunities at Mahidol University International College in Thailand. Immerse yourself in vibrant culture and quality education.",
+                price: "Semester: $8,495"
+              }
+            ].map((program, index) => (
+              <div
+                key={index}
+                className="border border-border rounded-lg overflow-hidden bg-background hover:shadow-lg transition-shadow group flex flex-col"
+              >
+                <div className="relative w-full h-48">
+                  <Image
+                    src={program.image}
+                    alt={program.title}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+                <div className="p-6 flex flex-col flex-grow">
+                  <h3 className="text-xl font-bold text-[#424242] mb-2">
+                    {program.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground mb-3">
+                    {program.duration}
+                  </p>
+                  <p className="text-base text-[#424242] leading-relaxed mb-4 flex-grow">
+                    {program.description}
+                  </p>
+                  <div className="mt-auto">
+                    <p className="text-lg font-semibold text-[#424242] bg-[#E7E7E7] px-4 py-2 rounded inline-block">
+                      {program.price}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="text-left mt-8">
+            <Link href="#" className="text-[#424242] font-medium underline text-base inline-flex items-center gap-1 hover:text-primary transition-colors">
+              VIEW ALL AVAILABLE PROGRAMS
+            </Link>
           </div>
         </div>
       </section>
