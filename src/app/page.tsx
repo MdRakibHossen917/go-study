@@ -9,6 +9,7 @@ import logo from "@/assests/MainImage/logo.png"
 import { useState, useRef, useEffect } from "react"
 import useEmblaCarousel from "embla-carousel-react"
 import { BookOpen, Users, Star, MessageCircle, Quote } from "lucide-react"
+import CloudinaryPlayer from "@/components/CloudinaryPlayer"
 import internationalStudentEurope from "@/assests/InternationalStudents/internationalStudentEurope.jpg.jpg"
 import internationalStudentUSA from "@/assests/InternationalStudents/internationalStudentUSA.jpg"
 import adultLearnersScholarship from "@/assests/InternationalStudents/adultLearnersScholarship.jpg"
@@ -107,24 +108,32 @@ const CommentCarousel = () => {
 
   const [emblaRef, emblaApi] = useEmblaCarousel({ 
     loop: true,
-    align: 'center',
+    align: 'start',
     slidesToScroll: 1,
     dragFree: true,
     containScroll: 'trimSnaps',
-    startIndex: 1
+    startIndex: 0
   })
+
+  const scrollPrev = () => {
+    if (emblaApi) emblaApi.scrollPrev()
+  }
+
+  const scrollNext = () => {
+    if (emblaApi) emblaApi.scrollNext()
+  }
 
   return (
     <div className="relative w-full">
       <div className="overflow-hidden" ref={emblaRef}>
-        <div className="flex gap-3 md:gap-6">
+        <div className="flex gap-6 md:gap-6">
           {comments.map((comment, index) => (
             <div 
               key={index} 
-              className="flex-[0_0_84%] md:flex-[0_0_46%] min-w-0"
+              className="flex-[0_0_95%] md:flex-[0_0_48%] min-w-0"
             >
               <Card 
-                className="group relative overflow-hidden border-2 border-transparent hover:border-[#408CAD]/30 hover:shadow-xl transition-all duration-300 bg-gradient-to-br from-white to-gray-50/50 h-full"
+                className="group relative overflow-hidden border-2 border-transparent hover:border-[#408CAD]/30 hover:shadow-xl transition-all duration-300 bg-white/95 backdrop-blur-sm h-full"
               >
                 {/* Quote Icon Background */}
                 <div className="absolute top-4 right-4 opacity-5 group-hover:opacity-10 transition-opacity">
@@ -184,6 +193,24 @@ const CommentCarousel = () => {
             </div>
           ))}
         </div>
+      </div>
+      
+      {/* Navigation Arrows */}
+      <div className="flex items-center justify-center gap-4 mt-8">
+        <button
+          onClick={scrollPrev}
+          className="w-12 h-12 rounded-full bg-white/90 hover:bg-white text-[#408CAD] flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110"
+          aria-label="Previous comment"
+        >
+          <ChevronLeft className="w-6 h-6" />
+        </button>
+        <button
+          onClick={scrollNext}
+          className="w-12 h-12 rounded-full bg-white/90 hover:bg-white text-[#408CAD] flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110"
+          aria-label="Next comment"
+        >
+          <ChevronRight className="w-6 h-6" />
+        </button>
       </div>
     </div>
   )
@@ -1173,16 +1200,50 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Comment Section */}
-      <section className="w-full py-8 md:py-12">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-8 md:mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#424242] mb-2">
+      {/* Comment Section with Background Video */}
+      <section 
+        id="reviews" 
+        className="relative w-full overflow-hidden"
+        style={{
+          paddingTop: 'calc(10vw)',
+          paddingBottom: 'calc(8vw)',
+          zIndex: 101,
+          clipPath: 'inset(0px 0% round 0px)'
+        }}
+      >
+        {/* Background Video Layer */}
+        <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
+          <div className="nectar-video-wrap absolute inset-0 opacity-100 md:scale-100 scale-[2.8] transition-transform duration-300">
+            <div className="nectar-video-inner w-full h-full">
+              <CloudinaryPlayer />
+            </div>
+          </div>
+        </div>
+
+        {/* Gradient Overlay */}
+        <div 
+          className="absolute inset-0 z-10"
+          style={{
+            background: 'linear-gradient(90deg, #408CAD 0%, #51ca58 100%)',
+            opacity: 0.8
+          }}
+        />
+
+        {/* Video Color Overlay */}
+        <div 
+          className="absolute inset-0 z-10"
+          style={{
+            opacity: 0.7
+          }}
+        />
+        
+        {/* Content on top of video */}
+        <div className="relative z-20 container mx-auto px-8">
+          <div className="text-center mb-6 md:mb-12">
+            <h2 className="text-xl md:text-4xl font-bold text-white mb-2 drop-shadow-lg">
               What Our Students Say
             </h2>
-            <p className="text-lg text-muted-foreground">
-              Read testimonials from students who have studied abroad with us
-            </p>
+           
           </div>
           
           <CommentCarousel />

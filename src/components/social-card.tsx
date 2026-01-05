@@ -3,7 +3,7 @@ import { Facebook, Linkedin, Github, Twitter } from "lucide-react"
 
 export function SocialCard() {
   return (
-    <div className="max-w-7xl mx-auto px-4 mb-6">
+    <div className="max-w-7xl mx-auto px-4 my-6">
       <div className="bg-card border border-border rounded-xl p-4 md:p-6 shadow-lg">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 md:gap-6">
           {/* Left Side - Domain Name */}

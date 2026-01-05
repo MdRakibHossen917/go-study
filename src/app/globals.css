@@ -213,3 +213,33 @@ html {
 .animate-marquee {
   animation: marquee 30s linear infinite;
 }
+
+/* Clip-path animation for video background section */
+@keyframes clipPathAnimation {
+  0% {
+    clip-path: inset(0 14% 0 14% round 20px);
+  }
+  100% {
+    clip-path: inset(0 0% 0 0% round 0px);
+  }
+}
+
+#reviews {
+  animation: clipPathAnimation 1s ease-out forwards;
+}
+
+/* Video wrapper styles */
+.nectar-video-wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.nectar-video-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
