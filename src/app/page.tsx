@@ -3,11 +3,12 @@
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Search, MapPin, ChevronLeft, ChevronRight, X, Compass, ClipboardCheck, FileText, Luggage } from "lucide-react"
 import logo from "@/assests/MainImage/logo.png"
 import { useState, useRef, useEffect } from "react"
 import useEmblaCarousel from "embla-carousel-react"
-import { BookOpen, Users, Star } from "lucide-react"
+import { BookOpen, Users, Star, MessageCircle, Quote } from "lucide-react"
 import internationalStudentEurope from "@/assests/InternationalStudents/internationalStudentEurope.jpg.jpg"
 import internationalStudentUSA from "@/assests/InternationalStudents/internationalStudentUSA.jpg"
 import adultLearnersScholarship from "@/assests/InternationalStudents/adultLearnersScholarship.jpg"
@@ -62,6 +63,131 @@ const universityLogos = [
   universitySydney,
   usc
 ]
+
+// Comment Carousel Component
+const CommentCarousel = () => {
+  const comments = [
+    {
+      name: "Sarah Johnson",
+      university: "University of Oxford",
+      description: "Studying abroad at Oxford was a life-changing experience. The academic rigor combined with the rich cultural immersion helped me grow both personally and professionally. I made lifelong friends and gained perspectives I never would have had otherwise.",
+      rating: 5
+    },
+    {
+      name: "Ahmed Hassan",
+      university: "Tokyo University",
+      description: "My time in Japan exceeded all expectations. The university's support system was excellent, and I was able to explore both traditional and modern aspects of Japanese culture. This experience has opened many doors for my career.",
+      rating: 5
+    },
+    {
+      name: "Maria Rodriguez",
+      university: "University of Barcelona",
+      description: "Barcelona became my second home. The vibrant city life, excellent professors, and diverse student community made my study abroad experience unforgettable. I improved my Spanish significantly and gained confidence in international settings.",
+      rating: 4
+    },
+    {
+      name: "David Kim",
+      university: "Seoul National University",
+      description: "Studying in South Korea was incredible. The technology-focused curriculum and innovative teaching methods were exactly what I needed. The food, culture, and people made every day an adventure.",
+      rating: 5
+    },
+    {
+      name: "Emma Thompson",
+      university: "University of Sydney",
+      description: "Australia offered the perfect balance of academic excellence and outdoor adventure. The university's research opportunities were outstanding, and I loved exploring the beautiful landscapes during my free time.",
+      rating: 5
+    },
+    {
+      name: "Lucas Schmidt",
+      university: "Humboldt University Berlin",
+      description: "Berlin's rich history and vibrant arts scene made my study abroad experience unique. The university's international programs are well-structured, and I appreciated the emphasis on critical thinking and independent research.",
+      rating: 4
+    }
+  ]
+
+  const [emblaRef, emblaApi] = useEmblaCarousel({ 
+    loop: true,
+    align: 'center',
+    slidesToScroll: 1,
+    dragFree: true,
+    containScroll: 'trimSnaps',
+    startIndex: 1
+  })
+
+  return (
+    <div className="relative w-full">
+      <div className="overflow-hidden" ref={emblaRef}>
+        <div className="flex gap-3 md:gap-6">
+          {comments.map((comment, index) => (
+            <div 
+              key={index} 
+              className="flex-[0_0_84%] md:flex-[0_0_46%] min-w-0"
+            >
+              <Card 
+                className="group relative overflow-hidden border-2 border-transparent hover:border-[#408CAD]/30 hover:shadow-xl transition-all duration-300 bg-gradient-to-br from-white to-gray-50/50 h-full"
+              >
+                {/* Quote Icon Background */}
+                <div className="absolute top-4 right-4 opacity-5 group-hover:opacity-10 transition-opacity">
+                  <Quote className="w-24 h-24 text-[#408CAD]" />
+                </div>
+                
+                <CardHeader className="relative z-10 pb-4">
+                  <div className="flex items-start gap-4">
+                    {/* Enhanced Avatar */}
+                    <div className="relative flex-shrink-0">
+                      <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#408CAD] to-[#2d6a8a] flex items-center justify-center text-white font-bold text-lg shadow-lg ring-2 ring-white">
+                        {comment.name.charAt(0)}
+                      </div>
+                      <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-green-500 rounded-full border-2 border-white"></div>
+                    </div>
+                    
+                    <div className="flex-1 min-w-0">
+                      <CardTitle className="text-xl font-bold text-[#424242] mb-1 group-hover:text-[#408CAD] transition-colors">
+                        {comment.name}
+                      </CardTitle>
+                      <CardDescription className="text-sm font-semibold text-[#408CAD] mb-3">
+                        {comment.university}
+                      </CardDescription>
+                      {/* Star Rating */}
+                      <div className="flex items-center gap-1.5">
+                        {[...Array(5)].map((_, i) => (
+                          <Star 
+                            key={i} 
+                            className={`w-5 h-5 transition-all ${
+                              i < comment.rating
+                                ? "fill-yellow-400 text-yellow-400 drop-shadow-sm"
+                                : "fill-gray-200 text-gray-200"
+                            }`}
+                          />
+                        ))}
+                        <span className="ml-2 text-sm font-medium text-gray-600">
+                          {comment.rating}.0
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </CardHeader>
+                
+                <CardContent className="relative z-10 pt-0">
+                  <div className="relative pl-6">
+                    {/* Quote Icon */}
+                    <Quote className="absolute left-0 top-0 w-5 h-5 text-[#408CAD]/30" />
+                    <p className="text-base text-[#424242] leading-relaxed italic">
+                      "{comment.description}"
+                    </p>
+                  </div>
+                </CardContent>
+                
+                {/* Decorative Bottom Border */}
+                <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#408CAD]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              </Card>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
 
 // Image Carousel Component
 const ImageCarousel = () => {
@@ -1044,6 +1170,22 @@ export default function Home() {
               />
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Comment Section */}
+      <section className="w-full py-8 md:py-12">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-8 md:mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-[#424242] mb-2">
+              What Our Students Say
+            </h2>
+            <p className="text-lg text-muted-foreground">
+              Read testimonials from students who have studied abroad with us
+            </p>
+          </div>
+          
+          <CommentCarousel />
         </div>
       </section>
     </div>
