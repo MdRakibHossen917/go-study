@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "AbroadGuideBD - Study Abroad Programs",
+  title: "BideshStudy - Study Abroad Programs",
   description: "Your gateway to quality education and learning opportunities worldwide",
 };
 

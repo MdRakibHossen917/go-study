@@ -21,7 +21,7 @@ import { DestinationsCarousel } from "@/components/destinations-carousel"
 import ukImage from "@/assests/Image/ukImage.jpg"
 
 export const metadata: Metadata = {
-  title: "Study in United Kingdom - AbroadGuideBD",
+  title: "Study in United Kingdom - BideshStudy",
   description: "Discover study abroad opportunities in the United Kingdom. Explore top universities and programs in UK.",
 }
 

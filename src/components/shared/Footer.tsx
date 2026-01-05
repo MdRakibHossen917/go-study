@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -22,14 +23,20 @@ const Footer = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-12">
           {/* Left Side - Brand and Description */}
           <div className="space-y-2 md:space-y-4">
-            <Link href="/" className="inline-block mb-2 md:mb-4">
+            <Link href="/" className="inline-flex items-center gap-2 mb-2 md:mb-4">
+              <div className="relative w-12 h-12 md:w-16 md:h-16 flex-shrink-0">
+                <Image
+                  src="/logo.svg"
+                  alt="BideshStudy Logo"
+                  fill
+                  className="object-contain"
+                  priority
+                />
+              </div>
               <h2 className="text-2xl md:text-3xl font-bold text-primary">
-                AbroadGuideBD
+                BideshStudy
               </h2>
             </Link>
-            <h2 className="text-lg md:text-2xl font-bold text-foreground">
-              STUDY ABROAD FOR EVERYONE
-            </h2>
             <p className="text-muted-foreground leading-relaxed text-xs md:text-base">
               We're here to make studying abroad achievable, and we're building a community of open-minded, connected, and culturally aware people ready to make a real impact in our ever-connected world.
             </p>
@@ -46,7 +53,7 @@ const Footer = () => {
                   </p>
                   <p className="text-muted-foreground text-xs md:text-base flex items-center gap-2">
                     <Mail className="h-4 w-4" />
-                    info@abroadguidbd.com
+                    info@bideshstudy.com
                   </p>
                 </div>
                 <div className="absolute right-0 top-6 md:top-2 bottom-0 w-px bg-border"></div>
@@ -194,7 +201,9 @@ const Footer = () => {
         {/* Bottom Section */}
         <div className="mt-4 md:mt-12 pt-2 md:pt-6 border-t">
           <div className="flex flex-col sm:flex-row justify-center items-center gap-2 text-sm text-muted-foreground">
-            <span>© 2025 abroadguidebd.com. All rights reserved.</span>
+            <span className="font-bold text-primary">BideshStudy</span>
+            <span className="hidden sm:inline">|</span>
+            <span>© 2025 bideshstudy.com. All rights reserved.</span>
             <span className="hidden sm:inline">|</span>
             <Link href="/privacy" className="hover:text-primary transition-colors">
               Privacy Policy

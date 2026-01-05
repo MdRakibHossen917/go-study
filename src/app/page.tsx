@@ -434,7 +434,7 @@ export default function Home() {
           <div className="relative w-full max-w-lg lg:max-w-xl xl:max-w-2xl aspect-square">
             <Image
               src={logo}
-              alt="AbroadGuideBD Logo"
+              alt="BideshStudy Logo"
               fill
               className="object-contain"
               priority
@@ -642,7 +642,7 @@ export default function Home() {
             {/* Step 1 */}
             <div className="md:border-r md:border-gray-300 md:pr-8 md:last:border-r-0 p-6 text-center">
               <div className="flex justify-center mb-4">
-                <div className="w-12 h-12 relative hover:scale-110 transition-all duration-300">
+                <div className="w-12 h-12 relative hover:scale-110 transition-all duration-300 animate-float">
                   <svg 
                     xmlns="http://www.w3.org/2000/svg" 
                     xmlnsXlink="http://www.w3.org/1999/xlink" 
@@ -691,7 +691,7 @@ export default function Home() {
             {/* Step 2 */}
             <div className="md:border-r md:border-gray-300 md:pr-8 md:last:border-r-0 p-6 text-center">
               <div className="flex justify-center mb-4">
-                <div className="w-12 h-12 relative hover:scale-110 transition-all duration-300">
+                <div className="w-12 h-12 relative hover:scale-110 transition-all duration-300 animate-wiggle">
                   <svg 
                     xmlns="http://www.w3.org/2000/svg" 
                     xmlnsXlink="http://www.w3.org/1999/xlink" 
@@ -755,7 +755,7 @@ export default function Home() {
             {/* Step 3 */}
             <div className="p-6 text-center">
               <div className="flex justify-center mb-4">
-                <div className="w-12 h-12 relative hover:scale-110 transition-all duration-300">
+                <div className="w-12 h-12 relative hover:scale-110 transition-all duration-300 animate-gentle-pulse">
                   <svg 
                     xmlns="http://www.w3.org/2000/svg" 
                     xmlnsXlink="http://www.w3.org/1999/xlink" 
@@ -817,7 +817,7 @@ export default function Home() {
             {/* Step 4 */}
             <div className="md:border-r md:border-gray-300 md:pr-8 md:last:border-r-0 p-6 text-center">
               <div className="flex justify-center mb-4">
-                <div className="w-12 h-12 relative hover:scale-110 transition-all duration-300">
+                <div className="w-12 h-12 relative hover:scale-110 transition-all duration-300 animate-float" style={{ animationDuration: '2.5s' }}>
                   <svg 
                     xmlns="http://www.w3.org/2000/svg" 
                     xmlnsXlink="http://www.w3.org/1999/xlink" 
@@ -871,7 +871,7 @@ export default function Home() {
             {/* Step 5 */}
             <div className="md:border-r md:border-gray-300 md:pr-8 md:last:border-r-0 p-6 text-center">
               <div className="flex justify-center mb-4">
-                <div className="w-12 h-12 relative hover:scale-110 transition-all duration-300">
+                <div className="w-12 h-12 relative hover:scale-110 transition-all duration-300 animate-wiggle" style={{ animationDuration: '2.5s' }}>
                   <svg 
                     xmlns="http://www.w3.org/2000/svg" 
                     xmlnsXlink="http://www.w3.org/1999/xlink" 
@@ -931,7 +931,7 @@ export default function Home() {
             {/* Step 6 */}
             <div className="p-6 text-center">
               <div className="flex justify-center mb-4">
-                <div className="w-12 h-12 relative hover:scale-110 transition-all duration-300">
+                <div className="w-12 h-12 relative hover:scale-110 transition-all duration-300 animate-gentle-pulse" style={{ animationDuration: '2s' }}>
                   <svg 
                     xmlns="http://www.w3.org/2000/svg" 
                     xmlnsXlink="http://www.w3.org/1999/xlink" 

@@ -611,9 +611,18 @@ const Navbar = () => {
       }`}>
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex h-16 items-center justify-between">
-            {/* Left side - Brand name */}
-            <Link href="/" className="flex items-center">
-              <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-primary">AbroadGuideBD</h1>
+            {/* Left side - Brand name with Logo */}
+            <Link href="/" className="flex items-center gap-2">
+              <div className="relative w-10 h-10 md:w-12 md:h-12 flex-shrink-0">
+                <Image
+                  src="/logo.svg"
+                  alt="BideshStudy Logo"
+                  fill
+                  className="object-contain"
+                  priority
+                />
+              </div>
+              <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-primary">BideshStudy</h1>
             </Link>
 
             {/* Middle - Navigation items (hidden on mobile) */}
