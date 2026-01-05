@@ -5,7 +5,8 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Search, MapPin, ChevronLeft, ChevronRight, X, Compass, ClipboardCheck, FileText, Luggage } from "lucide-react"
 import logo from "@/assests/MainImage/logo.png"
-import { useState, useRef } from "react"
+import { useState, useRef, useEffect } from "react"
+import useEmblaCarousel from "embla-carousel-react"
 import { BookOpen, Users, Star } from "lucide-react"
 import internationalStudentEurope from "@/assests/InternationalStudents/internationalStudentEurope.jpg.jpg"
 import internationalStudentUSA from "@/assests/InternationalStudents/internationalStudentUSA.jpg"
@@ -14,6 +15,10 @@ import womensScholarship from "@/assests/InternationalStudents/women'sScholarshi
 import youngWomenWalking from "@/assests/GirlsImage/young-women-walking-talking-street.jpg"
 import happyStudents from "@/assests/GirlsImage/happy-students-near-university-campus.jpg"
 import smileyWoman from "@/assests/GirlsImage/smiley-woman-working-laptop.jpg"
+import southKoreaImage from "@/assests/Image/southKoreaImage.jpg"
+import girlSittingReading from "@/assests/GirlsImage/girl-sitting-table-reading-flipping-page.jpg"
+import girlHoldingCards from "@/assests/GirlsImage/girl-holding-card-boards-standing.jpg"
+import studentsWalking from "@/assests/GirlsImage/students-walking-together.jpg"
 import udayanaUniversity from "@/assests/UniversityCampus/Udayana University.jpg"
 import lciBarcelona from "@/assests/UniversityCampus/LCI Barcelona.jpg"
 import universityOfPecs from "@/assests/UniversityCampus/University of Pécs.jpg"
@@ -57,6 +62,66 @@ const universityLogos = [
   universitySydney,
   usc
 ]
+
+// Image Carousel Component
+const ImageCarousel = () => {
+  const carouselImages = [
+    southKoreaImage,
+    girlSittingReading,
+    girlHoldingCards,
+    studentsWalking
+  ]
+
+  // Duplicate images for seamless loop
+  const duplicatedImages = [...carouselImages, ...carouselImages]
+
+  const [emblaRef, emblaApi] = useEmblaCarousel({ 
+    loop: true, 
+    align: 'start',
+    slidesToScroll: 1,
+    dragFree: false,
+    containScroll: 'trimSnaps'
+  })
+
+  useEffect(() => {
+    if (!emblaApi) return
+
+    const autoplay = () => {
+      emblaApi.scrollNext()
+    }
+
+    const interval = setInterval(autoplay, 3000) // Change slide every 3 seconds
+
+    return () => {
+      clearInterval(interval)
+    }
+  }, [emblaApi])
+
+  return (
+    <div className="relative w-full">
+      <div className="overflow-hidden" ref={emblaRef}>
+        <div className="flex gap-2 md:gap-4">
+          {duplicatedImages.map((image, index) => (
+            <div 
+              key={index} 
+              className="flex-[0_0_calc(80%-0.25rem)] md:flex-[0_0_calc(33.333%-0.67rem)] min-w-0"
+            >
+              <div className="relative w-full h-[300px] md:h-[400px] lg:h-[500px]">
+                <Image
+                  src={image}
+                  alt={`Carousel image ${(index % carouselImages.length) + 1}`}
+                  fill
+                  className="object-cover rounded-lg"
+                  priority={index < 3}
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
 
 export default function Home() {
   const [selectedLocation, setSelectedLocation] = useState("")
@@ -347,7 +412,7 @@ export default function Home() {
               </div>
             ))}
           </div>
-          <div className="text-left mt-8">
+          <div className="text-center mt-8">
             <Link href="#" className="text-[#424242] font-medium underline text-base inline-flex items-center gap-1 hover:text-primary transition-colors">
               VIEW ALL AVAILABLE PROGRAMS
             </Link>
@@ -402,7 +467,7 @@ export default function Home() {
               </div>
             ))}
           </div>
-          <div className="text-left">
+          <div className="text-center">
             <Link href="/scholarships" className="text-primary font-medium underline text-sm inline-flex items-center gap-1 hover:text-primary/80 transition-colors">
               View all scholarships
             </Link>
@@ -421,7 +486,7 @@ export default function Home() {
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Step 1 */}
-            <div className="border-r border-gray-300 pr-8 md:last:border-r-0 p-6 text-center">
+            <div className="md:border-r md:border-gray-300 md:pr-8 md:last:border-r-0 p-6 text-center">
               <div className="flex justify-center mb-4">
                 <div className="w-12 h-12 relative hover:scale-110 transition-all duration-300">
                   <svg 
@@ -470,7 +535,7 @@ export default function Home() {
             </div>
 
             {/* Step 2 */}
-            <div className="border-r border-gray-300 pr-8 md:border-r md:last:border-r-0 p-6 text-center">
+            <div className="md:border-r md:border-gray-300 md:pr-8 md:last:border-r-0 p-6 text-center">
               <div className="flex justify-center mb-4">
                 <div className="w-12 h-12 relative hover:scale-110 transition-all duration-300">
                   <svg 
@@ -534,7 +599,7 @@ export default function Home() {
             </div>
 
             {/* Step 3 */}
-            <div className="border-b border-gray-300 pb-8 md:border-b-0 md:pb-0 p-6 text-center">
+            <div className="p-6 text-center">
               <div className="flex justify-center mb-4">
                 <div className="w-12 h-12 relative hover:scale-110 transition-all duration-300">
                   <svg 
@@ -596,7 +661,7 @@ export default function Home() {
             </div>
 
             {/* Step 4 */}
-            <div className="border-r border-gray-300 pr-8 md:border-r md:last:border-r-0 p-6 text-center">
+            <div className="md:border-r md:border-gray-300 md:pr-8 md:last:border-r-0 p-6 text-center">
               <div className="flex justify-center mb-4">
                 <div className="w-12 h-12 relative hover:scale-110 transition-all duration-300">
                   <svg 
@@ -650,7 +715,7 @@ export default function Home() {
             </div>
 
             {/* Step 5 */}
-            <div className="border-r border-gray-300 pr-8 md:border-r md:last:border-r-0 p-6 text-center">
+            <div className="md:border-r md:border-gray-300 md:pr-8 md:last:border-r-0 p-6 text-center">
               <div className="flex justify-center mb-4">
                 <div className="w-12 h-12 relative hover:scale-110 transition-all duration-300">
                   <svg 
@@ -821,6 +886,13 @@ export default function Home() {
               </Link>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Image Carousel Section */}
+      <section className="w-full py-8 md:py-16 overflow-hidden">
+        <div className="w-full">
+          <ImageCarousel />
         </div>
       </section>
 
