@@ -373,7 +373,7 @@ export default function Home() {
 
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-4">
-            <Button size="lg" className="w-full md:w-3/4 text-base md:text-lg px-8 py-6 flex items-center  bg-[#408CAD] justify-center gap-2">
+            <Button size="lg" className="w-full md:w-3/4 text-base md:text-lg px-8 py-6 flex items-center bg-[#22253D] justify-center gap-2 hover:bg-[#22253D]/90 transition-colors text-white">
               <Search className="h-5 w-5" />
               Search
             </Button>
@@ -445,7 +445,7 @@ export default function Home() {
 
       {/* University Logos Marquee - Right to Left */}
       <section className="bg-background w-full -mt-[32px] md:-mt-[122px]">
-        <div className="flex flex-col items-center md:py-8">
+        <div className="flex flex-col items-center md:pt-8">
           <span className="text-sm font-medium text-muted-foreground mb-4">
             Trusted by 13,000+ universities worldwide
           </span>
@@ -479,8 +479,8 @@ export default function Home() {
       </section>
 
       {/* Featured Study Abroad Programs Section */}
-      <section className="w-full py-8 md:py-12">
-        <div className="container mx-auto px-4">
+      <section className="w-full ">
+        <div className="container mx-auto  ">
           <div className="text-left space-y-6 mb-8">
             <h2 className="text-3xl md:text-4xl font-bold text-[#424242]">
               Featured Study Abroad Programs
@@ -575,7 +575,7 @@ export default function Home() {
       </section>
 
       {/* Scholarships Section */}
-      <section className="w-full py-8 md:py-12">
+      <section className="w-full ">
         <div className="space-y-6">
           <div className="text-left">
             <h2 className="text-3xl md:text-4xl font-bold text-[#424242] mb-2">
@@ -630,9 +630,9 @@ export default function Home() {
       </section>
 
       {/* How Study Abroad works Section */}
-      <section className="w-full py-8 md:py-12">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
+      <section className="w-full pt-8 md:pt-12">
+        <div className="container mx-auto ">
+          <div className="text-center mb-4 md:mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-[#424242]">
               How Study Abroad works
             </h2>
@@ -640,8 +640,8 @@ export default function Home() {
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Step 1 */}
-            <div className="md:border-r md:border-gray-300 md:pr-8 md:last:border-r-0 p-6 text-center">
-              <div className="flex justify-center mb-4">
+            <div className="md:pr-8 md:last:border-r-0 p-2 md:p-6 text-center relative md:after:content-[''] md:after:absolute md:after:right-0 md:after:top-10 md:after:bottom-10 md:after:w-px md:after:bg-gray-300">
+              <div className="flex justify-center mb-2 md:mb-4">
                 <div className="w-12 h-12 relative hover:scale-110 transition-all duration-300 animate-float">
                   <svg 
                     xmlns="http://www.w3.org/2000/svg" 
@@ -670,7 +670,7 @@ export default function Home() {
                       </g>
                       <g transform="matrix(0.9990282654762268,-0.0440741702914238,0.0440741702914238,0.9990282654762268,402.8190002441406,401.8819885253906)" opacity="1" style={{ display: 'block' }}>
                         <g opacity="1" transform="matrix(1,0,0,1,0,0)">
-                          <path strokeLinecap="round" strokeLinejoin="round" fillOpacity="0" stroke="rgb(9,157,117)" strokeOpacity="1" strokeWidth="17.5" d=" M25.70400047302246,59.777000427246094 C25.70400047302246,59.777000427246094 -66.90899658203125,-32.64899826049805 -66.90899658203125,-32.64899826049805 C-66.90899658203125,-32.64899826049805 -32.79399871826172,-66.83300018310547 -32.79399871826172,-66.83300018310547 C-32.79399871826172,-66.83300018310547 59.819000244140625,25.593000411987305 59.819000244140625,25.593000411987305 C69.25900268554688,35.013999938964844 69.27400207519531,50.303001403808594 59.85300064086914,59.74300003051758 C59.85300064086914,59.74300003051758 59.85300064086914,59.74300003051758 59.85300064086914,59.74300003051758 C50.43199920654297,69.18299865722656 35.14400100708008,69.197998046875 25.70400047302246,59.777000427246094z"></path>
+                          <path strokeLinecap="round" strokeLinejoin="round" fillOpacity="0" stroke="rgb(27, 182, 133)" strokeOpacity="1" strokeWidth="17.5" d=" M25.70400047302246,59.777000427246094 C25.70400047302246,59.777000427246094 -66.90899658203125,-32.64899826049805 -66.90899658203125,-32.64899826049805 C-66.90899658203125,-32.64899826049805 -32.79399871826172,-66.83300018310547 -32.79399871826172,-66.83300018310547 C-32.79399871826172,-66.83300018310547 59.819000244140625,25.593000411987305 59.819000244140625,25.593000411987305 C69.25900268554688,35.013999938964844 69.27400207519531,50.303001403808594 59.85300064086914,59.74300003051758 C59.85300064086914,59.74300003051758 59.85300064086914,59.74300003051758 59.85300064086914,59.74300003051758 C50.43199920654297,69.18299865722656 35.14400100708008,69.197998046875 25.70400047302246,59.777000427246094z"></path>
                         </g>
                       </g>
                     </g>
@@ -680,8 +680,8 @@ export default function Home() {
               <h3 className="text-2xl font-bold text-[#424242] mb-4">
                 Explore Your Options
               </h3>
-              <p className="text-base text-[#424242] leading-relaxed mb-6">
-                Start by browsing study abroad programs that align with your academic goals and personal interests. Whether you dream of studying art in Italy or language and culture in South Korea, there's an exciting world of opportunities waiting for you.
+              <p className="text-base text-[#424242] leading-relaxed mb-2 md:mb-6">
+              Browse study abroad programs that match your goals and interests—your global journey starts here.
               </p>
               <Link href="#" className="text-[#424242] font-semibold underline text-base hover:text-primary transition-colors inline-block">
                 Browse Programs
@@ -689,8 +689,8 @@ export default function Home() {
             </div>
 
             {/* Step 2 */}
-            <div className="md:border-r md:border-gray-300 md:pr-8 md:last:border-r-0 p-6 text-center">
-              <div className="flex justify-center mb-4">
+            <div className="md:pr-8 md:last:border-r-0 p-2 md:p-6 text-center relative md:after:content-[''] md:after:absolute md:after:right-0 md:after:top-10 md:after:bottom-10 md:after:w-px md:after:bg-gray-300">
+              <div className="flex justify-center mb-2 md:mb-4">
                 <div className="w-12 h-12 relative hover:scale-110 transition-all duration-300 animate-wiggle">
                   <svg 
                     xmlns="http://www.w3.org/2000/svg" 
@@ -719,22 +719,22 @@ export default function Home() {
                       </g>
                       <g transform="matrix(0.9996304512023926,0.027183569967746735,-0.027183569967746735,0.9996304512023926,289.947265625,296.03143310546875)" opacity="1" style={{ display: 'block' }}>
                         <g opacity="1" transform="matrix(1,0,0,1,0,0)">
-                          <path strokeLinecap="round" strokeLinejoin="round" fillOpacity="0" stroke="rgb(9,157,117)" strokeOpacity="1" strokeWidth="17.5" d=" M64.22200012207031,-38.00199890136719 C64.22200012207031,-38.00199890136719 64.22200012207031,22.83300018310547 64.22200012207031,22.83300018310547 C64.22200012207031,31.209999084472656 57.430999755859375,38.00199890136719 49.05400085449219,38.00199890136719 C49.05400085449219,38.00199890136719 -49.05400085449219,38.00199890136719 -49.05400085449219,38.00199890136719 C-57.430999755859375,38.00199890136719 -64.22200012207031,31.209999084472656 -64.22200012207031,22.83300018310547 C-64.22200012207031,22.83300018310547 -64.22200012207031,-37.7140007019043 -64.22200012207031,-37.7140007019043"></path>
+                          <path strokeLinecap="round" strokeLinejoin="round" fillOpacity="0" stroke="rgb(27, 182, 133)" strokeOpacity="1" strokeWidth="17.5" d=" M64.22200012207031,-38.00199890136719 C64.22200012207031,-38.00199890136719 64.22200012207031,22.83300018310547 64.22200012207031,22.83300018310547 C64.22200012207031,31.209999084472656 57.430999755859375,38.00199890136719 49.05400085449219,38.00199890136719 C49.05400085449219,38.00199890136719 -49.05400085449219,38.00199890136719 -49.05400085449219,38.00199890136719 C-57.430999755859375,38.00199890136719 -64.22200012207031,31.209999084472656 -64.22200012207031,22.83300018310547 C-64.22200012207031,22.83300018310547 -64.22200012207031,-37.7140007019043 -64.22200012207031,-37.7140007019043"></path>
                         </g>
                       </g>
                       <g transform="matrix(0.9996304512023926,0.027183569967746735,-0.027183569967746735,0.9996304512023926,291.1454162597656,239.53811645507812)" opacity="1" style={{ display: 'block' }}>
                         <g opacity="1" transform="matrix(1,0,0,1,0,0)">
-                          <path strokeLinecap="round" strokeLinejoin="round" fillOpacity="0" stroke="rgb(9,157,117)" strokeOpacity="1" strokeWidth="17.5" d=" M109.90499877929688,-0.44999998807907104 C109.90499877929688,-0.44999998807907104 0,-45.49599838256836 0,-45.49599838256836 C0,-45.49599838256836 -109.90499877929688,-0.44999998807907104 -109.90499877929688,-0.44999998807907104 C-109.90499877929688,-0.44999998807907104 -0.014999999664723873,45.49599838256836 -0.014999999664723873,45.49599838256836 C-0.014999999664723873,45.49599838256836 109.90499877929688,-0.44999998807907104 109.90499877929688,-0.44999998807907104z"></path>
+                          <path strokeLinecap="round" strokeLinejoin="round" fillOpacity="0" stroke="rgb(27, 182, 133)" strokeOpacity="1" strokeWidth="17.5" d=" M109.90499877929688,-0.44999998807907104 C109.90499877929688,-0.44999998807907104 0,-45.49599838256836 0,-45.49599838256836 C0,-45.49599838256836 -109.90499877929688,-0.44999998807907104 -109.90499877929688,-0.44999998807907104 C-109.90499877929688,-0.44999998807907104 -0.014999999664723873,45.49599838256836 -0.014999999664723873,45.49599838256836 C-0.014999999664723873,45.49599838256836 109.90499877929688,-0.44999998807907104 109.90499877929688,-0.44999998807907104z"></path>
                         </g>
                       </g>
                       <g transform="matrix(0.9996304512023926,0.027183569967746735,-0.027183569967746735,0.9996304512023926,188.453857421875,264.39178466796875)" opacity="1" style={{ display: 'block' }}>
                         <g opacity="1" transform="matrix(1,0,0,1,0,0)">
-                          <path strokeLinecap="round" strokeLinejoin="round" fillOpacity="0" stroke="rgb(9,157,117)" strokeOpacity="1" strokeWidth="17.5" d=" M0,24.77199935913086 C0,24.77199935913086 0,-24.77199935913086 0,-24.77199935913086"></path>
+                          <path strokeLinecap="round" strokeLinejoin="round" fillOpacity="0" stroke="rgb(27, 182, 133)" strokeOpacity="1" strokeWidth="17.5" d=" M0,24.77199935913086 C0,24.77199935913086 0,-24.77199935913086 0,-24.77199935913086"></path>
                         </g>
                       </g>
                       <g transform="matrix(1.2375235557556152,0.03365274518728256,-0.03365274518728256,1.2375235557556152,186.79205322265625,325.502197265625)" opacity="1" style={{ display: 'block' }}>
                         <g opacity="1" transform="matrix(1,0,0,1,0,0)">
-                          <path strokeLinecap="round" strokeLinejoin="round" fillOpacity="0" stroke="rgb(9,157,117)" strokeOpacity="1" strokeWidth="17.5" d=" M0,0 C0,0 0,0 0,0"></path>
+                          <path strokeLinecap="round" strokeLinejoin="round" fillOpacity="0" stroke="rgb(27, 182, 133)" strokeOpacity="1" strokeWidth="17.5" d=" M0,0 C0,0 0,0 0,0"></path>
                         </g>
                       </g>
                     </g>
@@ -744,8 +744,8 @@ export default function Home() {
               <h3 className="text-2xl font-bold text-[#424242] mb-4">
                 Pick a Program
               </h3>
-              <p className="text-base text-[#424242] leading-relaxed mb-6">
-                Once you've explored your options, select a program that best fits your aspirations. Consider factors like course offerings, location, and cultural experiences to make an informed decision.
+              <p className="text-base text-[#424242] leading-relaxed mb-2 md:mb-6">
+              Choose the program that best matches your goals, considering courses, location, and culture.
               </p>
               <Link href="#" className="text-[#424242] font-semibold underline text-base hover:text-primary transition-colors inline-block">
                 Talk to an Advisor
@@ -753,7 +753,7 @@ export default function Home() {
             </div>
 
             {/* Step 3 */}
-            <div className="p-6 text-center">
+            <div className="p-2 md:p-6 text-center">
               <div className="flex justify-center mb-4">
                 <div className="w-12 h-12 relative hover:scale-110 transition-all duration-300 animate-gentle-pulse">
                   <svg 
@@ -791,12 +791,12 @@ export default function Home() {
                       </g>
                       <g transform="matrix(0.9994120001792908,0.03428725153207779,-0.03428725153207779,0.9994120001792908,308.0576477050781,276.1678771972656)" opacity="1" style={{ display: 'block' }}>
                         <g opacity="1" transform="matrix(1,0,0,1,0,0)">
-                          <path strokeLinecap="round" strokeLinejoin="round" fillOpacity="0" stroke="rgb(9,157,117)" strokeOpacity="1" strokeWidth="17.5" d=" M-25,25 C-25,25 -25,-25 -25,-25"></path>
+                          <path strokeLinecap="round" strokeLinejoin="round" fillOpacity="0" stroke="rgb(27, 182, 133)" strokeOpacity="1" strokeWidth="17.5" d=" M-25,25 C-25,25 -25,-25 -25,-25"></path>
                         </g>
                       </g>
                       <g transform="matrix(0.9998639822006226,0.016495391726493835,-0.016495391726493835,0.9998639822006226,307.6241455078125,275.7117919921875)" opacity="1" style={{ display: 'block' }}>
                         <g opacity="1" transform="matrix(1,0,0,1,0,0)">
-                          <path strokeLinecap="round" strokeLinejoin="round" fillOpacity="0" stroke="rgb(9,157,117)" strokeOpacity="1" strokeWidth="17.5" d=" M25,25 C25,25 -25,25 -25,25"></path>
+                          <path strokeLinecap="round" strokeLinejoin="round" fillOpacity="0" stroke="rgb(27, 182, 133)" strokeOpacity="1" strokeWidth="17.5" d=" M25,25 C25,25 -25,25 -25,25"></path>
                         </g>
                       </g>
                     </g>
@@ -815,8 +815,8 @@ export default function Home() {
             </div>
 
             {/* Step 4 */}
-            <div className="md:border-r md:border-gray-300 md:pr-8 md:last:border-r-0 p-6 text-center">
-              <div className="flex justify-center mb-4">
+            <div className="md:pr-8 md:last:border-r-0 p-2 md:p-6 text-center relative md:after:content-[''] md:after:absolute md:after:right-0 md:after:top-10 md:after:bottom-10 md:after:w-px md:after:bg-gray-300">
+              <div className="flex justify-center mb-2 md:mb-4">
                 <div className="w-12 h-12 relative hover:scale-110 transition-all duration-300 animate-float" style={{ animationDuration: '2.5s' }}>
                   <svg 
                     xmlns="http://www.w3.org/2000/svg" 
@@ -840,7 +840,7 @@ export default function Home() {
                       </g>
                       <g transform="matrix(0.9310957193374634,0.36477506160736084,-0.36477506160736084,0.9310957193374634,301.724365234375,143.86866760253906)" opacity="1" style={{ display: 'block' }}>
                         <g opacity="1" transform="matrix(1,0,0,1,0,0)">
-                          <path strokeLinecap="round" strokeLinejoin="round" fillOpacity="0" stroke="rgb(9,157,117)" strokeOpacity="1" strokeWidth="17.5" d=" M-141.85000610351562,37.69499969482422 C-141.85000610351562,37.69499969482422 -141.9250030517578,37.41999816894531 -141.9250030517578,37.41999816894531 C-141.9250030517578,37.41999816894531 92.26300048828125,-36.52799987792969 92.26300048828125,-36.52799987792969 C93.77999877929688,-37.00699996948242 95.30999755859375,-37.33399963378906 96.83399963378906,-37.516998291015625"></path>
+                          <path strokeLinecap="round" strokeLinejoin="round" fillOpacity="0" stroke="rgb(27, 182, 133)" strokeOpacity="1" strokeWidth="17.5" d=" M-141.85000610351562,37.69499969482422 C-141.85000610351562,37.69499969482422 -141.9250030517578,37.41999816894531 -141.9250030517578,37.41999816894531 C-141.9250030517578,37.41999816894531 92.26300048828125,-36.52799987792969 92.26300048828125,-36.52799987792969 C93.77999877929688,-37.00699996948242 95.30999755859375,-37.33399963378906 96.83399963378906,-37.516998291015625"></path>
                         </g>
                       </g>
                       <g transform="matrix(0.9965457916259766,0.08304499089717865,-0.08304499089717865,0.9965457916259766,289.4019775390625,279.37591552734375)" opacity="1" style={{ display: 'block' }}>
@@ -850,7 +850,7 @@ export default function Home() {
                       </g>
                       <g transform="matrix(0.9965457916259766,0.08304499089717865,-0.08304499089717865,0.9965457916259766,386.4129333496094,376.5177307128906)" opacity="1" style={{ display: 'block' }}>
                         <g opacity="1" transform="matrix(1,0,0,1,0,0)">
-                          <path strokeLinecap="round" strokeLinejoin="round" fillOpacity="0" stroke="rgb(8,8,8)" strokeOpacity="1" strokeWidth="17.5" d=" M65.60700225830078,-51.8120002746582 C65.60700225830078,-51.8120002746582 65.60700225830078,26.812000274658203 65.60700225830078,26.812000274658203 C65.60700225830078,40.61199951171875 54.40700149536133,51.8120002746582 40.606998443603516,51.8120002746582 C40.606998443603516,51.8120002746582 -65.60700225830078,51.8120002746582 -65.60700225830078,51.8120002746582"></path>
+                          <path strokeLinecap="round" strokeLinejoin="round" fillOpacity="0" stroke="rgb(27, 182, 133)" strokeOpacity="1" strokeWidth="17.5" d=" M65.60700225830078,-51.8120002746582 C65.60700225830078,-51.8120002746582 65.60700225830078,26.812000274658203 65.60700225830078,26.812000274658203 C65.60700225830078,40.61199951171875 54.40700149536133,51.8120002746582 40.606998443603516,51.8120002746582 C40.606998443603516,51.8120002746582 -65.60700225830078,51.8120002746582 -65.60700225830078,51.8120002746582"></path>
                         </g>
                       </g>
                     </g>
@@ -861,7 +861,7 @@ export default function Home() {
                 Funding Your Program
               </h3>
               <p className="text-base text-[#424242] leading-relaxed mb-6">
-                Make studying abroad even more affordable by exploring scholarships, grants, and financial aid options.
+              Lower your study abroad costs with scholarships and financial aid.
               </p>
               <Link href="#" className="text-[#424242] font-semibold underline text-base hover:text-primary transition-colors inline-block">
                 Explore Funding Options
@@ -869,7 +869,7 @@ export default function Home() {
             </div>
 
             {/* Step 5 */}
-            <div className="md:border-r md:border-gray-300 md:pr-8 md:last:border-r-0 p-6 text-center">
+            <div className="md:pr-8 md:last:border-r-0 p-2 md:p-6 text-center relative md:after:content-[''] md:after:absolute md:after:right-0 md:after:top-10 md:after:bottom-10 md:after:w-px md:after:bg-gray-300">
               <div className="flex justify-center mb-4">
                 <div className="w-12 h-12 relative hover:scale-110 transition-all duration-300 animate-wiggle" style={{ animationDuration: '2.5s' }}>
                   <svg 
@@ -894,7 +894,7 @@ export default function Home() {
                       </g>
                       <g transform="matrix(0.9999998807907104,0.00044109937152825296,-0.00044109937152825296,0.9999998807907104,0.07342529296875,-2.638397216796875)" opacity="1" style={{ display: 'block' }}>
                         <g opacity="1" transform="matrix(1,0,0,1,365.3219909667969,203.27099609375)">
-                          <path strokeLinecap="round" strokeLinejoin="round" fillOpacity="0" stroke="rgb(9,157,117)" strokeOpacity="1" strokeWidth="17.5" d=" M36.904998779296875,-36.904998779296875 C36.904998779296875,-36.904998779296875 -36.904998779296875,36.904998779296875 -36.904998779296875,36.904998779296875"></path>
+                          <path strokeLinecap="round" strokeLinejoin="round" fillOpacity="0" stroke="rgb(27, 182, 133)" strokeOpacity="1" strokeWidth="17.5" d=" M36.904998779296875,-36.904998779296875 C36.904998779296875,-36.904998779296875 -36.904998779296875,36.904998779296875 -36.904998779296875,36.904998779296875"></path>
                         </g>
                         <g opacity="1" transform="matrix(1,0,0,1,296.4700012207031,272.02899169921875)">
                           <path strokeLinecap="round" strokeLinejoin="round" fillOpacity="0" stroke="rgb(9,157,117)" strokeOpacity="1" strokeWidth="17.5" d=" M-40.46200180053711,23.177000045776367 C-40.46200180053711,23.177000045776367 -23.177000045776367,40.46200180053711 -23.177000045776367,40.46200180053711 C-13.413999557495117,50.224998474121094 2.4149999618530273,50.224998474121094 12.178000450134277,40.46200180053711 C12.178000450134277,40.46200180053711 40.46200180053711,12.178000450134277 40.46200180053711,12.178000450134277 C50.224998474121094,2.4149999618530273 50.224998474121094,-13.413999557495117 40.46200180053711,-23.177000045776367 C40.46200180053711,-23.177000045776367 23.177000045776367,-40.46200180053711 23.177000045776367,-40.46200180053711 C13.413999557495117,-50.224998474121094 -2.4149999618530273,-50.224998474121094 -12.178000450134277,-40.46200180053711 C-12.178000450134277,-40.46200180053711 -40.46200180053711,-12.178000450134277 -40.46200180053711,-12.178000450134277 C-50.224998474121094,-2.4149999618530273 -50.224998474121094,13.413999557495117 -40.46200180053711,23.177000045776367z"></path>
@@ -921,7 +921,7 @@ export default function Home() {
                 Prepare to Travel
               </h3>
               <p className="text-base text-[#424242] leading-relaxed mb-6">
-                Once accepted, start preparing for your adventure! This includes applying for a visa, booking your travel, and packing essentials for your new home away from home.
+              Once accepted, prepare for your journey—visa, travel, and essentials.
               </p>
               <Link href="#" className="text-[#424242] font-semibold underline text-base hover:text-primary transition-colors inline-block">
                 Things You'll Need
@@ -1030,10 +1030,10 @@ export default function Home() {
                 </div>
               </div>
               <h3 className="text-2xl font-bold text-[#424242] mb-4">
-                Embark on Your Journey
+              Discover. Learn. Grow.
               </h3>
               <p className="text-base text-[#424242] leading-relaxed mb-6">
-                Immerse yourself in a new culture, challenge yourself, and create unforgettable memories. Studying abroad is a transformative journey—make the most of every moment!
+              Experience new cultures, grow personally, and create lifelong memories.
               </p>
               <Link href="#" className="text-[#424242] font-semibold underline text-base hover:text-primary transition-colors inline-block">
                 Hear From Our Alumni
