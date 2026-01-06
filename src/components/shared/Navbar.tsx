@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import { Search, Menu, X, Facebook, Youtube, Instagram, Mail, Globe, BookOpen, Calendar, Settings, Info, MessageCircle, FileText, ChevronDown, ChevronUp, LogIn } from "lucide-react"
+import { Search, Menu, X, Facebook, Youtube, Instagram, Mail, Globe, BookOpen, Calendar, Settings, Info, FileText, ChevronDown, ChevronUp, LogIn } from "lucide-react"
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import imageUniOne from "@/assests/Image/imageUniOne.jpg"
@@ -522,15 +522,6 @@ const Navbar = () => {
             >
               <Search className="h-5 w-5" />
               SEARCH
-            </Link>
-
-            <Link
-              href="/inquiry"
-              className="flex items-center gap-3 py-3 px-4 text-white text-sm font-semibold uppercase border-b border-teal-600/50 hover:bg-teal-600/50 transition-colors"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              <MessageCircle className="h-5 w-5" />
-              INQUIRE
             </Link>
 
             <Link
@@ -1140,12 +1131,6 @@ const Navbar = () => {
                 <Search className="h-3 w-3 sm:h-4 sm:w-4" />
                 <span className="hidden sm:inline">SEARCH</span>
               </Button>
-              <Link href="/inquiry">
-                <Button variant="outline" size="sm" className="text-xs sm:text-sm">
-                  <span className="hidden sm:inline">INQUERY</span>
-                  <span className="sm:hidden">INQ</span>
-                </Button>
-              </Link>
               <Link href="/login">
                 <Button variant="default" size="sm" className="text-xs sm:text-sm">
                   LOGIN
