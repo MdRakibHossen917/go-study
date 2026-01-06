@@ -801,14 +801,14 @@ export default async function ProgramDetailPage({ params }: { params: Promise<{ 
               </div>
 
               {/* Action Buttons */}
-                    <div className="flex gap-2 md:gap-3">
+                    <div className="flex gap-1.5 md:gap-3">
                       <Link href="/apply">
-                        <Button size="sm" className="bg-[#22253D] hover:bg-[#22253D]/90 text-white text-xs md:text-sm px-4 md:px-6">
+                        <Button size="sm" className="bg-[#22253D] hover:bg-[#22253D]/90 text-white text-xs md:text-sm px-3 md:px-6">
                     Apply Now
                   </Button>
                 </Link>
                       <Link href={`https://www.${program.university.toLowerCase().replace(/\s+/g, '')}.edu`} target="_blank" rel="noopener noreferrer">
-                        <Button variant="outline" size="sm" className="border-2 text-xs md:text-sm px-4 md:px-6">
+                        <Button variant="outline" size="sm" className="border-2 text-xs md:text-sm px-3 md:px-6">
                           <span className="hidden sm:inline">Visit Website</span>
                           <span className="sm:hidden">Website</span>
                           <ExternalLink className="h-3 w-3 md:h-4 md:w-4 ml-1 md:ml-2" />
