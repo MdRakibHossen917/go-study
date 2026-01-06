@@ -20,7 +20,8 @@ import {
 import { ReviewsCarousel } from "@/components/reviews-carousel"
 import { DestinationsCarousel } from "@/components/destinations-carousel"
 import { ImageCardCarousel } from "@/components/image-card-carousel"
-import { JapanProgramsCarousel } from "@/components/japan-programs-carousel"
+import { SouthKoreaProgramsCarousel } from "@/components/south-korea-programs-carousel"
+import { DestinationNavigationTabs } from "@/components/destination-navigation-tabs"
 import southKoreaImage from "@/assests/Image/southKoreaImage.jpg"
 import datesAd from "@/assests/AdvertisementImage/dates.jpg"
 import sushiImage from "@/assests/Image/Sushi.jpg"
@@ -40,7 +41,7 @@ export default function SouthKoreaPage() {
   return (
     <div className="min-h-screen">
       {/* Hero Image Header */}
-      <div className="relative w-full h-[82vh] overflow-hidden">
+      <div className="relative w-full h-[57vh] overflow-hidden">
         <Image
           src={southKoreaImage}
           alt="Aerial view of Seoul cityscape in South Korea"
@@ -53,10 +54,10 @@ export default function SouthKoreaPage() {
             <h4 className="text-sm md:text-2xl font-bold uppercase tracking-wider mb-2">
               SOUTH KOREA
             </h4>
-            <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4">
+            <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-3">
               Study Abroad in South Korea
             </h1>
-            <p className="text-lg md:text-xl font-medium">
+            <p className="text-base md:text-lg font-medium">
               Innovative. Trendy. Transformative.
             </p>
           </div>
@@ -64,34 +65,11 @@ export default function SouthKoreaPage() {
       </div>
 
       {/* Navigation Tabs */}
-      <div className="bg-background border-b border-border sticky top-16 z-20">
-        <div className="max-w-6xl mx-auto">
-          <nav className="flex overflow-x-auto">
-            <a href="#overview" className="px-4 py-3 text-sm font-medium text-foreground hover:text-primary border-b-2 border-transparent hover:border-primary whitespace-nowrap">
-              OVERVIEW
-            </a>
-            <a href="#reviews" className="px-4 py-3 text-sm font-medium text-foreground hover:text-primary border-b-2 border-transparent hover:border-primary whitespace-nowrap">
-              REVIEWS
-            </a>
-            <a href="#programs" className="px-4 py-3 text-sm font-medium text-foreground hover:text-primary border-b-2 border-transparent hover:border-primary whitespace-nowrap">
-              PROGRAMS
-            </a>
-            <a href="#activities" className="px-4 py-3 text-sm font-medium text-foreground hover:text-primary border-b-2 border-transparent hover:border-primary whitespace-nowrap">
-              ACTIVITIES
-            </a>
-            <a href="#how-to-apply" className="px-4 py-3 text-sm font-medium text-foreground hover:text-primary border-b-2 border-transparent hover:border-primary whitespace-nowrap">
-              HOW TO APPLY
-            </a>
-            <a href="#faqs" className="px-4 py-3 text-sm font-medium text-foreground hover:text-primary border-b-2 border-transparent hover:border-primary whitespace-nowrap">
-              FAQS
-            </a>
-          </nav>
-        </div>
-      </div>
+      <DestinationNavigationTabs country="South Korea" />
 
-      <div className="max-w-6xl mx-auto  py-8 md:py-12">
+      <div className="max-w-6xl mx-auto  py-6 md:py-8">
         {/* Breadcrumb */}
-        <div className="mb-6 text-sm text-muted-foreground">
+        <div className="mb-4 text-sm text-muted-foreground">
           <Link href="/" className="hover:text-primary">Home</Link>
           <span className="mx-2">|</span>
           <span>Study Abroad in South Korea</span>
@@ -123,18 +101,6 @@ export default function SouthKoreaPage() {
                   experiences and personal growth!
                 </p>
               </div>
-              <div className="mt-6 flex flex-col sm:flex-row gap-4">
-                <Link href="/apply">
-                  <Button size="lg" className="w-full sm:w-auto">
-                    APPLY NOW
-                  </Button>
-                </Link>
-                <Link href="/inquiry">
-                  <Button variant="outline" size="lg" className="w-full sm:w-auto">
-                    GET MORE INFO
-                  </Button>
-                </Link>
-              </div>
             </div>
             <div className="lg:col-span-1">
               <div className="bg-card border border-border rounded p-6">
@@ -163,19 +129,6 @@ export default function SouthKoreaPage() {
           </div>
         </section>
 
-        {/* Reviews Section */}
-        <section id="reviews" className="mb-6 md-mb-12 scroll-mt-28">
-          <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-            Student Reviews
-          </h2>
-          <p className="text-muted-foreground mb-8">
-            Hear from students who have studied abroad in South Korea and transformed their lives through 
-            this incredible experience.
-          </p>
-          
-          <ReviewsCarousel />
-        </section>
-
         {/* Programs Section */}
         <section id="programs" className="mb-6 md-mb-12 scroll-mt-28">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
@@ -188,8 +141,8 @@ export default function SouthKoreaPage() {
               "Discover the dynamic culture, K-pop scene, and affordable living of South Korea through our immersive, globally recognized study abroad programs."
               </p>
               <div className="flex justify-center">
-                <Link href="/apply">
-                  <Button size="lg" className="w-full sm:w-auto">
+                <Link href="/destinations/south-korea/programs">
+                  <Button size="lg" className="w-full sm:w-auto bg-[#1BB685] hover:bg-[#1BB685]/90 text-white">
                     VIEW ALL AVAILABLE PROGRAMS
                   </Button>
                 </Link>
@@ -198,9 +151,22 @@ export default function SouthKoreaPage() {
 
             {/* Right Half - Program Cards Carousel */}
             <div className="relative">
-              <JapanProgramsCarousel />
+              <SouthKoreaProgramsCarousel />
             </div>
           </div>
+        </section>
+
+        {/* Reviews Section */}
+        <section id="reviews" className="mb-6 md-mb-12 scroll-mt-28">
+          <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+            Student Reviews
+          </h2>
+          <p className="text-muted-foreground mb-8">
+            Hear from students who have studied abroad in South Korea and transformed their lives through 
+            this incredible experience.
+          </p>
+          
+          <ReviewsCarousel country="South Korea" />
         </section>
 
         {/* Activities Section */}
@@ -552,7 +518,7 @@ export default function SouthKoreaPage() {
         </section>
 
         {/* Inquiry Form Section */}
-        <section className="mb-6 md:mb-12">
+        <section className="mb-4 md:mb-8">
           <div className="bg-card border border-border rounded p-3 md:p-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
               {/* Left Side - Text and Button */}

@@ -96,7 +96,7 @@ const CommentCarousel = () => {
     {
       name: "Emma Thompson",
       university: "University of Sydney",
-      description: "Australia offered the perfect balance of academic excellence and outdoor adventure. The university's research opportunities were outstanding, and I loved exploring the beautiful landscapes during my free time.",
+      description: "Australia offered the perfect balance of academic excellence and outdoor adventure. The university's research opportunities were outstanding",
       rating: 5
     },
     {
@@ -122,6 +122,13 @@ const CommentCarousel = () => {
 
   const scrollNext = () => {
     if (emblaApi) emblaApi.scrollNext()
+  }
+
+  // Function to truncate text to 12 words
+  const truncateToWords = (text: string, wordCount: number) => {
+    const words = text.split(' ')
+    if (words.length <= wordCount) return text
+    return words.slice(0, wordCount).join(' ') + '...'
   }
 
   return (
@@ -182,7 +189,11 @@ const CommentCarousel = () => {
                   <div className="relative pl-6">
                     {/* Quote Icon */}
                     <Quote className="absolute left-0 top-0 w-5 h-5 text-[#408CAD]/30" />
-                    <p className="text-base text-[#424242] leading-relaxed italic">
+                    {/* Mobile: 12 words, Desktop: Full description */}
+                    <p className="text-base text-[#424242] leading-relaxed italic md:hidden">
+                      "{truncateToWords(comment.description, 12)}"
+                    </p>
+                    <p className="text-base text-[#424242] leading-relaxed italic hidden md:block">
                       "{comment.description}"
                     </p>
                   </div>
@@ -566,8 +577,8 @@ export default function Home() {
               </div>
             ))}
           </div>
-          <div className="text-center mt-8">
-            <Link href="#" className="text-[#424242] font-medium underline text-base inline-flex items-center gap-1 hover:text-primary transition-colors">
+          <div className="text-right mt-8">
+            <Link href="#" className="text-[#1BB685] font-medium underline text-base inline-flex items-center gap-1 hover:text-[#1BB685]/80 transition-colors">
               VIEW ALL AVAILABLE PROGRAMS
             </Link>
           </div>
@@ -579,7 +590,7 @@ export default function Home() {
         <div className="space-y-6">
           <div className="text-left">
             <h2 className="text-3xl md:text-4xl font-bold text-[#424242] mb-2">
-              Scholarships for international students
+              <span className="text-[#424242]">Scholarships for international students</span>
             </h2>
             <p className="text-lg text-muted-foreground">
               Apply for one of 8 educations.com scholarships!
@@ -613,7 +624,7 @@ export default function Home() {
                   <h3 className="text-lg font-semibold text-[#424242] mb-2 group-hover:text-primary transition-colors">
                     {scholarship.title}
                   </h3>
-                  <Link href={scholarship.url} className="text-primary font-medium underline text-sm mt-auto flex items-center gap-1 w-fit hover:text-primary/80 transition-colors">
+                  <Link href={scholarship.url} className="text-[#1BB685] font-medium underline text-sm mt-auto flex items-center gap-1 w-fit hover:text-[#1BB685]/80 transition-colors">
                     Read more
                     <ChevronRight className="h-4 w-4" />
                   </Link>
@@ -621,8 +632,8 @@ export default function Home() {
               </div>
             ))}
           </div>
-          <div className="text-center">
-            <Link href="/scholarships" className="text-primary font-medium underline text-sm inline-flex items-center gap-1 hover:text-primary/80 transition-colors">
+          <div className="text-right">
+            <Link href="/scholarships" className="text-[#1BB685] font-medium underline text-sm inline-flex items-center gap-1 hover:text-[#1BB685]/80 transition-colors">
               View all scholarships
             </Link>
           </div>
@@ -1054,66 +1065,66 @@ export default function Home() {
       <section className="w-full py-8 md:py-8">
         <div className="max-w-7xl mx-auto px-4">
           {/* Tabs Navigation */}
-          <div className="flex items-center -mx-4 overflow-x-auto overflow-y-hidden sm:justify-center flex-nowrap mb-8">
+          <div className="flex items-center -mx-4 overflow-x-auto overflow-y-hidden flex-nowrap mb-4 md:mb-8">
             <button
               onClick={() => setActiveTab('what')}
-              className={`flex items-center flex-shrink-0 px-5 py-3 space-x-2 transition-colors ${
+              className={`flex items-center flex-shrink-0 px-3 py-2 md:px-5 md:py-3 space-x-1 md:space-x-2 transition-colors ${
                 activeTab === 'what'
                   ? 'border border-b-0 rounded-t-lg border-gray-400 dark:border-gray-600 text-gray-900 dark:text-gray-900'
                   : 'border-b border-gray-400 dark:border-gray-600 text-gray-400 dark:text-gray-600'
               }`}
             >
-              <BookOpen className="w-4 h-4" />
-              <span>What is Study Abroad?</span>
+              <BookOpen className="w-3 h-3 md:w-4 md:h-4" />
+              <span className="text-xs md:text-base">What is Study Abroad?</span>
             </button>
             <button
               onClick={() => setActiveTab('who')}
-              className={`flex items-center flex-shrink-0 px-5 py-3 space-x-2 transition-colors ${
+              className={`flex items-center flex-shrink-0 px-3 py-2 md:px-5 md:py-3 space-x-1 md:space-x-2 transition-colors ${
                 activeTab === 'who'
                   ? 'border border-b-0 rounded-t-lg border-gray-400 dark:border-gray-600 text-gray-900 dark:text-gray-900'
                   : 'border-b border-gray-400 dark:border-gray-600 text-gray-400 dark:text-gray-600'
               }`}
             >
-              <Users className="w-4 h-4" />
-              <span>Who can Study Abroad?</span>
+              <Users className="w-3 h-3 md:w-4 md:h-4" />
+              <span className="text-xs md:text-base">Who can Study Abroad?</span>
             </button>
             <button
               onClick={() => setActiveTab('why')}
-              className={`flex items-center flex-shrink-0 px-5 py-3 space-x-2 transition-colors ${
+              className={`flex items-center flex-shrink-0 px-3 py-2 md:px-5 md:py-3 space-x-1 md:space-x-2 transition-colors ${
                 activeTab === 'why'
                   ? 'border border-b-0 rounded-t-lg border-gray-400 dark:border-gray-600 text-gray-900 dark:text-gray-900'
                   : 'border-b border-gray-400 dark:border-gray-600 text-gray-400 dark:text-gray-600'
               }`}
             >
-              <Star className="w-4 h-4" />
-              <span>Why Study Abroad?</span>
+              <Star className="w-3 h-3 md:w-4 md:h-4" />
+              <span className="text-xs md:text-base">Why Study Abroad?</span>
             </button>
           </div>
 
           {/* Tab Content */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-8 items-center">
             {/* Left Side - Content */}
-            <div className="space-y-6">
+            <div className="space-y-3 md:space-y-6 text-left">
               {activeTab === 'what' && (
                 <>
-                  <h2 className="text-3xl md:text-4xl font-bold text-[#424242]">
+                  <h2 className="text-xl md:text-3xl lg:text-4xl font-bold text-[#424242]">
                     What is Study Abroad?
                   </h2>
-                  <div className="space-y-4 text-[#424242]">
-                    <p className="text-base leading-relaxed">
+                  <div className="space-y-2 md:space-y-4 text-[#424242]">
+                    <p className="text-sm md:text-base leading-relaxed">
                       Studying abroad is more than just earning credits in a new country—it's a life-changing adventure that reshapes how you see the world and yourself. It's about stepping outside your comfort zone, immersing yourself in new cultures, and experiencing different perspectives firsthand.
                     </p>
-                    <p className="text-base leading-relaxed">
+                    <p className="text-sm md:text-base leading-relaxed">
                       Picture yourself exploring beaches in Bali or trying delicious street food in Seoul between classes. Beyond academics, you'll develop valuable life skills, expand your global network, and create unforgettable memories. This is education on your terms, in places that no textbook can capture.
                     </p>
-                    <p className="text-base font-semibold">
+                    <p className="text-sm md:text-base font-semibold">
                       Ready to trade your traditional classroom for the world?
                     </p>
                   </div>
-        <div className="pt-4">
+        <div className="pt-2 md:pt-4">
                     <Link 
                       href="#" 
-                      className="inline-block bg-primary text-primary-foreground px-6 py-3 rounded-lg font-semibold hover:bg-primary/90 transition-colors"
+                      className="inline-block bg-primary text-primary-foreground px-4 py-2 md:px-6 md:py-3 rounded-lg text-xs md:text-base font-semibold hover:bg-primary/90 transition-colors"
                     >
                       HOW TO PICK A PROGRAM
                     </Link>
@@ -1123,24 +1134,24 @@ export default function Home() {
 
               {activeTab === 'who' && (
                 <>
-                  <h2 className="text-3xl md:text-4xl font-bold text-[#424242]">
+                  <h2 className="text-xl md:text-3xl lg:text-4xl font-bold text-[#424242]">
                     Who can Study Abroad?
                   </h2>
-                  <div className="space-y-4 text-[#424242]">
-                    <p className="text-base leading-relaxed">
+                  <div className="space-y-2 md:space-y-4 text-[#424242]">
+                    <p className="text-sm md:text-base leading-relaxed">
                       If you're curious about the world and eager to shake up your academic routine, studying abroad is for you. Whether you're a history lover, science enthusiast, art aficionado, or anything in between, there are programs designed to match your interests.
                     </p>
-                    <p className="text-base leading-relaxed">
+                    <p className="text-sm md:text-base leading-relaxed">
                       Worried about costs? Don't be! With financial aid, scholarships, and budget-friendly programs available, studying abroad is more accessible than ever. Whether you want to master a new language, gain international experience, or simply immerse yourself in a new culture, there's a place for you.
                     </p>
-                    <p className="text-base font-semibold">
+                    <p className="text-sm md:text-base font-semibold">
                       The world is your classroom—go explore it!
                     </p>
                   </div>
-                  <div className="pt-4">
+                  <div className="pt-2 md:pt-4">
                     <Link 
                       href="#" 
-                      className="inline-block bg-primary text-primary-foreground px-6 py-3 rounded-lg font-semibold hover:bg-primary/90 transition-colors"
+                      className="inline-block bg-primary text-primary-foreground px-4 py-2 md:px-6 md:py-3 rounded-lg text-xs md:text-base font-semibold hover:bg-primary/90 transition-colors"
                     >
                       HOW TO PICK A PROGRAM
                     </Link>
@@ -1150,24 +1161,24 @@ export default function Home() {
 
               {activeTab === 'why' && (
                 <>
-                  <h2 className="text-3xl md:text-4xl font-bold text-[#424242]">
+                  <h2 className="text-xl md:text-3xl lg:text-4xl font-bold text-[#424242]">
                     Why Study Abroad?
                   </h2>
-                  <div className="space-y-4 text-[#424242]">
-                    <p className="text-base leading-relaxed">
+                  <div className="space-y-2 md:space-y-4 text-[#424242]">
+                    <p className="text-sm md:text-base leading-relaxed">
                       The world is your classroom, and there's no better way to build life skills, expand your global perspective, and make your resume stand out. Picture yourself exploring sites and cities, trying new foods, and making lifelong friends in a culture completely different from your own.
                     </p>
-                    <p className="text-base leading-relaxed">
+                    <p className="text-sm md:text-base leading-relaxed">
                       But studying abroad isn't just about Insta-worthy moments—it's about real growth. You'll gain adaptability, problem-solving skills, and the confidence to navigate new environments. Plus, you'll build a global network and experience the kind of learning no textbook can offer.
                     </p>
-                    <p className="text-base leading-relaxed">
+                    <p className="text-sm md:text-base leading-relaxed">
                       Ready to step outside your comfort zone and create unforgettable stories? Your adventure starts now.
                     </p>
                   </div>
-                  <div className="pt-4">
+                  <div className="pt-2 md:pt-4">
                     <Link 
                       href="#" 
-                      className="inline-block bg-primary text-primary-foreground px-6 py-3 rounded-lg font-semibold hover:bg-primary/90 transition-colors"
+                      className="inline-block bg-primary text-primary-foreground px-4 py-2 md:px-6 md:py-3 rounded-lg text-xs md:text-base font-semibold hover:bg-primary/90 transition-colors"
                     >
                       HOW TO PICK A PROGRAM
                     </Link>

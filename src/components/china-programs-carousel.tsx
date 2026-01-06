@@ -8,15 +8,15 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel"
-import universityTokyo from "@/assests/UniversityFreeImage/universityTokyo.jpg"
-import wasedaUniversity from "@/assests/UniversityFreeImage/wasedaUniversity.jpg"
-import kyotoUniversity from "@/assests/UniversityFreeImage/kyotoUniversity.jpg"
+import tsinghuaUniversity from "@/assests/UniversityCampus/TsinghuaUniversity.jpg"
+import pekingUniversity from "@/assests/UniversityCampus/PekingUniversity.jpg"
+import fudanUniversity from "@/assests/UniversityCampus/FudanUniversity.jpg"
 
 type ProgramData = {
   id: string
   title: string
   university: string
-  image: typeof universityTokyo
+  image: typeof tsinghuaUniversity
   description: string
   fee: string
   semesters: string[]
@@ -27,7 +27,7 @@ const programs: ProgramData[] = [
     id: "engineering",
     title: "Engineering & Technology Programs",
     university: "Tsinghua University",
-    image: universityTokyo,
+    image: tsinghuaUniversity,
     description: "Study at one of China's top engineering universities with state-of-the-art facilities and cutting-edge research opportunities. Immerse yourself in China's world-renowned technology sector while experiencing the perfect blend of traditional culture and modern innovation.",
     fee: "$8,500",
     semesters: ["FALL SEMESTER", "SPRING SEMESTER"]
@@ -36,7 +36,7 @@ const programs: ProgramData[] = [
     id: "business",
     title: "Business & Economics Programs",
     university: "Peking University",
-    image: wasedaUniversity,
+    image: pekingUniversity,
     description: "Learn from leading business schools and gain insights into China's global economy and business practices. Experience the unique corporate culture while studying in modern facilities with experienced faculty and industry connections.",
     fee: "$8,500",
     semesters: ["FALL SEMESTER", "SPRING SEMESTER"]
@@ -45,7 +45,7 @@ const programs: ProgramData[] = [
     id: "arts",
     title: "Arts & Culture Programs",
     university: "Fudan University",
-    image: kyotoUniversity,
+    image: fudanUniversity,
     description: "Explore China's rich cultural heritage through traditional arts, literature, and modern creative expressions. Study in historic Shanghai while experiencing authentic Chinese culture, from traditional opera to contemporary art scenes.",
     fee: "$8,500",
     semesters: ["FALL SEMESTER", "SPRING SEMESTER"]

@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { ArrowLeft, Calendar, DollarSign, GraduationCap, MapPin, Clock, Users, Award, Globe, Building2, BookOpen, Heart, Download, FileText, Phone, Sparkles, ArrowRight } from "lucide-react"
+import { ArrowLeft, Calendar, DollarSign, GraduationCap, MapPin, Clock, Users, Award, Globe, Building2, BookOpen, Heart, Download, FileText, Phone, Sparkles, ArrowRight, Star, ExternalLink, Check, BookMarked, GraduationCap as GradCap, FileCheck } from "lucide-react"
 import universityTokyo from "@/assests/UniversityFreeImage/universityTokyo.jpg"
 import wasedaUniversity from "@/assests/UniversityFreeImage/wasedaUniversity.jpg"
 import kyotoUniversity from "@/assests/UniversityFreeImage/kyotoUniversity.jpg"
@@ -17,8 +17,14 @@ import datesAd from "@/assests/AdvertisementImage/dates.jpg"
 import tokyoOne from "@/assests/UniversityCampus/tokyoOne.jpg"
 import tokyoTwo from "@/assests/UniversityCampus/tokyotwo.jpg"
 import imageUniOne from "@/assests/Image/imageUniOne.jpg"
+import tsinghuaUniversity from "@/assests/UniversityCampus/TsinghuaUniversity.jpg"
+import pekingUniversity from "@/assests/UniversityCampus/PekingUniversity.jpg"
+import fudanUniversity from "@/assests/UniversityCampus/FudanUniversity.jpg"
+import seoulNationalUniversity from "@/assests/UniversityCampus/SeoulNationalUniversity.jpg"
+import sungkyunkwanUniversity from "@/assests/UniversityCampus/SungkyunkwanUniversity.jpg"
 import { ClassroomCard } from "@/components/classroom-card"
 import { HeroImageGallery } from "@/components/hero-image-gallery"
+import { ProgramPageClient } from "@/components/program-page-client"
 
 type ProgramData = {
   id: string
@@ -101,6 +107,237 @@ const programs: ProgramData[] = [
     ]
   },
   {
+    id: "tokyo-business",
+    title: "Business & Economics Programs",
+    university: "University of Tokyo",
+    image: wasedaUniversity,
+    description: "Learn from leading business schools and gain insights into Japan's global economy and business practices. Experience the unique corporate culture while studying in modern facilities with experienced faculty and industry connections.",
+    detailedDescription: "The University of Tokyo's Business and Economics programs offer students a comprehensive understanding of Japan's dynamic economy and global business landscape. Study with world-class faculty and gain practical experience through internships and corporate partnerships.",
+    fee: "$9,800",
+    semesters: ["FALL SEMESTER", "SPRING SEMESTER"],
+    slug: "university-of-tokyo-business",
+    location: "Tokyo, Japan",
+    duration: "1-2 Semesters",
+    language: "English & Japanese",
+    highlights: [
+      "Top-ranked business school in Asia",
+      "Corporate networking events with leading Japanese companies",
+      "Case study methodology with real-world examples",
+      "Exchange programs with global business partners",
+      "Guest lectures from industry leaders",
+      "Business simulation labs and workshops",
+      "Internship opportunities with multinational corporations"
+    ],
+    requirements: [
+      "Minimum GPA of 3.0 (on a 4.0 scale)",
+      "English proficiency: TOEFL iBT 80+ or IELTS 6.5+",
+      "Business, economics, or related field background",
+      "Valid passport and student visa (we assist with application)",
+      "Statement of purpose and letters of recommendation",
+      "Academic transcripts from current institution"
+    ],
+    courses: [
+      "International Business Strategy",
+      "Japanese Corporate Culture and Management",
+      "Global Economics and Finance",
+      "Marketing in Asia-Pacific Markets",
+      "Entrepreneurship and Innovation",
+      "Supply Chain Management",
+      "Financial Analysis and Investment",
+      "Cross-Cultural Business Communication"
+    ],
+    facilities: [
+      "Modern business simulation labs",
+      "Financial trading rooms with real-time data",
+      "Collaborative study spaces",
+      "Business library with extensive resources",
+      "Conference rooms for presentations",
+      "Career development center"
+    ],
+    studentLife: [
+      "Business case competitions",
+      "Corporate site visits",
+      "Networking events with alumni",
+      "Cultural immersion activities",
+      "Tokyo business district tours",
+      "Language exchange with business students"
+    ]
+  },
+  {
+    id: "tokyo-science",
+    title: "Science & Research Programs",
+    university: "University of Tokyo",
+    image: kyotoUniversity,
+    description: "Engage in cutting-edge scientific research at one of the world's leading research universities. Work alongside renowned scientists and contribute to groundbreaking discoveries in various scientific fields.",
+    detailedDescription: "The University of Tokyo's Science and Research programs provide students with unparalleled opportunities to engage in world-class research. Work in state-of-the-art laboratories and collaborate with leading researchers in your field.",
+    fee: "$9,800",
+    semesters: ["FALL SEMESTER", "SPRING SEMESTER"],
+    slug: "university-of-tokyo-science",
+    location: "Tokyo, Japan",
+    duration: "1-2 Semesters",
+    language: "English & Japanese",
+    highlights: [
+      "World-renowned research laboratories",
+      "Collaboration with Nobel Prize-winning researchers",
+      "Access to advanced scientific equipment",
+      "Research publication opportunities",
+      "International research conferences",
+      "Mentorship from leading scientists",
+      "Interdisciplinary research projects"
+    ],
+    requirements: [
+      "Minimum GPA of 3.2 (on a 4.0 scale)",
+      "English proficiency: TOEFL iBT 85+ or IELTS 7.0+",
+      "Strong background in science, mathematics, or related fields",
+      "Valid passport and student visa (we assist with application)",
+      "Research proposal or statement of research interests",
+      "Letters of recommendation from academic advisors",
+      "Academic transcripts from current institution"
+    ],
+    courses: [
+      "Advanced Physics and Quantum Mechanics",
+      "Molecular Biology and Genetics",
+      "Chemistry and Materials Science",
+      "Mathematics and Applied Statistics",
+      "Environmental Science and Sustainability",
+      "Biotechnology and Life Sciences",
+      "Astrophysics and Space Science",
+      "Computational Science and Modeling"
+    ],
+    facilities: [
+      "Advanced research laboratories",
+      "High-performance computing facilities",
+      "Scientific instrumentation centers",
+      "Research libraries and databases",
+      "Collaborative research spaces",
+      "Conference and seminar rooms"
+    ],
+    studentLife: [
+      "Research symposiums and presentations",
+      "Scientific conferences and workshops",
+      "Lab tours and demonstrations",
+      "Science museum visits",
+      "Research collaboration events",
+      "Academic networking opportunities"
+    ]
+  },
+  {
+    id: "tokyo-arts",
+    title: "Arts & Humanities Programs",
+    university: "University of Tokyo",
+    image: universityTokyo,
+    description: "Explore Japan's rich cultural heritage through traditional arts, literature, and modern creative expressions. Study in historic Tokyo while experiencing authentic Japanese culture and contemporary artistic movements.",
+    detailedDescription: "The University of Tokyo's Arts and Humanities programs offer a unique blend of traditional Japanese culture and modern artistic expression. Study literature, history, philosophy, and the arts in one of the world's most culturally rich cities.",
+    fee: "$9,800",
+    semesters: ["FALL SEMESTER", "SPRING SEMESTER"],
+    slug: "university-of-tokyo-arts",
+    location: "Tokyo, Japan",
+    duration: "1-2 Semesters",
+    language: "English & Japanese",
+    highlights: [
+      "Historical cultural immersion",
+      "Traditional arts workshops (calligraphy, tea ceremony, ikebana)",
+      "Museum and gallery visits",
+      "Cultural exchange programs",
+      "Heritage site tours",
+      "Creative project opportunities",
+      "Access to traditional and modern art collections"
+    ],
+    requirements: [
+      "Minimum GPA of 2.8 (on a 4.0 scale)",
+      "English proficiency: TOEFL iBT 75+ or IELTS 6.0+",
+      "Interest in arts, culture, or humanities",
+      "Valid passport and student visa (we assist with application)",
+      "Statement of purpose",
+      "Portfolio or writing samples (for creative programs)",
+      "Academic transcripts from current institution"
+    ],
+    courses: [
+      "Japanese Literature and Culture",
+      "Traditional Japanese Arts",
+      "Modern Japanese History",
+      "Philosophy and Eastern Thought",
+      "Visual Arts and Design",
+      "Cultural Anthropology",
+      "Linguistics and Language Studies",
+      "Comparative Literature"
+    ],
+    facilities: [
+      "Art studios and workshops",
+      "Cultural centers",
+      "Museums and galleries",
+      "Traditional arts practice rooms",
+      "Library with rare collections",
+      "Performance spaces"
+    ],
+    studentLife: [
+      "Traditional tea ceremony classes",
+      "Calligraphy and painting workshops",
+      "Cultural festival participation",
+      "Museum and temple visits",
+      "Traditional theater performances",
+      "Cultural exchange with local artists"
+    ]
+  },
+  {
+    id: "tokyo-medicine",
+    title: "Medicine & Health Sciences Programs",
+    university: "University of Tokyo",
+    image: universityTokyo,
+    description: "Study medicine and health sciences at one of Asia's premier medical institutions. Gain clinical experience and research opportunities in Japan's advanced healthcare system.",
+    detailedDescription: "The University of Tokyo's Medicine and Health Sciences programs provide students with comprehensive medical education and research opportunities. Learn from leading medical professionals and gain hands-on experience in world-class healthcare facilities.",
+    fee: "$10,500",
+    semesters: ["FALL SEMESTER", "SPRING SEMESTER"],
+    slug: "university-of-tokyo-medicine",
+    location: "Tokyo, Japan",
+    duration: "1-2 Semesters",
+    language: "English & Japanese",
+    highlights: [
+      "World-class medical facilities",
+      "Clinical rotation opportunities",
+      "Research collaboration with medical professionals",
+      "Advanced medical technology access",
+      "International medical conferences",
+      "Mentorship from leading physicians",
+      "Healthcare system observation programs"
+    ],
+    requirements: [
+      "Minimum GPA of 3.5 (on a 4.0 scale)",
+      "English proficiency: TOEFL iBT 90+ or IELTS 7.0+",
+      "Pre-medical or health sciences background",
+      "Valid passport and student visa (we assist with application)",
+      "Medical clearance and health insurance",
+      "Letters of recommendation from medical professionals",
+      "Academic transcripts from current institution"
+    ],
+    courses: [
+      "Clinical Medicine and Patient Care",
+      "Medical Research Methodology",
+      "Public Health and Epidemiology",
+      "Biomedical Sciences",
+      "Medical Ethics and Law",
+      "Global Health Issues",
+      "Medical Technology and Innovation",
+      "Healthcare Systems and Policy"
+    ],
+    facilities: [
+      "Teaching hospitals and clinics",
+      "Medical research laboratories",
+      "Simulation centers",
+      "Medical libraries",
+      "Anatomy and pathology labs",
+      "Clinical skills training centers"
+    ],
+    studentLife: [
+      "Hospital observation programs",
+      "Medical research projects",
+      "Healthcare volunteer opportunities",
+      "Medical conference attendance",
+      "Clinical shadowing experiences",
+      "Healthcare system tours"
+    ]
+  },
+  {
     id: "business",
     title: "Business & Economics Programs",
     university: "Waseda University",
@@ -158,7 +395,7 @@ const programs: ProgramData[] = [
     id: "china-engineering",
     title: "Engineering & Technology Programs",
     university: "Tsinghua University",
-    image: imageUniOne,
+    image: tsinghuaUniversity,
     description: "Study at one of China's top engineering universities with state-of-the-art facilities and cutting-edge research opportunities. Immerse yourself in China's world-renowned technology sector while experiencing the perfect blend of traditional culture and modern innovation.",
     detailedDescription: "Tsinghua University offers an exceptional study abroad experience in engineering and technology. Our programs provide students with access to world-renowned faculty, cutting-edge research facilities, and industry connections that set the foundation for a successful career.",
     fee: "$8,500",
@@ -216,7 +453,7 @@ const programs: ProgramData[] = [
     id: "china-business",
     title: "Business & Economics Programs",
     university: "Peking University",
-    image: wasedaUniversity,
+    image: pekingUniversity,
     description: "Learn from leading business schools and gain insights into China's global economy and business practices. Experience the unique corporate culture while studying in modern facilities with experienced faculty and industry connections.",
     fee: "$8,500",
     semesters: ["FALL SEMESTER", "SPRING SEMESTER"],
@@ -243,7 +480,7 @@ const programs: ProgramData[] = [
     id: "china-arts",
     title: "Arts & Culture Programs",
     university: "Fudan University",
-    image: kyotoUniversity,
+    image: fudanUniversity,
     description: "Explore China's rich cultural heritage through traditional arts, literature, and modern creative expressions. Study in historic Shanghai while experiencing authentic Chinese culture, from traditional opera to contemporary art scenes.",
     fee: "$8,500",
     semesters: ["FALL SEMESTER", "SPRING SEMESTER"],
@@ -264,6 +501,121 @@ const programs: ProgramData[] = [
       "English proficiency (TOEFL/IELTS)",
       "Interest in arts and culture",
       "Valid passport and student visa"
+    ]
+  },
+  {
+    id: "korea-engineering",
+    title: "Engineering & Technology Programs",
+    university: "Seoul National University",
+    image: seoulNationalUniversity,
+    description: "Study at South Korea's top-ranked university with world-class engineering programs and cutting-edge research facilities. Experience the perfect blend of traditional Korean culture and modern technological innovation.",
+    detailedDescription: "Seoul National University offers exceptional study abroad programs in engineering and technology. Our programs provide students with access to world-renowned faculty, state-of-the-art research facilities, and industry connections with leading Korean tech companies like Samsung, LG, and Hyundai.",
+    fee: "$9,000",
+    semesters: ["FALL SEMESTER", "SPRING SEMESTER"],
+    slug: "seoul-national-university",
+    location: "Seoul, South Korea",
+    duration: "1-2 Semesters",
+    language: "English & Korean",
+    additionalImages: [campusFriends, friendshipToCampus, lectureCollege, examTimeGroupStudy],
+    highlights: [
+      "World-class research facilities and laboratories",
+      "Industry partnerships with leading tech companies like Samsung, LG, and Hyundai",
+      "Internship opportunities with top Korean corporations",
+      "Cutting-edge laboratories with advanced equipment",
+      "Expert faculty members from global institutions",
+      "Global networking opportunities and career development",
+      "Innovative research projects and publication opportunities"
+    ],
+    requirements: [
+      "Minimum GPA of 3.0 (on a 4.0 scale)",
+      "English proficiency: TOEFL iBT 80+ or IELTS 6.5+",
+      "Relevant academic background in engineering or related fields",
+      "Valid passport and student visa (we assist with application)",
+      "Statement of purpose and letters of recommendation",
+      "Academic transcripts from current institution"
+    ],
+    courses: [
+      "Advanced Robotics and Automation",
+      "Artificial Intelligence and Machine Learning",
+      "Sustainable Energy Systems",
+      "Biomedical Engineering",
+      "Computer Science and Software Engineering",
+      "Materials Science and Nanotechnology",
+      "Electrical and Electronic Engineering",
+      "Environmental Engineering"
+    ],
+    facilities: [
+      "State-of-the-art research laboratories",
+      "Modern library with extensive digital resources",
+      "Computer labs with latest software and tools",
+      "Student centers and study spaces",
+      "Innovation hubs and collaborative workspaces",
+      "Advanced computing and technology centers"
+    ],
+    studentLife: [
+      "Join student clubs and organizations",
+      "Participate in cultural festivals and events",
+      "Explore Seoul's famous neighborhoods and attractions",
+      "Experience traditional Korean culture and K-pop scene",
+      "Weekend trips to nearby historical sites",
+      "Language exchange programs with Korean students"
+    ]
+  },
+  {
+    id: "korea-business",
+    title: "Business & Economics Programs",
+    university: "Sungkyunkwan University",
+    image: sungkyunkwanUniversity,
+    description: "Learn from one of South Korea's oldest and most prestigious universities. Gain insights into Korea's dynamic economy and business practices while experiencing the unique blend of traditional values and modern innovation.",
+    detailedDescription: "Sungkyunkwan University offers comprehensive business and economics programs that combine traditional Korean business ethics with modern global business practices. Study with world-class faculty and gain practical experience through internships and corporate partnerships.",
+    fee: "$9,000",
+    semesters: ["FALL SEMESTER", "SPRING SEMESTER"],
+    slug: "sungkyunkwan-university",
+    location: "Seoul, South Korea",
+    duration: "1-2 Semesters",
+    language: "English & Korean",
+    highlights: [
+      "Top-ranked business school in Asia",
+      "Corporate networking events with leading Korean companies",
+      "Case study methodology with real-world examples",
+      "Exchange programs with global business partners",
+      "Guest lectures from industry leaders",
+      "Business simulation labs and workshops",
+      "Internship opportunities with multinational corporations"
+    ],
+    requirements: [
+      "Minimum GPA of 3.0 (on a 4.0 scale)",
+      "English proficiency: TOEFL iBT 80+ or IELTS 6.5+",
+      "Business, economics, or related field background",
+      "Valid passport and student visa (we assist with application)",
+      "Statement of purpose and letters of recommendation",
+      "Academic transcripts from current institution"
+    ],
+    courses: [
+      "International Business Strategy",
+      "Korean Corporate Culture and Management",
+      "Global Economics and Finance",
+      "Marketing in Asia-Pacific Markets",
+      "Entrepreneurship and Innovation",
+      "Supply Chain Management",
+      "Financial Analysis and Investment",
+      "Cross-Cultural Business Communication"
+    ],
+    facilities: [
+      "Modern business simulation labs",
+      "Financial trading rooms with real-time data",
+      "Collaborative study spaces",
+      "Business library with extensive resources",
+      "Conference rooms for presentations",
+      "Career development center"
+    ],
+    studentLife: [
+      "Business case competitions",
+      "Corporate site visits",
+      "Networking events with alumni",
+      "Cultural immersion activities",
+      "Seoul business district tours",
+      "Language exchange with business students"
     ]
   }
 ]
@@ -301,358 +653,165 @@ export default async function ProgramDetailPage({ params }: { params: Promise<{ 
     )
   }
 
+  // University data for Quick Facts
+  const universityData = {
+    "University of Tokyo": {
+      founded: "1877",
+      students: "28,000+",
+      programs: "100+",
+      acceptance: "21.0%",
+      tuition: "$5,000 - $8,000/year",
+      type: "Public Research University",
+      rating: 4.8
+    },
+    "Waseda University": {
+      founded: "1882",
+      students: "45,000+",
+      programs: "120+",
+      acceptance: "25.0%",
+      tuition: "$6,000 - $9,000/year",
+      type: "Private Research University",
+      rating: 4.7
+    },
+    "Kyoto University": {
+      founded: "1897",
+      students: "22,000+",
+      programs: "90+",
+      acceptance: "19.0%",
+      tuition: "$5,000 - $8,000/year",
+      type: "Public Research University",
+      rating: 4.9
+    },
+    "Tsinghua University": {
+      founded: "1911",
+      students: "50,000+",
+      programs: "150+",
+      acceptance: "15.0%",
+      tuition: "$3,000 - $6,000/year",
+      type: "Public Research University",
+      rating: 4.8
+    },
+    "Peking University": {
+      founded: "1898",
+      students: "40,000+",
+      programs: "130+",
+      acceptance: "18.0%",
+      tuition: "$3,500 - $6,500/year",
+      type: "Public Research University",
+      rating: 4.9
+    },
+    "Fudan University": {
+      founded: "1905",
+      students: "35,000+",
+      programs: "110+",
+      acceptance: "20.0%",
+      tuition: "$3,200 - $6,000/year",
+      type: "Public Research University",
+      rating: 4.7
+    },
+    "Seoul National University": {
+      founded: "1946",
+      students: "28,000+",
+      programs: "100+",
+      acceptance: "22.0%",
+      tuition: "$4,000 - $7,000/year",
+      type: "Public Research University",
+      rating: 4.8
+    },
+    "Sungkyunkwan University": {
+      founded: "1398",
+      students: "30,000+",
+      programs: "120+",
+      acceptance: "25.0%",
+      tuition: "$4,500 - $7,500/year",
+      type: "Private Research University",
+      rating: 4.7
+    }
+  }
+
+  const uniData = universityData[program.university as keyof typeof universityData] || {
+    founded: "N/A",
+    students: "N/A",
+    programs: "N/A",
+    acceptance: "N/A",
+    tuition: program.fee,
+    type: "Research University",
+    rating: 4.5
+  }
+
+  // Get all programs for this university
+  const universityPrograms = programs.filter(p => p.university === program.university)
+
   return (
-    <div className="min-h-screen py-8">
-      <div className="max-w-6xl mx-auto px-4">
-        {/* Back Button */}
-        <Link href="/destinations/japan#programs">
-          <Button variant="ghost" className="mb-6">
-            <ArrowLeft className="h-4 w-4 mr-2" />
-            Back to Programs
-          </Button>
-        </Link>
-
-        {/* Hero Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-          {/* Program Image with Gallery */}
-            <HeroImageGallery
-              mainImage={program.image}
-              thumbnailImages={
-                program.university === "Tsinghua University"
-                  ? [
-                      { image: imageUniOne, name: "Science Building" },
-                      { image: tokyoTwo, name: "Arts Building" }
-                    ]
-                  : [
-                      { image: tokyoOne, name: "Science Building" },
-                      { image: tokyoTwo, name: "Arts Building" }
-                    ]
-              }
-            />
-
-          {/* Quick Info Card */}
-          <div className="lg:col-span-1">
-            <div className="bg-card border border-border rounded-xl p-6 shadow-lg h-full">
-              <h1 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
-                {program.title}
-              </h1>
-              <div className="flex items-center gap-2 text-muted-foreground mb-4">
-                <GraduationCap className="h-5 w-5 text-primary" />
-                <p className="text-lg font-medium">{program.university}</p>
+    <div className="min-h-screen bg-background">
+      {/* Hero Section with Background Image */}
+      <div className="relative w-full h-[400px] md:h-[400px] overflow-hidden mb-4 md:mb-6">
+        {/* Faded Background Image */}
+        <div className="absolute inset-0">
+          <Image
+            src={program.image}
+            alt={`${program.university} campus`}
+            fill
+            className="object-cover opacity-30"
+            priority
+          />
               </div>
 
-              {/* Quick Stats */}
-              <div className="space-y-4 mb-6">
-                {program.location && (
-                  <div className="flex items-center gap-3">
-                    <MapPin className="h-5 w-5 text-primary" />
-                    <span className="text-foreground">{program.location}</span>
-                  </div>
-                )}
-                {program.duration && (
-                  <div className="flex items-center gap-3">
-                    <Clock className="h-5 w-5 text-primary" />
-                    <span className="text-foreground">{program.duration}</span>
-                  </div>
-                )}
-                {program.language && (
-                  <div className="flex items-center gap-3">
-                    <Globe className="h-5 w-5 text-primary" />
-                    <span className="text-foreground">{program.language}</span>
-                  </div>
-                )}
+         {/* Content Overlay */}
+         <div className="relative z-10 max-w-7xl mx-auto px-1 md:px-4 h-full flex items-center">
+           <div className="w-full mt-[260px] md:mt-[250px]">
+             {/* University Info Card */}
+              <div className="bg-white/95 backdrop-blur-sm rounded-lg p-2 md:p-8 shadow-xl w-full">
+                 <div className="flex flex-row gap-2 md:gap-6 items-start">
+                   {/* Small Image on Left */}
+                   <div className="relative w-27 h-27 md:w-29 md:h-29 flex-shrink-0 mt-5 md:mt-[15px]">
+                    <Image
+                      src={program.image}
+                      alt={`${program.university} campus`}
+                      fill
+                      className="object-cover rounded-lg shadow-lg border-2 border-white"
+                    />
               </div>
 
-              {/* Program Fee */}
-              <div className="bg-primary/10 rounded-lg p-4 mb-6">
-                <div className="flex items-center gap-2 mb-2">
-                  <DollarSign className="h-5 w-5 text-primary" />
-                  <h3 className="text-sm font-semibold text-muted-foreground">Program Fee</h3>
+                  {/* University Info */}
+                  <div className="flex-1 min-w-0">
+                    {/* Back Link - Left Side */}
+                    <div className="flex justify-start mb-1 md:mb-1">
+                      <Link href="/destinations/japan#programs" className="text-muted-foreground hover:text-foreground transition-colors text-xs md:text-sm inline-flex items-center gap-1">
+                        <ArrowLeft className="h-3 w-3 md:h-4 md:w-4" />
+                        Back to Institutions
+                      </Link>
                 </div>
-                <p className="text-3xl font-bold text-primary">{program.fee}</p>
-              </div>
-
-              {/* Available Semesters */}
-              <div className="mb-6">
-                <div className="flex items-center gap-2 mb-3">
-                  <Calendar className="h-5 w-5 text-primary" />
-                  <h3 className="text-sm font-semibold text-foreground">Available Semesters</h3>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  {program.semesters.map((semester, index) => (
-                    <span 
-                      key={index}
-                      className="px-3 py-1.5 bg-primary/10 text-primary text-xs font-medium rounded"
-                    >
-                      {semester}
+                    <h1 className="text-base md:text-2xl font-bold text-[#424242] mb-2 md:mb-2">
+                      {program.university}
+                    </h1>
+                    <div className="flex flex-wrap items-center gap-1 md:gap-2 mb-2">
+                      <p className="text-xs md:text-base text-muted-foreground">
+                        {program.location}
+                      </p>
+                      <div className="flex items-center gap-1">
+                        <Star className="h-3 w-3 md:h-5 md:w-5 fill-yellow-400 text-yellow-400" />
+                        <span className="text-xs md:text-base font-semibold text-[#424242]">
+                          {uniData.rating}
                     </span>
-                  ))}
                 </div>
+                      <span className="text-xs md:text-base text-muted-foreground">
+                        {uniData.type}
+                      </span>
               </div>
 
               {/* Action Buttons */}
-              <div className="flex flex-col gap-3">
-                <Link href="/apply" className="w-full">
-                  <Button size="lg" className="w-full">
+                    <div className="flex gap-2 md:gap-3">
+                      <Link href="/apply">
+                        <Button size="sm" className="bg-[#22253D] hover:bg-[#22253D]/90 text-white text-xs md:text-sm px-4 md:px-6">
                     Apply Now
                   </Button>
                 </Link>
-                <Link href="/inquiry" className="w-full">
-                  <Button variant="outline" size="lg" className="w-full">
-                    Inquire Now
-                  </Button>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Main Content */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Left Column - Main Content */}
-          <div className="lg:col-span-2 space-y-6">
-            {/* Program Overview - Full Width */}
-            <div className="bg-card border border-border rounded-xl p-6 md:p-8 shadow-lg">
-              <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-                <Award className="h-6 w-6 text-primary" />
-                Program Overview
-              </h2>
-              <p className="text-foreground leading-relaxed text-base md:text-lg mb-4">
-                {program.description}
-              </p>
-              {program.detailedDescription && (
-                <p className="text-foreground leading-relaxed text-base md:text-lg">
-                  {program.detailedDescription}
-                </p>
-              )}
-            </div>
-
-            {/* Program Highlights and Campus Facilities - Side by Side on Desktop */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              {/* Left Side - Program Highlights */}
-              {program.highlights && program.highlights.length > 0 && (
-                <div className="bg-card border border-border rounded-xl p-6 md:p-8 shadow-lg">
-                  <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-                    <Users className="h-6 w-6 text-primary" />
-                    Program Highlights
-                  </h2>
-                  <ul className="space-y-3">
-                    {program.highlights.map((highlight, index) => (
-                      <li key={index} className="flex items-start gap-3">
-                        <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
-                        <span className="text-foreground leading-relaxed">{highlight}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-
-              {/* Right Side - Campus Facilities */}
-              {program.facilities && program.facilities.length > 0 && (
-                <div className="bg-card border border-border rounded-xl p-6 md:p-8 shadow-lg">
-                  <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-                    <Building2 className="h-6 w-6 text-primary" />
-                    Campus Facilities
-                  </h2>
-                  <div className="grid grid-cols-1 gap-3">
-                    {program.facilities.map((facility, index) => (
-                      <div key={index} className="flex items-start gap-3 p-3 bg-muted/50 rounded-lg">
-                        <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
-                        <span className="text-foreground">{facility}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* Exam Time Section */}
-            {program.additionalImages && program.additionalImages.length > 0 && (
-              <div className="bg-card border border-border rounded-xl p-6 md:p-8 shadow-lg">
-                <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-2 mt-2 underline">
-                  <Building2 className="h-6 w-6 text-primary" />
-                  Exam Time
-                </h2>
-                <div className="relative w-full h-64 md:h-96 rounded-lg overflow-hidden group">
-                  <Image
-                    src={examTimeGroupStudy}
-                    alt={`${program.university} exam time`}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
-              </div>
-            )}
-
-            {/* Student Life */}
-            {program.studentLife && program.studentLife.length > 0 && (
-              <div className="bg-card border border-border rounded p-6 md:p-8 shadow-lg">
-                <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
-                  <Heart className="h-6 w-6 text-primary" />
-                  Student Life & Activities
-                </h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                  {program.studentLife.map((activity, index) => (
-                    <div key={index} className="flex items-start gap-3 p-2 bg-muted/50 rounded-lg">
-                      <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
-                      <span className="text-foreground">{activity}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Admission Requirements */}
-            {program.requirements && program.requirements.length > 0 && (
-              <div className="bg-card border border-border rounded-xl p-6 md:p-8 shadow-lg">
-                <h2 className="text-2xl font-bold text-foreground mb-4">Admission Requirements</h2>
-                <ul className="space-y-3">
-                  {program.requirements.map((requirement, index) => (
-                    <li key={index} className="flex items-start gap-3">
-                      <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
-                      <span className="text-foreground leading-relaxed">{requirement}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-          </div>
-
-          {/* Right Column - Additional Info */}
-          <div className="lg:col-span-1 space-y-6">
-            {/* Sports & Recreation Card - Sticky on Desktop */}
-            <div className="lg:sticky lg:top-24">
-              <ClassroomCard
-                image={program.location?.includes("China") ? basketballGame : universityClassRoom}
-                title={program.location?.includes("China") ? "Sports & Recreation" : "Modern Classroom"}
-                description={program.location?.includes("China") ? "Experience world-class sports facilities with modern basketball courts, fitness centers, and recreational areas. Our state-of-the-art sports facilities are designed to promote physical wellness, team building, and active campus life for students." : "Experience cutting-edge learning environments with state-of-the-art technology, interactive whiteboards, and comfortable seating. Our modern classrooms are designed to enhance your educational experience with advanced audio-visual systems and flexible layouts."}
-                className="mb-6"
-              />
-            </div>
-
-            {/* Contact Card */}
-            <div className="bg-gradient-to-br from-primary/10 to-primary/5 border border-primary/20 rounded-xl p-6 shadow-lg">
-              <h3 className="text-xl font-bold text-foreground mb-4">Need Help?</h3>
-              <p className="text-muted-foreground mb-4 text-sm">
-                Our advisors are here to assist you with any questions about this program.
-              </p>
-              <Link href="/inquiry" className="w-full">
-                <Button variant="outline" className="w-full">
-                  Contact Us
-                </Button>
-              </Link>
-            </div>
-
-            {/* Additional Info Card */}
-            <div className="bg-card border border-border rounded-xl p-6 shadow-lg">
-              <h3 className="text-xl font-bold text-foreground mb-4">Important Information</h3>
-              <div className="space-y-4 text-sm">
-                <div>
-                  <p className="font-semibold text-foreground mb-1">Application Deadline</p>
-                  <p className="text-muted-foreground">Rolling admission - Apply early</p>
-                </div>
-                <div>
-                  <p className="font-semibold text-foreground mb-1">Visa Processing</p>
-                  <p className="text-muted-foreground">We assist with student visa application</p>
-                </div>
-                <div>
-                  <p className="font-semibold text-foreground mb-1">Support Services</p>
-                  <p className="text-muted-foreground">24/7 assistance during your stay</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Quick Actions Card */}
-            <div className="bg-card border border-border rounded p-6 shadow-lg">
-              <h3 className="text-xl font-bold text-foreground mb-4">Quick Actions</h3>
-              <div className="space-y-3">
-                <Link href="/apply" className="flex items-center gap-3 p-3 bg-muted/50 hover:bg-muted rounded-lg transition-colors">
-                  <FileText className="h-5 w-5 text-primary" />
-                  <span className="text-foreground font-medium">Apply Now</span>
-                </Link>
-                <Link href="/downloads" className="flex items-center gap-3 p-3 bg-muted/50 hover:bg-muted rounded-lg transition-colors">
-                  <Download className="h-5 w-5 text-primary" />
-                  <span className="text-foreground font-medium">Download Brochure</span>
-                </Link>
-                <Link href="/inquiry" className="flex items-center gap-3 p-3 bg-muted/50 hover:bg-muted rounded-lg transition-colors">
-                  <Phone className="h-5 w-5 text-primary" />
-                  <span className="text-foreground font-medium">Schedule a Call</span>
-                </Link>
-              </div>
-            </div>
-
-            {/* News Card - Campus Cafeteria */}
-            <div className="bg-card border border-border rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
-              <div className="relative w-full h-48 overflow-hidden group">
-                <Image
-                  src={universityCafeteria}
-                  alt="Campus Cafeteria"
-                  fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-              </div>
-              <div className="p-6">
-                <div className="flex items-center gap-2 text-xs text-muted-foreground mb-2">
-                  <Calendar className="h-3 w-3" />
-                  <span>January 15, 2025</span>
-                </div>
-                <h3 className="text-lg font-bold text-foreground mb-2">
-                  New Campus Cafeteria Opening
-                </h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  Experience diverse cuisine options at our newly renovated cafeteria with modern facilities and healthy meal choices.
-                </p>
-              </div>
-            </div>
-
-            {/* Brand Promotion Advertisement Card */}
-            <div className="bg-gradient-to-br from-primary/10 via-primary/5 to-background border border-primary/30 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 group relative">
-              {/* Premium Badge */}
-              <div className="absolute top-4 right-4 z-10">
-                <div className="bg-gradient-to-r from-primary to-primary/80 text-white px-3 py-1.5 rounded-full text-xs font-bold flex items-center gap-1.5 shadow-lg">
-                  <Sparkles className="h-3 w-3" />
-                  PREMIUM
-                </div>
-              </div>
-
-              <div className="relative w-full h-52 overflow-hidden">
-                <Image
-                  src={datesAd}
-                  alt="Brand Promotion Advertisement"
-                  fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
-              </div>
-
-              <div className="p-6 bg-gradient-to-b from-background to-background/95">
-                <div className="mb-4">
-                  <div className="flex items-center gap-2 mb-3">
-                    <div className="h-1 w-8 bg-gradient-to-r from-primary to-primary/50 rounded-full"></div>
-                    <p className="text-xs font-semibold text-primary uppercase tracking-wider">Limited Edition</p>
-                  </div>
-                  <h3 className="text-2xl font-extrabold text-foreground mb-3 leading-tight">
-                    Premium Dates Collection
-                  </h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed mb-1">
-                    Discover our finest selection of premium dates. Fresh, natural, and packed with exceptional flavor.
-                  </p>
-                  <div className="flex items-center gap-4 mt-4 text-xs text-muted-foreground">
-                    <div className="flex items-center gap-1">
-                      <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
-                      <span>100% Natural</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
-                      <span>Premium Quality</span>
-                    </div>
-                  </div>
-                </div>
-                <Link href="/products/dates" className="w-full block">
-                  <Button className="w-full bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 group/btn" size="lg">
-                    Shop Now
-                    <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
+                      <Link href={`https://www.${program.university.toLowerCase().replace(/\s+/g, '')}.edu`} target="_blank" rel="noopener noreferrer">
+                        <Button variant="outline" size="sm" className="border-2 text-xs md:text-sm px-4 md:px-6">
+                          <span className="hidden sm:inline">Visit Website</span>
+                          <span className="sm:hidden">Website</span>
+                          <ExternalLink className="h-3 w-3 md:h-4 md:w-4 ml-1 md:ml-2" />
                   </Button>
                 </Link>
               </div>
@@ -660,6 +819,15 @@ export default async function ProgramDetailPage({ params }: { params: Promise<{ 
           </div>
         </div>
       </div>
+        </div>
+      </div>
+
+      {/* Tabs and Content */}
+      <ProgramPageClient 
+        currentProgram={program}
+        universityPrograms={universityPrograms}
+        uniData={uniData}
+      />
     </div>
   )
 }

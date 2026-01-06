@@ -4,6 +4,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { CheckCircle, FileText, Phone, Mail, CreditCard, Luggage, Bed, MessageCircle, Shield, Clock, Utensils, Eye, MapPin, Music, Flower, ArrowRight } from "lucide-react"
 import { InquiryForm } from "@/components/inquiry-form"
+import { JapanNavigationTabs } from "@/components/japan-navigation-tabs"
 import {
   Accordion,
   AccordionContent,
@@ -39,7 +40,7 @@ export default function JapanPage() {
   return (
     <div className="min-h-screen">
       {/* Hero Image Header */}
-      <div className="relative w-full h-[82vh] overflow-hidden">
+      <div className="relative w-full h-[57vh] overflow-hidden">
         <Image
           src={japanImage}
           alt="Aerial view of Tokyo cityscape with Fuji mountain in Japan"
@@ -52,10 +53,10 @@ export default function JapanPage() {
             <h4 className="text-sm md:text-2xl font-bold uppercase tracking-wider mb-2">
               JAPAN
             </h4>
-            <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4">
+            <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-3">
               Study Abroad in Japan
             </h1>
-            <p className="text-lg md:text-xl font-medium">
+            <p className="text-base md:text-lg font-medium">
               Innovative. Cultural. Transformative.
             </p>
           </div>
@@ -63,47 +64,24 @@ export default function JapanPage() {
       </div>
 
       {/* Navigation Tabs */}
-      <div className="bg-background border-b border-border sticky top-16 z-20">
-        <div className="max-w-6xl mx-auto">
-          <nav className="flex overflow-x-auto">
-            <a href="#overview" className="px-4 py-3 text-sm font-medium text-foreground hover:text-primary border-b-2 border-transparent hover:border-primary whitespace-nowrap">
-              OVERVIEW
-            </a>
-            <a href="#reviews" className="px-4 py-3 text-sm font-medium text-foreground hover:text-primary border-b-2 border-transparent hover:border-primary whitespace-nowrap">
-              REVIEWS
-            </a>
-            <a href="#programs" className="px-4 py-3 text-sm font-medium text-foreground hover:text-primary border-b-2 border-transparent hover:border-primary whitespace-nowrap">
-              PROGRAMS
-            </a>
-            <a href="#activities" className="px-4 py-3 text-sm font-medium text-foreground hover:text-primary border-b-2 border-transparent hover:border-primary whitespace-nowrap">
-              ACTIVITIES
-            </a>
-            <a href="#how-to-apply" className="px-4 py-3 text-sm font-medium text-foreground hover:text-primary border-b-2 border-transparent hover:border-primary whitespace-nowrap">
-              HOW TO APPLY
-            </a>
-            <a href="#faqs" className="px-4 py-3 text-sm font-medium text-foreground hover:text-primary border-b-2 border-transparent hover:border-primary whitespace-nowrap">
-              FAQS
-            </a>
-          </nav>
-        </div>
-      </div>
+      <JapanNavigationTabs />
 
-      <div className="max-w-6xl mx-auto  py-8 md:py-12">
+      <div className="max-w-6xl mx-auto  py-6 md:py-8">
         {/* Breadcrumb */}
-        <div className="mb-6 text-sm text-muted-foreground">
+        <div className="mb-4 text-sm text-muted-foreground">
           <Link href="/" className="hover:text-primary">Home</Link>
           <span className="mx-2">|</span>
           <span>Study Abroad in Japan</span>
         </div>
 
         {/* Overview Section */}
-        <section id="overview" className="mb-6 md-mb-12 scroll-mt-28">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <section id="overview" className="mb-4 md:mb-8 scroll-mt-28">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             <div className="lg:col-span-2">
-              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+              <h2 className="text-xl md:text-2xl font-bold text-foreground mb-3">
                 What to expect when you Study Abroad in Japan
               </h2>
-              <div className="space-y-4 text-foreground">
+              <div className="space-y-3 text-foreground">
                 <p>
                   Studying abroad in Japan offers a unique blend of cutting-edge technology, 
                   ancient traditions, and world-class education. Expect to immerse yourself in 
@@ -122,25 +100,13 @@ export default function JapanPage() {
                   experiences and personal growth!
                 </p>
               </div>
-              <div className="mt-6 flex flex-col sm:flex-row gap-4">
-                <Link href="/apply">
-                  <Button size="lg" className="w-full sm:w-auto">
-                    APPLY NOW
-                  </Button>
-                </Link>
-                <Link href="/inquiry">
-                  <Button variant="outline" size="lg" className="w-full sm:w-auto">
-                    GET MORE INFO
-                  </Button>
-                </Link>
-              </div>
             </div>
             <div className="lg:col-span-1">
-              <div className="bg-card border border-border rounded p-6">
-                <h3 className="text-lg font-semibold text-foreground mb-4">
+              <div className="bg-card border border-border rounded p-4">
+                <h3 className="text-base font-semibold text-foreground mb-3">
                   Quick Facts
                 </h3>
-                <ul className="space-y-3 text-sm text-foreground">
+                <ul className="space-y-2 text-sm text-foreground">
                   <li>
                     <strong>Language:</strong> Japanese (English programs available)
                   </li>
@@ -162,33 +128,20 @@ export default function JapanPage() {
           </div>
         </section>
 
-        {/* Reviews Section */}
-        <section id="reviews" className="mb-6 md-mb-12 scroll-mt-28">
-          <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-            Student Reviews
-          </h2>
-          <p className="text-muted-foreground mb-8">
-            Hear from students who have studied abroad in Japan and transformed their lives through 
-            this incredible experience.
-          </p>
-          
-          <ReviewsCarousel />
-        </section>
-
         {/* Programs Section */}
-        <section id="programs" className="mb-6 md-mb-12 scroll-mt-28">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+        <section id="programs" className="mb-4 md:mb-8 scroll-mt-28">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center">
             {/* Left Half - Title and Description */}
             <div className="flex flex-col justify-center ">
-              <h2 className="text-2xl md:text-3xl text-center font-bold text-foreground mb-2">
+              <h2 className="text-xl md:text-2xl text-center font-bold text-foreground mb-2">
                 Our Japan Study Abroad Programs
               </h2>
-              <p className="text-muted-foreground mb-4">
-              “Discover the dynamic culture, breathtaking landscapes, and affordable living of Japan through our immersive, globally recognized study abroad programs.”
+              <p className="text-muted-foreground mb-3">
+              "Discover the dynamic culture, breathtaking landscapes, and affordable living of Japan through our immersive, globally recognized study abroad programs."
               </p>
               <div className="flex justify-center">
-                <Link href="/apply">
-                  <Button size="lg" className="w-full sm:w-auto">
+                <Link href="/destinations/japan/programs">
+                  <Button size="lg" className="w-full sm:w-auto bg-[#1BB685] hover:bg-[#1BB685]/90 text-white">
                     VIEW ALL AVAILABLE PROGRAMS
                   </Button>
                 </Link>
@@ -202,12 +155,25 @@ export default function JapanPage() {
           </div>
         </section>
 
+        {/* Reviews Section */}
+        <section id="reviews" className="mb-4 md:mb-8 scroll-mt-28">
+          <h2 className="text-xl md:text-2xl font-bold text-foreground mb-3">
+            Student Reviews
+          </h2>
+          <p className="text-muted-foreground mb-6">
+            Hear from students who have studied abroad in Japan and transformed their lives through 
+            this incredible experience.
+          </p>
+          
+          <ReviewsCarousel country="Japan" />
+        </section>
+
         {/* Activities Section */}
-        <section id="activities" className="mb-6 md-mb-12 scroll-mt-28">
-          <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3 md:mb-4">
+        <section id="activities" className="mb-4 md:mb-8 scroll-mt-28">
+          <h2 className="text-xl md:text-2xl font-bold text-foreground mb-2 md:mb-3">
             What to do in Japan in your free time
           </h2>
-          <p className="text-muted-foreground mb-4 md:mb-8">
+          <p className="text-muted-foreground mb-3 md:mb-6">
             Discover Japan by exploring ancient temples, experiencing traditional culture, 
             enjoying world-class cuisine, and visiting stunning natural landscapes.
           </p>
@@ -328,16 +294,16 @@ export default function JapanPage() {
         </section>
 
         {/* Support all the way Section */}
-        <section className="mb-2 md:mb-12 scroll-mt-28 bg-card   p-6 md:p-8 ">
-          <h2 className="text-xl md:text-3xl font-bold text-foreground text-center mb-4">
+        <section className="mb-2 md:mb-8 scroll-mt-28 bg-card   p-4 md:p-6 ">
+          <h2 className="text-lg md:text-2xl font-bold text-foreground text-center mb-3">
             Support all the way
           </h2>
           
-          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 mb-8 md:border md:border-border md:rounded-lg lg:border-0 lg:rounded-none">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 mb-6 md:border md:border-border md:rounded-lg lg:border-0 lg:rounded-none">
             {/* Feature 1 - Accommodations */}
-            <div className="flex flex-col items-center text-center p-2 md:p-4 lg:p-8 border-r border-b border-dotted border-border lg:border-r lg:border-b-0">
-              <div className="mb-3 p-4 rounded-full bg-primary/10">
-                <Bed className="h-6 md:h-8 w-6 md:w-8 text-primary" />
+            <div className="flex flex-col items-center text-center p-2 md:p-3 lg:p-6 border-r border-b border-dotted border-border lg:border-r lg:border-b-0">
+              <div className="mb-2 p-3 rounded-full bg-primary/10">
+                <Bed className="h-5 md:h-6 w-5 md:w-6 text-primary" />
               </div>
               <p className="text-foreground text-xs md:text-sm leading-relaxed">
                 Accommodations with quality and safety
@@ -345,9 +311,9 @@ export default function JapanPage() {
             </div>
 
             {/* Feature 2 - Advisor */}
-            <div className="flex flex-col items-center text-center p-2 md:p-4 lg:p-8 border-b border-dotted md:border-r lg:border-r lg:border-b-0 border-border">
-              <div className="mb-3 p-4 rounded-full bg-primary/10">
-                <MessageCircle className="h-6 md:h-8 w-6 md:w-8 text-primary" />
+            <div className="flex flex-col items-center text-center p-2 md:p-3 lg:p-6 border-b border-dotted md:border-r lg:border-r lg:border-b-0 border-border">
+              <div className="mb-2 p-3 rounded-full bg-primary/10">
+                <MessageCircle className="h-5 md:h-6 w-5 md:w-6 text-primary" />
               </div>
               <p className="text-foreground text-xs md:text-sm leading-relaxed">
                 Dedicated advisor and on-site coordinator
@@ -355,9 +321,9 @@ export default function JapanPage() {
             </div>
 
             {/* Feature 3 - Insurance */}
-            <div className="flex flex-col items-center text-center p-2 md:p-4 lg:p-8 border-r border-dotted md:border-b lg:border-r lg:border-b-0 border-border">
-              <div className="mb-3 p-4 rounded-full bg-primary/10">
-                <Shield className="h-6 md:h-8 w-6 md:w-8 text-primary" />
+            <div className="flex flex-col items-center text-center p-2 md:p-3 lg:p-6 border-r border-dotted md:border-b lg:border-r lg:border-b-0 border-border">
+              <div className="mb-2 p-3 rounded-full bg-primary/10">
+                <Shield className="h-5 md:h-6 w-5 md:w-6 text-primary" />
               </div>
               <p className="text-foreground text-xs md:text-sm leading-relaxed">
                 Comprehensive travel medical insurance
@@ -365,9 +331,9 @@ export default function JapanPage() {
             </div>
 
             {/* Feature 4 - 24/7 Assistance */}
-            <div className="flex flex-col items-center text-center p-2 md:p-4 lg:p-8   lg:border-b-0 border-dotted border-border">
-              <div className="mb-3 p-4 rounded-full bg-primary/10">
-                <Clock className="h-6 md:h-8 w-6 md:w-8 text-primary" />
+            <div className="flex flex-col items-center text-center p-2 md:p-3 lg:p-6   lg:border-b-0 border-dotted border-border">
+              <div className="mb-2 p-3 rounded-full bg-primary/10">
+                <Clock className="h-5 md:h-6 w-5 md:w-6 text-primary" />
               </div>
               <p className="text-foreground text-xs md:text-sm leading-relaxed">
                 24/7 emergency travel assistance
@@ -383,91 +349,91 @@ export default function JapanPage() {
         </section>
 
         {/* Image Card Carousel Section */}
-        <section className="mb-12 mt-12 md:mt-24 scroll-mt-28">
+        <section className="mb-8 mt-8 md:mt-16 scroll-mt-28">
           <div className="relative w-full overflow-hidden">
             <ImageCardCarousel />
           </div>
         </section>
 
         {/* How to Apply Section */}
-        <section id="how-to-apply" className="mb-12 scroll-mt-28 bg-muted/30 rounded-2xl p-6 md:p-8">
-          <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-6">
+        <section id="how-to-apply" className="mb-8 scroll-mt-28 bg-muted/30 rounded-2xl p-4 md:p-6">
+          <h2 className="text-xl md:text-2xl font-bold text-foreground mb-4">
             How to Apply
           </h2>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2  md:gap-4">
-            <div className="bg-card border border-border rounded-lg p-4 md:p-6">
-              <div className="flex items-start gap-3 md:gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2  md:gap-3">
+            <div className="bg-card border border-border rounded-lg p-3 md:p-4">
+              <div className="flex items-start gap-2 md:gap-3">
                 <div className="flex-shrink-0">
-                  <CheckCircle className="h-8 w-8 text-primary" />
+                  <CheckCircle className="h-6 md:h-7 w-6 md:w-7 text-primary" />
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-base md:text-lg font-semibold text-foreground">
+                  <h3 className="text-sm md:text-base font-semibold text-foreground">
                     1. Confirm your program of interest
                   </h3>
                 </div>
               </div>
             </div>
             
-            <div className="bg-card border border-border rounded-lg p-4 md:p-6">
-              <div className="flex items-start gap-3 md:gap-4">
+            <div className="bg-card border border-border rounded-lg p-3 md:p-4">
+              <div className="flex items-start gap-2 md:gap-3">
                 <div className="flex-shrink-0">
-                  <FileText className="h-8 w-8 text-primary" />
+                  <FileText className="h-6 md:h-7 w-6 md:w-7 text-primary" />
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-base md:text-lg font-semibold text-foreground">
+                  <h3 className="text-sm md:text-base font-semibold text-foreground">
                     2. Submit your completed application form
                   </h3>
                 </div>
               </div>
             </div>
             
-            <div className="bg-card border border-border rounded-lg p-4 md:p-6">
-              <div className="flex items-start gap-3 md:gap-4">
+            <div className="bg-card border border-border rounded-lg p-3 md:p-4">
+              <div className="flex items-start gap-2 md:gap-3">
                 <div className="flex-shrink-0">
-                  <Phone className="h-8 w-8 text-primary" />
+                  <Phone className="h-6 md:h-7 w-6 md:w-7 text-primary" />
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-base md:text-lg font-semibold text-foreground">
+                  <h3 className="text-sm md:text-base font-semibold text-foreground">
                     3. Speak to one of our study abroad experts
                   </h3>
                 </div>
               </div>
             </div>
             
-            <div className="bg-card border border-border rounded-lg p-4 md:p-6">
-              <div className="flex items-start gap-3 md:gap-4">
+            <div className="bg-card border border-border rounded-lg p-3 md:p-4">
+              <div className="flex items-start gap-2 md:gap-3">
                 <div className="flex-shrink-0">
-                  <Mail className="h-8 w-8 text-primary" />
+                  <Mail className="h-6 md:h-7 w-6 md:w-7 text-primary" />
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-base md:text-lg font-semibold text-foreground">
+                  <h3 className="text-sm md:text-base font-semibold text-foreground">
                     4. Wait for program acceptance
                   </h3>
                 </div>
               </div>
             </div>
             
-            <div className="bg-card border border-border rounded-lg p-4 md:p-6">
-              <div className="flex items-start gap-3 md:gap-4">
+            <div className="bg-card border border-border rounded-lg p-3 md:p-4">
+              <div className="flex items-start gap-2 md:gap-3">
                 <div className="flex-shrink-0">
-                  <CreditCard className="h-8 w-8 text-primary" />
+                  <CreditCard className="h-6 md:h-7 w-6 md:w-7 text-primary" />
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-base md:text-lg font-semibold text-foreground">
+                  <h3 className="text-sm md:text-base font-semibold text-foreground">
                     5. Pay your program deposit
                   </h3>
                 </div>
               </div>
             </div>
             
-            <div className="bg-card border border-border rounded-lg p-4 md:p-6">
-              <div className="flex items-start gap-3 md:gap-4">
+            <div className="bg-card border border-border rounded-lg p-3 md:p-4">
+              <div className="flex items-start gap-2 md:gap-3">
                 <div className="flex-shrink-0">
-                  <Luggage className="h-8 w-8 text-primary" />
+                  <Luggage className="h-6 md:h-7 w-6 md:w-7 text-primary" />
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-base md:text-lg font-semibold text-foreground">
+                  <h3 className="text-sm md:text-base font-semibold text-foreground">
                     6. Get ready for the experience of a lifetime!
                   </h3>
                 </div>
@@ -477,22 +443,22 @@ export default function JapanPage() {
         </section>
 
         {/* FAQs Section */}
-        <section id="faqs" className="mb-12 scroll-mt-28">
-          <h2 className="text-xl md:text-3xl font-bold text-foreground mb-1 md:mb-4 p-1">
+        <section id="faqs" className="mb-8 scroll-mt-28">
+          <h2 className="text-lg md:text-2xl font-bold text-foreground mb-1 md:mb-3 p-1">
             Study Abroad in Japan FAQs
           </h2>
-          <p className="text-muted-foreground mb-4 md:mb-6 text-sm md:text-base p-1">
+          <p className="text-muted-foreground mb-3 md:mb-4 text-sm md:text-base p-1">
             Got questions about studying abroad in Japan? Get all the answers you need to 
             kickstart your journey with confidence!
           </p>
           
-          <Accordion type="single" collapsible className="w-full space-y-2 md:space-y-4 ">
+          <Accordion type="single" collapsible className="w-full space-y-2 md:space-y-3 ">
             <AccordionItem value="item-1" className="border-none">
-              <div className="bg-card border border-border rounded px-6">
-                <AccordionTrigger className="text-base md:text-lg font-semibold text-foreground hover:no-underline py-4">
+              <div className="bg-card border border-border rounded px-4 md:px-5">
+                <AccordionTrigger className="text-sm md:text-base font-semibold text-foreground hover:no-underline py-3">
                   What are the benefits of studying abroad in Japan?
                 </AccordionTrigger>
-                <AccordionContent className="text-foreground/80 pb-4">
+                <AccordionContent className="text-foreground/80 pb-3">
                   Studying in Japan offers access to world-class universities, cutting-edge technology, 
                   and rich cultural experiences. You'll learn in one of the world's safest countries 
                   while gaining valuable language skills and global perspectives that enhance your 
@@ -502,11 +468,11 @@ export default function JapanPage() {
             </AccordionItem>
             
             <AccordionItem value="item-2" className="border-none">
-              <div className="bg-card border border-border rounded px-6">
-                <AccordionTrigger className="text-base md:text-lg font-semibold text-foreground hover:no-underline py-4">
+              <div className="bg-card border border-border rounded px-4 md:px-5">
+                <AccordionTrigger className="text-sm md:text-base font-semibold text-foreground hover:no-underline py-3">
                   What are the costs associated with studying in Japan?
                 </AccordionTrigger>
-                <AccordionContent className="text-foreground/80 pb-4">
+                <AccordionContent className="text-foreground/80 pb-3">
                   Costs include tuition fees, which vary by program and university. Living expenses 
                   in major cities like Tokyo can be higher, but many programs offer affordable options. 
                   Additional costs include visa fees, health insurance, and personal expenses. 
@@ -516,11 +482,11 @@ export default function JapanPage() {
             </AccordionItem>
             
             <AccordionItem value="item-3" className="border-none">
-              <div className="bg-card border border-border rounded px-6">
-                <AccordionTrigger className="text-base md:text-lg font-semibold text-foreground hover:no-underline py-4">
+              <div className="bg-card border border-border rounded px-4 md:px-5">
+                <AccordionTrigger className="text-sm md:text-base font-semibold text-foreground hover:no-underline py-3">
                   Do I need a student visa to study in Japan?
                 </AccordionTrigger>
-                <AccordionContent className="text-foreground/80 pb-4">
+                <AccordionContent className="text-foreground/80 pb-3">
                   Yes, international students typically need a student visa. The process requires 
                   proof of enrollment, financial documentation, and a valid passport. Our advisors 
                   will guide you through the visa application process.
@@ -529,11 +495,11 @@ export default function JapanPage() {
             </AccordionItem>
             
             <AccordionItem value="item-4" className="border-none">
-              <div className="bg-card border border-border rounded px-6">
-                <AccordionTrigger className="text-base md:text-lg font-semibold text-foreground hover:no-underline py-4">
+              <div className="bg-card border border-border rounded px-4 md:px-5">
+                <AccordionTrigger className="text-sm md:text-base font-semibold text-foreground hover:no-underline py-3">
                   What should I know about living in Japan as an international student?
                 </AccordionTrigger>
-                <AccordionContent className="text-foreground/80 pb-4">
+                <AccordionContent className="text-foreground/80 pb-3">
                   Japan offers excellent public transportation, safe cities, and a high quality of life. 
                   While Japanese is the primary language, many universities offer English-taught programs. 
                   Be prepared for cultural differences, seasonal weather changes, and the opportunity to 
@@ -543,7 +509,7 @@ export default function JapanPage() {
             </AccordionItem>
           </Accordion>
           
-          <div className="mt-6 text-center">
+          <div className="mt-4 text-center">
             <Link href="/about/faq" className="text-primary hover:text-primary/80 underline underline-offset-4 font-bold mt-1 inline-block">
               VIEW ALL FAQS
             </Link>
@@ -551,15 +517,15 @@ export default function JapanPage() {
         </section>
 
         {/* Inquiry Form Section */}
-        <section className="mb-6 md:mb-12">
-          <div className="bg-card border border-border rounded p-3 md:p-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
+        <section className="mb-4 md:mb-8">
+          <div className="bg-card border border-border rounded p-3 md:p-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
               {/* Left Side - Text and Button */}
               <div className="flex flex-col justify-center">
-                <h2 className="text-xl md:text-3xl font-bold text-foreground mb-4">
+                <h2 className="text-lg md:text-2xl font-bold text-foreground mb-3">
                   Get more information
                 </h2>
-                <p className="text-muted-foreground mb-6">
+                <p className="text-muted-foreground mb-4">
                   Craving more info? Discover how you can start your epic study abroad journey.
                 </p>
                 <Button size="lg" className="w-full sm:w-auto">
@@ -568,7 +534,7 @@ export default function JapanPage() {
               </div>
 
               {/* Right Side - Form */}
-              <div className="bg-card border border-border rounded-lg p-4 md:p-6 shadow-lg">
+              <div className="bg-card border border-border rounded-lg p-3 md:p-4 shadow-lg">
                 <InquiryForm />
               </div>
             </div>
@@ -576,11 +542,11 @@ export default function JapanPage() {
         </section>
 
         {/* Explore Alternative Destinations Section */}
-        <section className="mb-6 md:mb-12 bg-muted/30 rounded-2xl p-6 md:p-8">
-          <h2 className="text-xl md:text-3xl font-bold text-foreground mb-2 md:mb-4">
+        <section className="mb-4 md:mb-8 bg-muted/30 rounded-2xl p-4 md:p-6">
+          <h2 className="text-lg md:text-2xl font-bold text-foreground mb-2 md:mb-3">
             Explore Alternative Study Abroad Destinations
           </h2>
-          <p className="text-muted-foreground mb-4 md:mb-6">
+          <p className="text-muted-foreground mb-3 md:mb-4">
             Discover other incredible study abroad opportunities around the world.
           </p>
 

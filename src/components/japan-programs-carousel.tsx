@@ -73,7 +73,7 @@ export function JapanProgramsCarousel() {
           
           return (
             <CarouselItem key={program.id} className="basis-3/4">
-              <div className="bg-card border border-border rounded overflow-hidden hover:shadow-lg transition-shadow flex flex-col h-full">
+              <div className="bg-card border border-border rounded overflow-hidden hover:shadow-lg transition-shadow flex flex-col h-full w-full">
                 <div className="relative w-full h-48">
                   <Image
                     src={program.image}
@@ -82,7 +82,7 @@ export function JapanProgramsCarousel() {
                     className="object-cover"
                   />
                 </div>
-                <div className="p-4 md:p-6 flex flex-col flex-grow">
+                <div className="p-4 md:p-6 flex flex-col flex-grow relative pb-20 md:pb-24">
                   <h3 className="text-base md:text-xl font-semibold text-foreground mb-2">
                     {program.title}
                   </h3>
@@ -102,14 +102,14 @@ export function JapanProgramsCarousel() {
                   <p className="text-foreground mb-2 md:mb-4 text-sm leading-relaxed flex-grow">
                     {program.description}
                   </p>
-                  <div className="bg-muted/50 rounded p-4 -mx-4 md:-mx-4 -mb-6 flex items-center justify-between">
-                    <p className="text-sm md:text-lg font-bold text-primary">
+                  <div className="bg-[#1BB685] rounded-b p-4 absolute left-0 right-0 bottom-0 flex items-center justify-between w-full">
+                    <p className="text-sm md:text-lg font-bold text-white">
                       <span className="md:hidden">Fee: {program.fee}</span>
                       <span className="hidden md:inline">Program Fee: {program.fee}</span>
                     </p>
                     <Link 
                       href={detailUrl}
-                      className="flex items-center gap-2 text-primary hover:text-primary/80 text-sm font-medium"
+                      className="flex items-center gap-2 text-white hover:text-white/80 text-sm font-medium"
                     >
                       Details
                       <ArrowRight className="h-4 w-4" />

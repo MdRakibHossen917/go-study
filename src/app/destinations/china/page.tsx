@@ -21,6 +21,7 @@ import { ReviewsCarousel } from "@/components/reviews-carousel"
 import { DestinationsCarousel } from "@/components/destinations-carousel"
 import { ImageCardCarousel } from "@/components/image-card-carousel"
 import { ChinaProgramsCarousel } from "@/components/china-programs-carousel"
+import { DestinationNavigationTabs } from "@/components/destination-navigation-tabs"
 import chinaImage from "@/assests/Image/chinaImage.jpg"
 import pureHoney from "@/assests/AdvertisementImage/pureHoney.jpg"
 import datesAd from "@/assests/AdvertisementImage/dates.jpg"
@@ -41,7 +42,7 @@ export default function ChinaPage() {
   return (
     <div className="min-h-screen">
       {/* Hero Image Header */}
-      <div className="relative w-full h-[82vh] overflow-hidden">
+      <div className="relative w-full h-[57vh] overflow-hidden">
         <Image
           src={chinaImage}
           alt="Aerial view of Beijing cityscape in China"
@@ -54,10 +55,10 @@ export default function ChinaPage() {
             <h4 className="text-sm md:text-2xl font-bold uppercase tracking-wider mb-2">
               CHINA
             </h4>
-            <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4">
+            <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-3">
               Study Abroad in China
             </h1>
-            <p className="text-lg md:text-xl font-medium">
+            <p className="text-base md:text-lg font-medium">
               Ancient. Modern. Extraordinary.
             </p>
           </div>
@@ -65,34 +66,11 @@ export default function ChinaPage() {
       </div>
 
       {/* Navigation Tabs */}
-      <div className="bg-background border-b border-border sticky top-16 z-20">
-        <div className="max-w-6xl mx-auto">
-          <nav className="flex overflow-x-auto">
-            <a href="#overview" className="px-4 py-3 text-sm font-medium text-foreground hover:text-primary border-b-2 border-transparent hover:border-primary whitespace-nowrap">
-              OVERVIEW
-            </a>
-            <a href="#reviews" className="px-4 py-3 text-sm font-medium text-foreground hover:text-primary border-b-2 border-transparent hover:border-primary whitespace-nowrap">
-              REVIEWS
-            </a>
-            <a href="#programs" className="px-4 py-3 text-sm font-medium text-foreground hover:text-primary border-b-2 border-transparent hover:border-primary whitespace-nowrap">
-              PROGRAMS
-            </a>
-            <a href="#activities" className="px-4 py-3 text-sm font-medium text-foreground hover:text-primary border-b-2 border-transparent hover:border-primary whitespace-nowrap">
-              ACTIVITIES
-            </a>
-            <a href="#how-to-apply" className="px-4 py-3 text-sm font-medium text-foreground hover:text-primary border-b-2 border-transparent hover:border-primary whitespace-nowrap">
-              HOW TO APPLY
-            </a>
-            <a href="#faqs" className="px-4 py-3 text-sm font-medium text-foreground hover:text-primary border-b-2 border-transparent hover:border-primary whitespace-nowrap">
-              FAQS
-            </a>
-          </nav>
-        </div>
-      </div>
+      <DestinationNavigationTabs country="China" />
 
-      <div className="max-w-6xl mx-auto  py-8 md:py-12">
+      <div className="max-w-6xl mx-auto  py-6 md:py-8">
         {/* Breadcrumb */}
-        <div className="mb-6 text-sm text-muted-foreground">
+        <div className="mb-4 text-sm text-muted-foreground">
           <Link href="/" className="hover:text-primary">Home</Link>
           <span className="mx-2">|</span>
           <span>Study Abroad in China</span>
@@ -125,18 +103,6 @@ export default function ChinaPage() {
                   experiences and personal growth!
                 </p>
               </div>
-              <div className="mt-6 flex flex-col sm:flex-row gap-4">
-                <Link href="/apply">
-                  <Button size="lg" className="w-full sm:w-auto">
-                    APPLY NOW
-                  </Button>
-                </Link>
-                <Link href="/inquiry">
-                  <Button variant="outline" size="lg" className="w-full sm:w-auto">
-                    GET MORE INFO
-                  </Button>
-                </Link>
-              </div>
             </div>
             <div className="lg:col-span-1">
               <div className="bg-card border border-border rounded p-6">
@@ -165,33 +131,20 @@ export default function ChinaPage() {
           </div>
         </section>
 
-        {/* Reviews Section */}
-        <section id="reviews" className="mb-6 md-mb-12 scroll-mt-28">
-          <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-            Student Reviews
-          </h2>
-          <p className="text-muted-foreground mb-8">
-            Hear from students who have studied abroad in China and transformed their lives through 
-            this incredible experience.
-          </p>
-          
-          <ReviewsCarousel />
-        </section>
-
         {/* Programs Section */}
-        <section id="programs" className="mb-6 md-mb-12 scroll-mt-28">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+        <section id="programs" className="mb-4 md:mb-8 scroll-mt-28">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center">
             {/* Left Half - Title and Description */}
             <div className="flex flex-col justify-center ">
-              <h2 className="text-2xl md:text-3xl text-center font-bold text-foreground mb-2">
+              <h2 className="text-xl md:text-2xl text-center font-bold text-foreground mb-2">
                 Our China Study Abroad Programs
               </h2>
-              <p className="text-muted-foreground mb-4">
+              <p className="text-muted-foreground mb-3">
               "Discover the rich culture, ancient history, and affordable living of China through our immersive, globally recognized study abroad programs."
               </p>
               <div className="flex justify-center">
-                <Link href="/apply">
-                  <Button size="lg" className="w-full sm:w-auto">
+                <Link href="/destinations/china/programs">
+                  <Button size="lg" className="w-full sm:w-auto bg-[#1BB685] hover:bg-[#1BB685]/90 text-white">
                     VIEW ALL AVAILABLE PROGRAMS
                   </Button>
                 </Link>
@@ -205,12 +158,25 @@ export default function ChinaPage() {
           </div>
         </section>
 
+        {/* Reviews Section */}
+        <section id="reviews" className="mb-4 md:mb-8 scroll-mt-28">
+          <h2 className="text-xl md:text-2xl font-bold text-foreground mb-3">
+            Student Reviews
+          </h2>
+          <p className="text-muted-foreground mb-6">
+            Hear from students who have studied abroad in China and transformed their lives through 
+            this incredible experience.
+          </p>
+          
+          <ReviewsCarousel country="China" />
+        </section>
+
         {/* Activities Section */}
-        <section id="activities" className="mb-6 md-mb-12 scroll-mt-28">
-          <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3 md:mb-4">
+        <section id="activities" className="mb-4 md:mb-8 scroll-mt-28">
+          <h2 className="text-xl md:text-2xl font-bold text-foreground mb-2 md:mb-3">
             What to do in China in your free time
           </h2>
-          <p className="text-muted-foreground mb-4 md:mb-8">
+          <p className="text-muted-foreground mb-3 md:mb-6">
             Discover China by exploring ancient landmarks, experiencing traditional culture, 
             enjoying world-class cuisine, and visiting stunning natural landscapes.
           </p>
@@ -593,7 +559,7 @@ export default function ChinaPage() {
         </section>
 
         {/* Honey Promotion Section */}
-        <section className="mb-8 md:mb-12 scroll-mt-28">
+        <section className="mb-4 md:mb-8 scroll-mt-28">
           <div className="bg-gradient-to-br from-amber-50 via-yellow-50 to-orange-50 dark:from-amber-950/20 dark:to-orange-950/20 border border-amber-200/50 dark:border-amber-900/30 rounded-2xl p-6 md:p-10 shadow-2xl overflow-hidden relative">
             {/* Premium Badge */}
             <div className="absolute top-4 right-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white px-4 py-1.5 rounded-full text-xs font-bold shadow-lg z-10">

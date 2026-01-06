@@ -11,12 +11,14 @@ import {
 } from "@/components/ui/carousel"
 
 const reviews = [
+  // Japan Reviews
   {
     rating: "5.0",
     text: "Studying in Japan was the best decision I ever made! The combination of cutting-edge technology education and rich cultural experiences was incredible. The universities are world-class, and the people are so welcoming and friendly.",
     initials: "SM",
     name: "Sarah M.",
     role: "Engineering Student, Tokyo",
+    country: "Japan",
   },
   {
     rating: "5.0",
@@ -24,6 +26,7 @@ const reviews = [
     initials: "JD",
     name: "James D.",
     role: "Business Student, Osaka",
+    country: "Japan",
   },
   {
     rating: "5.0",
@@ -31,6 +34,7 @@ const reviews = [
     initials: "EM",
     name: "Emma L.",
     role: "Arts Student, Kyoto",
+    country: "Japan",
   },
   {
     rating: "5.0",
@@ -38,39 +42,78 @@ const reviews = [
     initials: "RK",
     name: "Ryan K.",
     role: "Technology Student, Tokyo",
+    country: "Japan",
+  },
+  // China Reviews
+  {
+    rating: "5.0",
+    text: "Studying in China was an amazing experience! The universities offer excellent programs and the cultural immersion was incredible. I learned Mandarin and gained valuable international experience that boosted my career prospects significantly.",
+    initials: "CW",
+    name: "Chen W.",
+    role: "Engineering Student, Beijing",
+    country: "China",
   },
   {
     rating: "5.0",
-    text: "My experience studying in Japan was transformative. The blend of modern technology and traditional culture created a unique learning environment. The professors were incredibly supportive and the campus facilities were absolutely world-class and modern.",
-    initials: "AL",
-    name: "Alex L.",
-    role: "Computer Science Student, Tokyo",
+    text: "China's education system is world-class and the opportunities for growth are endless. The blend of traditional culture and modern innovation created a unique learning environment. The support from professors and staff was exceptional throughout.",
+    initials: "LY",
+    name: "Li Y.",
+    role: "Business Student, Shanghai",
+    country: "China",
   },
   {
     rating: "5.0",
-    text: "Japan offered me an incredible opportunity to grow both academically and personally. The language courses were excellent, and I quickly adapted to the culture. The study abroad program provided amazing support throughout my entire journey there.",
-    initials: "MJ",
-    name: "Maria J.",
-    role: "Language Studies, Osaka",
+    text: "My experience in China was transformative. The quality of education exceeded my expectations and I made lifelong connections. The study abroad program provided excellent support and the cultural experiences were truly life-changing.",
+    initials: "ZW",
+    name: "Zhang W.",
+    role: "Arts Student, Beijing",
+    country: "China",
   },
   {
     rating: "5.0",
-    text: "Studying in Japan exceeded all my expectations. The education system is rigorous yet supportive, and I learned so much about Japanese culture and business practices. This experience has been truly invaluable for my career development and growth.",
-    initials: "DT",
-    name: "David T.",
-    role: "Business Student, Kyoto",
+    text: "China offered me incredible opportunities to grow both academically and personally. The language courses were excellent and I quickly adapted to the culture. Highly recommend studying in China to all students seeking international experience.",
+    initials: "WX",
+    name: "Wang X.",
+    role: "Technology Student, Shanghai",
+    country: "China",
+  },
+  // South Korea Reviews
+  {
+    rating: "5.0",
+    text: "Studying in South Korea was the best decision I ever made! The universities are world-class and the cultural experiences were incredible. The people are welcoming and the education system is rigorous yet supportive.",
+    initials: "KJ",
+    name: "Kim J.",
+    role: "Engineering Student, Seoul",
+    country: "South Korea",
   },
   {
     rating: "5.0",
-    text: "The study abroad program in Japan was absolutely fantastic. I made amazing friends, learned a new language, and gained international experience that has set me apart in job interviews. Highly recommend this program to all students!",
-    initials: "LS",
-    name: "Lisa S.",
-    role: "International Studies, Tokyo",
+    text: "South Korea's blend of technology and tradition is unmatched. The academic programs are excellent and I gained valuable skills. The study abroad program provided amazing support throughout my entire journey there.",
+    initials: "PY",
+    name: "Park Y.",
+    role: "Business Student, Busan",
+    country: "South Korea",
+  },
+  {
+    rating: "5.0",
+    text: "My experience in South Korea exceeded all expectations. The quality of education is outstanding and the cultural immersion was life-changing. I made lifelong friends and gained international experience that set me apart.",
+    initials: "LSK",
+    name: "Lee S.",
+    role: "Arts Student, Seoul",
+    country: "South Korea",
+  },
+  {
+    rating: "5.0",
+    text: "South Korea offered me incredible opportunities for growth. The language courses were excellent and I quickly adapted. The professors were supportive and the campus facilities were world-class. Highly recommend this program!",
+    initials: "CJH",
+    name: "Choi J.",
+    role: "Technology Student, Seoul",
+    country: "South Korea",
   },
 ]
 
-// Function to truncate text to 40 words
-const truncateToWords = (text: string, maxWords: number = 40): string => {
+// Function to truncate text to 12 words
+const truncateToWords = (text: string, maxWords: number = 12): string => {
   const words = text.split(" ")
   if (words.length <= maxWords) {
     return text
@@ -78,9 +121,18 @@ const truncateToWords = (text: string, maxWords: number = 40): string => {
   return words.slice(0, maxWords).join(" ") + "..."
 }
 
-export function ReviewsCarousel() {
+type ReviewsCarouselProps = {
+  country?: "Japan" | "China" | "South Korea"
+}
+
+export function ReviewsCarousel({ country }: ReviewsCarouselProps = {}) {
   const [api, setApi] = React.useState<CarouselApi>()
   const [current, setCurrent] = React.useState(0)
+
+  // Filter reviews by country if provided
+  const filteredReviews = country 
+    ? reviews.filter(review => review.country === country)
+    : reviews
 
   useEffect(() => {
     if (!api) {
@@ -116,7 +168,7 @@ export function ReviewsCarousel() {
       className="w-full"
     >
       <CarouselContent className="-ml-2 md:-ml-4">
-        {reviews.map((review, index) => (
+        {filteredReviews.map((review, index) => (
           <CarouselItem key={index} className="pl-2 md:pl-4 md:basis-1/4">
             <div className="bg-card border border-border rounded-lg p-6 h-full flex flex-col shadow-sm hover:shadow-md transition-shadow duration-300">
               {/* Rating Section */}
@@ -125,9 +177,9 @@ export function ReviewsCarousel() {
                 <span className="text-sm font-medium text-muted-foreground">{review.rating}</span>
               </div>
               
-              {/* Review Text - Larger font size */}
+              {/* Review Text - 12 words */}
               <p className="text-foreground mb-6 text-base leading-relaxed flex-grow">
-                "{truncateToWords(review.text, 40)}"
+                "{truncateToWords(review.text, 12)}"
               </p>
               
               {/* Author Section */}
