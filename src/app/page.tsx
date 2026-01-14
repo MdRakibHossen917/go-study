@@ -602,11 +602,12 @@ export default function Home() {
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-4">
             <StarBorder
+              as="div"
               className="w-full md:w-3/4"
-              color="#6BB0AD"
-              speed="5s"
+              color="#6AAFAC"
+              speed="4s"
             >
-              <Button size="lg" className="w-full text-base md:text-lg px-8 py-6 flex items-center bg-[#22253D] justify-center gap-2 hover:bg-[#22253D]/90 transition-colors text-white">
+              <Button size="lg" className="w-full h-full text-base md:text-lg px-6 py-4 flex items-center justify-center gap-2 bg-[#282F4A] hover:bg-[#282F4A]/90 transition-colors text-white rounded-[20px]">
                 <Search className="h-5 w-5" />
                 Search
               </Button>

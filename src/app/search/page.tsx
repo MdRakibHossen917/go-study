@@ -17,6 +17,8 @@ import tsinghuaUniversity from "@/assests/UniversityCampus/TsinghuaUniversity.jp
 import pekingUniversity from "@/assests/UniversityCampus/PekingUniversity.jpg"
 import seoulNationalUniversity from "@/assests/UniversityCampus/SeoulNationalUniversity.jpg"
 import universityTokyo from "@/assests/UniversityFreeImage/universityTokyo.jpg"
+import wasedaUniversity from "@/assests/UniversityFreeImage/wasedaUniversity.jpg"
+import kyotoUniversity from "@/assests/UniversityFreeImage/kyotoUniversity.jpg"
 
 type Program = {
   id: string
@@ -33,8 +35,205 @@ type Program = {
   fieldOfStudy?: string[]
 }
 
-// All programs data
-const allPrograms: Program[] = []
+// All programs data - populate with actual programs
+const allPrograms: Program[] = [
+  {
+    id: '1',
+    title: 'Computer Science & Engineering',
+    university: 'University of Tokyo',
+    image: universityTokyo,
+    description: 'Comprehensive computer science and engineering program in Japan',
+    duration: '4 years',
+    price: '$15,000',
+    slug: 'university-of-tokyo-computer-science',
+    terms: ['Academic Year'],
+    budget: '10000-20000',
+    destinations: ['japan'],
+    fieldOfStudy: ['Engineering']
+  },
+  {
+    id: '2',
+    title: 'Business Administration',
+    university: 'Waseda University',
+    image: wasedaUniversity,
+    description: 'Business administration program at Waseda University',
+    duration: '2 years',
+    price: '$25,000',
+    slug: 'waseda-university-business',
+    terms: ['Fall Semester'],
+    budget: 'over-20000',
+    destinations: ['japan'],
+    fieldOfStudy: ['Business & Economics']
+  },
+  {
+    id: '3',
+    title: 'International Relations',
+    university: 'Kyoto University',
+    image: kyotoUniversity,
+    description: 'International relations and global studies program',
+    duration: '4 years',
+    price: '$8,000',
+    slug: 'kyoto-university-international-relations',
+    terms: ['Spring Semester'],
+    budget: 'under-10000',
+    destinations: ['japan'],
+    fieldOfStudy: ['International Studies']
+  },
+  {
+    id: '4',
+    title: 'Mechanical Engineering',
+    university: 'Oxford University',
+    image: universityTokyo,
+    description: 'Mechanical engineering program at Oxford University',
+    duration: '3 years',
+    price: '$30,000',
+    slug: 'oxford-university-mechanical-engineering',
+    terms: ['Academic Year'],
+    budget: 'over-20000',
+    destinations: ['united-kingdom'],
+    fieldOfStudy: ['Engineering']
+  },
+  {
+    id: '5',
+    title: 'Art & Design',
+    university: 'Sorbonne University',
+    image: wasedaUniversity,
+    description: 'Art and design program in France',
+    duration: '3 years',
+    price: '$18,000',
+    slug: 'sorbonne-university-art-design',
+    terms: ['Fall Semester'],
+    budget: '10000-20000',
+    destinations: ['france'],
+    fieldOfStudy: ['Art & Design']
+  },
+  {
+    id: '6',
+    title: 'Health Sciences',
+    university: 'Harvard University',
+    image: kyotoUniversity,
+    description: 'Health sciences program at Harvard University',
+    duration: '2 years',
+    price: '$35,000',
+    slug: 'harvard-university-health-sciences',
+    terms: ['Spring Semester'],
+    budget: 'over-20000',
+    destinations: ['united-states'],
+    fieldOfStudy: ['Health']
+  },
+  {
+    id: '7',
+    title: 'Communications',
+    university: 'University of Sydney',
+    image: universityTokyo,
+    description: 'Communications program in Australia',
+    duration: '3 years',
+    price: '$9,000',
+    slug: 'university-of-sydney-communications',
+    terms: ['Academic Year'],
+    budget: 'under-10000',
+    destinations: ['australia'],
+    fieldOfStudy: ['Communication']
+  },
+  {
+    id: '8',
+    title: 'Tourism & Hospitality',
+    university: 'University of Auckland',
+    image: wasedaUniversity,
+    description: 'Tourism and hospitality management program',
+    duration: '1 year',
+    price: '$12,000',
+    slug: 'university-of-auckland-tourism',
+    terms: ['Fall Semester'],
+    budget: '10000-20000',
+    destinations: ['new-zealand'],
+    fieldOfStudy: ['Tourism & Hospitality']
+  },
+  {
+    id: '9',
+    title: 'Mathematics',
+    university: 'University of Toronto',
+    image: kyotoUniversity,
+    description: 'Mathematics program in Canada',
+    duration: '4 years',
+    price: '$4,500',
+    slug: 'university-of-toronto-mathematics',
+    terms: ['Spring Semester'],
+    budget: 'under-5000',
+    destinations: ['canada'],
+    fieldOfStudy: ['Math']
+  },
+  {
+    id: '10',
+    title: 'Social Sciences',
+    university: 'University of Berlin',
+    image: universityTokyo,
+    description: 'Social sciences program in Germany',
+    duration: '2 years',
+    price: '$7,500',
+    slug: 'university-of-berlin-social-sciences',
+    terms: ['Academic Year'],
+    budget: 'under-10000',
+    destinations: ['germany'],
+    fieldOfStudy: ['Social Sciences']
+  },
+  {
+    id: '11',
+    title: 'Visual Arts',
+    university: 'University of Rome',
+    image: wasedaUniversity,
+    description: 'Visual arts program in Italy',
+    duration: '3 years',
+    price: '$16,000',
+    slug: 'university-of-rome-visual-arts',
+    terms: ['Fall Semester'],
+    budget: '10000-20000',
+    destinations: ['italy'],
+    fieldOfStudy: ['Visual & Performing Arts']
+  },
+  {
+    id: '12',
+    title: 'World Languages',
+    university: 'Peking University',
+    image: kyotoUniversity,
+    description: 'World languages program in China',
+    duration: '1 year',
+    price: '$6,000',
+    slug: 'peking-university-world-languages',
+    terms: ['Spring Semester'],
+    budget: 'under-10000',
+    destinations: ['china'],
+    fieldOfStudy: ['World Languages']
+  },
+  {
+    id: '13',
+    title: 'Marine Biology',
+    university: 'University of Queensland',
+    image: universityTokyo,
+    description: 'Marine biology program in Australia',
+    duration: '3 months',
+    price: '$7,500',
+    slug: 'university-of-queensland-marine-biology',
+    terms: ['Summer Break'],
+    budget: 'under-10000',
+    destinations: ['australia'],
+    fieldOfStudy: ['Natural & Applied Sciences']
+  },
+  {
+    id: '14',
+    title: 'Ski Resort Management',
+    university: 'University of British Columbia',
+    image: wasedaUniversity,
+    description: 'Ski resort management program in Canada',
+    duration: '4 months',
+    price: '$15,000',
+    slug: 'university-of-british-columbia-ski-resort',
+    terms: ['Winter Break'],
+    budget: '10000-20000',
+    destinations: ['canada'],
+    fieldOfStudy: ['Tourism & Hospitality']
+  },
+]
 
 const budgetOptions = [
   { value: "5000", label: "Under $5,000" },
@@ -120,7 +319,7 @@ function SearchContent() {
     programDetails: [] as string[],
     destinations: [] as string[],
     fieldOfStudy: [] as string[],
-    term: [] as string[]
+    term: "" // Changed to string for radio button (single selection)
   })
 
   const [filteredPrograms, setFilteredPrograms] = useState<Program[]>(allPrograms)
@@ -138,7 +337,7 @@ function SearchContent() {
       if (termMap[term]) {
         setFilters(prev => ({
           ...prev,
-          term: [termMap[term]]
+          term: termMap[term] // Single value, not array
         }))
       }
     }
@@ -147,15 +346,20 @@ function SearchContent() {
   const applyFilters = () => {
     let filtered = [...allPrograms]
 
-    // Filter by term
-    if (filters.term.length > 0) {
-      filtered = filtered.filter(program => {
-        const termNames = filters.term.map(t => {
-          const term = terms.find(term => term.value === t)
-          return term?.label || ""
-        })
-        return termNames.some(termName => program.terms.includes(termName))
-      })
+    // Filter by term - Academic Year (1695) shows ALL programs, others show only matching
+    if (filters.term) {
+      // If Academic Year (1695) is selected, show all programs (no term filtering)
+      if (filters.term === "1695") {
+        // Don't filter by term - show all programs
+      } else {
+        // Filter by other terms
+        const selectedTerm = terms.find(t => t.value === filters.term)
+        if (selectedTerm) {
+          filtered = filtered.filter(program => 
+            program.terms.includes(selectedTerm.label)
+          )
+        }
+      }
     }
 
     // Filter by budget (if any program has price info matching budget)
@@ -164,7 +368,6 @@ function SearchContent() {
         const priceMatch = program.price.match(/\$([\d,]+)/)
         if (priceMatch) {
           const price = parseInt(priceMatch[1].replace(/,/g, ''))
-          const budgetValue = parseInt(filters.budget)
           
           if (filters.budget === "5000") return price < 5000
           if (filters.budget === "10000") return price < 10000
@@ -177,11 +380,40 @@ function SearchContent() {
       })
     }
 
+    // Filter by destinations
+    if (filters.destinations.length > 0) {
+      filtered = filtered.filter(program => 
+        program.destinations && program.destinations.some(dest => filters.destinations.includes(dest))
+      )
+    }
+
+    // Filter by field of study - map field IDs to labels and match with program fieldOfStudy
+    if (filters.fieldOfStudy.length > 0) {
+      filtered = filtered.filter(program => {
+        if (!program.fieldOfStudy || program.fieldOfStudy.length === 0) return false
+        // Convert filter IDs to labels (e.g., "1716" -> "Engineering")
+        const fieldLabels = filters.fieldOfStudy.map(fieldValue => {
+          const field = fieldOfStudy.find(f => f.value === fieldValue)
+          return field?.label || ""
+        }).filter(label => label !== "")
+        // Check if any of the program's field of study matches any of the selected field labels
+        return program.fieldOfStudy.some(programField => 
+          fieldLabels.some(label => 
+            programField.toLowerCase().trim() === label.toLowerCase().trim()
+          )
+        )
+      })
+    }
+
+    // Note: Program Details filter currently disabled as programs don't have structured program detail data
+    // This can be re-enabled when program data structure is extended with program details
+
     setFilteredPrograms(filtered)
   }
 
   useEffect(() => {
     applyFilters()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filters])
 
   const toggleSection = (section: string) => {
@@ -215,13 +447,20 @@ function SearchContent() {
     })
   }
 
+  const handleTermChange = (value: string) => {
+    setFilters(prev => ({
+      ...prev,
+      term: prev.term === value ? "" : value
+    }))
+  }
+
   const clearAllFilters = () => {
     setFilters({
       budget: "",
       programDetails: [],
       destinations: [],
       fieldOfStudy: [],
-      term: []
+      term: "" // Changed to empty string
     })
     setFilteredPrograms(allPrograms)
   }
@@ -230,7 +469,7 @@ function SearchContent() {
     filters.programDetails.length > 0 || 
     filters.destinations.length > 0 || 
     filters.fieldOfStudy.length > 0 || 
-    filters.term.length > 0
+    filters.term !== ""
 
   const groupedDestinations = destinations.reduce((acc, dest) => {
     if (!acc[dest.region]) {
@@ -447,9 +686,13 @@ function SearchContent() {
                         key={term.value}
                         className="flex items-center gap-2 cursor-pointer text-sm"
                       >
-                        <Checkbox
-                          checked={filters.term.includes(term.value)}
-                          onCheckedChange={() => handleCheckboxChange("term", term.value)}
+                        <input
+                          type="radio"
+                          name="term"
+                          value={term.value}
+                          checked={filters.term === term.value}
+                          onChange={() => handleTermChange(term.value)}
+                          className="w-4 h-4 text-[#1BB685]"
                         />
                         <span>{term.label}</span>
                       </label>
