@@ -1347,7 +1347,7 @@ export default function Home() {
                   </div>
         <div className="pt-2 md:pt-4">
                     <Link 
-                      href="#" 
+                      href="/how-it-works/pick-program" 
                       className="inline-block bg-primary text-primary-foreground px-4 py-2 md:px-6 md:py-3 rounded-lg text-xs md:text-base font-semibold hover:bg-primary/90 transition-colors"
                     >
                       HOW TO PICK A PROGRAM
@@ -1374,7 +1374,7 @@ export default function Home() {
                   </div>
                   <div className="pt-2 md:pt-4">
                     <Link 
-                      href="#" 
+                      href="/how-it-works/pick-program" 
                       className="inline-block bg-primary text-primary-foreground px-4 py-2 md:px-6 md:py-3 rounded-lg text-xs md:text-base font-semibold hover:bg-primary/90 transition-colors"
                     >
                       HOW TO PICK A PROGRAM
@@ -1401,7 +1401,7 @@ export default function Home() {
                   </div>
                   <div className="pt-2 md:pt-4">
                     <Link 
-                      href="#" 
+                      href="/how-it-works/pick-program" 
                       className="inline-block bg-primary text-primary-foreground px-4 py-2 md:px-6 md:py-3 rounded-lg text-xs md:text-base font-semibold hover:bg-primary/90 transition-colors"
                     >
                       HOW TO PICK A PROGRAM

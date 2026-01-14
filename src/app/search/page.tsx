@@ -527,10 +527,10 @@ function SearchContent() {
           </div>
         </div>
 
-        <div className="flex gap-4 md:gap-6">
-          {/* Filter Sidebar */}
+        <div className="flex gap-4 md:gap-6 relative">
+          {/* Filter Sidebar - Fixed on desktop */}
           <div className={`${showFilters ? "block" : "hidden"} w-full md:w-64 lg:w-72 flex-shrink-0`}>
-            <div className="bg-card border border-border rounded-lg p-4 md:p-5 space-y-4 sticky top-20 max-h-[calc(100vh-8rem)] overflow-y-auto">
+            <div className="bg-card border border-border rounded-lg p-4 md:p-5 space-y-4 md:sticky md:top-24 md:h-[calc(100vh-8rem)] md:overflow-y-auto">
               {/* Budget Filter */}
               <div className="border-b border-border pb-4">
                 <button
@@ -722,9 +722,9 @@ function SearchContent() {
             </div>
           </div>
 
-          {/* Programs Grid */}
-          <div className="flex-1">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* Programs Grid - Scrollable */}
+          <div className="flex-1 min-h-0">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pb-6">
               {filteredPrograms.map((program) => (
                 <div
                   key={program.id}
