@@ -11,6 +11,8 @@ import { useState, useRef, useEffect } from "react"
 import useEmblaCarousel from "embla-carousel-react"
 import { BookOpen, Users, Star, MessageCircle, Quote } from "lucide-react"
 import CloudinaryPlayer from "@/components/CloudinaryPlayer"
+import StarBorder from "@/components/StarBorder"
+import LightRays from "@/components/LightRays"
 import internationalStudentEurope from "@/assests/InternationalStudents/internationalStudentEurope.jpg.jpg"
 import internationalStudentUSA from "@/assests/InternationalStudents/internationalStudentUSA.jpg"
 import adultLearnersScholarship from "@/assests/InternationalStudents/adultLearnersScholarship.jpg"
@@ -228,6 +230,212 @@ const CommentCarousel = () => {
   )
 }
 
+// Blogs & Resources Component
+const BlogsAndResourcesSection = () => {
+  const categories = ["All", "Study Tips", "Destinations", "Student Stories", "Scholarships", "Culture"]
+  const [selectedCategory, setSelectedCategory] = useState("All")
+  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 })
+  const [isCursorVisible, setIsCursorVisible] = useState(false)
+
+  // Blog data - using existing images from assets
+  const blogs = [
+    {
+      id: 1,
+      title: "10 Essential Tips for Studying Abroad Successfully",
+      category: "Study Tips",
+      author: "Sarah Johnson",
+      authorInitials: "SJ",
+      date: "March 15, 2024",
+      image: happyStudents
+    },
+    {
+      id: 2,
+      title: "Exploring Study Opportunities in South Korea",
+      category: "Destinations",
+      author: "Michael Chen",
+      authorInitials: "MC",
+      date: "March 10, 2024",
+      image: southKoreaImage
+    },
+    {
+      id: 3,
+      title: "My Journey: From Application to Arrival",
+      category: "Student Stories",
+      author: "Emma Rodriguez",
+      authorInitials: "ER",
+      date: "March 5, 2024",
+      image: studentsWalking
+    },
+    {
+      id: 4,
+      title: "How to Find and Apply for Study Abroad Scholarships",
+      category: "Scholarships",
+      author: "David Kim",
+      authorInitials: "DK",
+      date: "February 28, 2024",
+      image: adultLearnersScholarship
+    },
+    {
+      id: 5,
+      title: "Adapting to New Cultures: A Guide for International Students",
+      category: "Culture",
+      author: "Lisa Thompson",
+      authorInitials: "LT",
+      date: "February 22, 2024",
+      image: youngWomenWalking
+    },
+    {
+      id: 6,
+      title: "Balancing Academics and Travel While Studying Abroad",
+      category: "Study Tips",
+      author: "James Wilson",
+      authorInitials: "JW",
+      date: "February 15, 2024",
+      image: girlSittingReading
+    }
+  ]
+
+  const filteredBlogs = selectedCategory === "All" 
+    ? blogs 
+    : blogs.filter(blog => blog.category === selectedCategory)
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setCursorPos({ x: e.clientX, y: e.clientY })
+    }
+
+    document.addEventListener("mousemove", handleMouseMove)
+    return () => {
+      document.removeEventListener("mousemove", handleMouseMove)
+    }
+  }, [])
+
+  return (
+    <div className="w-full relative">
+      {/* Custom Cursor */}
+      <div
+        className="cursor"
+        style={{
+          position: "fixed",
+          width: "80px",
+          height: "80px",
+          background: "rgba(0, 0, 0, 0.75)",
+          color: "#fff",
+          borderRadius: "50%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          pointerEvents: "none",
+          transform: `translate(-50%, -50%) ${isCursorVisible ? "scale(1)" : "scale(0)"}`,
+          transition: "transform 0.2s ease",
+          fontSize: "14px",
+          zIndex: 999,
+          left: `${cursorPos.x}px`,
+          top: `${cursorPos.y}px`,
+        }}
+      >
+        Read
+      </div>
+      {/* Category Filter Bar */}
+      <div className="mb-8 md:mb-12">
+        <div className="overflow-x-auto scrollbar-hide">
+          <div className="flex gap-3 md:gap-4 pb-2">
+            {categories.map((category) => (
+              <button
+                key={category}
+                onClick={() => setSelectedCategory(category)}
+                className={`
+                  px-4 md:px-6 py-2 md:py-3 rounded-full text-sm md:text-base font-medium whitespace-nowrap transition-all duration-300
+                  ${selectedCategory === category
+                    ? "bg-[#1BB685] text-white shadow-md"
+                    : "bg-white text-[#424242] border border-border hover:bg-muted"
+                  }
+                `}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Blog Grid */}
+      <div 
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+        style={{ gap: "15px" }}
+      >
+        {filteredBlogs.map((blog) => (
+          <article
+            key={blog.id}
+            className="nectar-post-grid-item group relative overflow-hidden rounded-[10px] cursor-none"
+            style={{ height: "30vh", minHeight: "280px" }}
+            onMouseEnter={() => setIsCursorVisible(true)}
+            onMouseLeave={() => setIsCursorVisible(false)}
+          >
+            <div className="inner relative w-full h-full">
+              {/* Background Image Wrapper */}
+              <div className="nectar-post-grid-item-bg-wrap absolute inset-0">
+                <div className="nectar-post-grid-item-bg-wrap-inner absolute inset-0">
+                  <div className="nectar-post-grid-item-bg absolute inset-0">
+                    <Image
+                      src={blog.image}
+                      alt={blog.title}
+                      fill
+                      className="object-cover transition-transform duration-[400ms] ease-out group-hover:scale-110"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Dark Overlay */}
+              <div 
+                className="bg-overlay absolute inset-0 transition-all duration-[400ms] ease-out group-hover:opacity-50"
+                style={{ 
+                  backgroundColor: "#0a0a0a",
+                  opacity: 0.2
+                }}
+              />
+
+              {/* Content */}
+              <div className="content relative z-10 h-full flex flex-col justify-end p-6 text-white">
+                <Link href="#" className="nectar-post-grid-link absolute inset-0 z-20">
+                  <span className="sr-only">{blog.title}</span>
+                </Link>
+                
+                <span className="meta-category"></span>
+                
+                <div className="item-main relative z-10">
+                  <h3 className="post-heading text-xl md:text-2xl font-bold mb-4">
+                    <Link href="#" className="text-white hover:text-white/90 transition-colors">
+                      <span>{blog.title}</span>
+                    </Link>
+                  </h3>
+                  
+                  <span className="nectar-post-grid-item__meta-wrap flex items-center gap-3">
+                    <span className="meta-author flex items-center gap-2">
+                      <div className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center font-semibold text-sm border border-white/30 flex-shrink-0">
+                        {blog.authorInitials}
+                      </div>
+                      <span className="meta-author-inner">
+                        <Link href="#" className="meta-author-name text-sm md:text-base font-medium text-white hover:text-white/90 transition-colors">
+                          {blog.author}
+                        </Link>
+                      </span>
+                    </span>
+                    <span className="meta-date text-xs md:text-sm text-white/80">
+                      {blog.date}
+                    </span>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  )
+}
+
 // Image Carousel Component
 const ImageCarousel = () => {
   const carouselImages = [
@@ -384,10 +592,16 @@ export default function Home() {
 
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-4">
-            <Button size="lg" className="w-full md:w-3/4 text-base md:text-lg px-8 py-6 flex items-center bg-[#22253D] justify-center gap-2 hover:bg-[#22253D]/90 transition-colors text-white">
-              <Search className="h-5 w-5" />
-              Search
-            </Button>
+            <StarBorder
+              className="w-full md:w-3/4"
+              color="#6BB0AD"
+              speed="5s"
+            >
+              <Button size="lg" className="w-full text-base md:text-lg px-8 py-6 flex items-center bg-[#22253D] justify-center gap-2 hover:bg-[#22253D]/90 transition-colors text-white">
+                <Search className="h-5 w-5" />
+                Search
+              </Button>
+            </StarBorder>
           </div>
 
           {/* Degree Types with Navigation and Explore */}
@@ -1187,14 +1401,15 @@ export default function Home() {
               )}
             </div>
 
-            {/* Right Side - Image */}
+            {/* Right Side - Image with LightRays overlay on all tabs */}
             <div className="relative w-full h-96 lg:h-[500px] rounded-lg overflow-hidden">
+              {/* Background Image - changes based on active tab */}
               <Image
                 src={
                   activeTab === 'who' 
                     ? happyStudents 
-                    : activeTab === 'why' 
-                    ? smileyWoman 
+                    : activeTab === 'why'
+                    ? smileyWoman
                     : youngWomenWalking
                 }
                 alt={
@@ -1207,6 +1422,21 @@ export default function Home() {
                 fill
                 className="object-cover"
               />
+              {/* LightRays overlay - visible on all tabs */}
+              <div className="absolute inset-0 w-full h-full z-10">
+                <LightRays
+                  raysOrigin="top-center"
+                  raysColor="#00ffff"
+                  raysSpeed={1.5}
+                  lightSpread={0.8}
+                  rayLength={1.2}
+                  followMouse={true}
+                  mouseInfluence={0.1}
+                  noiseAmount={0.1}
+                  distortion={0.05}
+                  className="custom-rays"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -1259,6 +1489,22 @@ export default function Home() {
           </div>
           
           <CommentCarousel />
+        </div>
+      </section>
+
+      {/* Blogs & Resources Section */}
+      <section className="w-full py-8 md:py-16 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-8 md:mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-[#144449] mb-4">
+              BLOGS & RESOURCES
+            </h2>
+            <p className="text-lg text-[#424242] max-w-2xl mx-auto">
+              Discover expert insights, student stories, and valuable resources to guide your study abroad journey
+            </p>
+          </div>
+
+          <BlogsAndResourcesSection />
         </div>
       </section>
 
