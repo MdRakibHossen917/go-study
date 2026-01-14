@@ -13,6 +13,7 @@ import { BookOpen, Users, Star, MessageCircle, Quote } from "lucide-react"
 import CloudinaryPlayer from "@/components/CloudinaryPlayer"
 import StarBorder from "@/components/StarBorder"
 import LightRays from "@/components/LightRays"
+import TextType from "@/components/TextType"
 import internationalStudentEurope from "@/assests/InternationalStudents/internationalStudentEurope.jpg.jpg"
 import internationalStudentUSA from "@/assests/InternationalStudents/internationalStudentUSA.jpg"
 import adultLearnersScholarship from "@/assests/InternationalStudents/adultLearnersScholarship.jpg"
@@ -542,7 +543,15 @@ export default function Home() {
           {/* Main Heading */}
           <div className="space-y-4">
             <h1 className="text-4xl md:text-3xl lg:text-4xl font-bold text-[#424242] leading-tight">
-              110,000+ study abroad degrees, one perfect for you.
+              110,000+ study abroad degrees, <br /> <TextType 
+                text={["One perfect for you"]}
+                typingSpeed={125}
+                pauseDuration={2500}
+                showCursor={true}
+                cursorCharacter="|"
+                loop={true}
+                className="inline"
+              />
         </h1>
             <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold text-[#424242] my-5 md:my-0">
               Where will your studies take you?
