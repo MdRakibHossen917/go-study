@@ -4,6 +4,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { Home, ChevronRight } from "lucide-react"
 import adultLearnersScholarship from "@/assests/InternationalStudents/adultLearnersScholarship.jpg"
+import ApplyNowButton from "@/components/ApplyNowButton"
 
 export default function AdultLearnersScholarshipPage() {
   return (
@@ -206,12 +207,9 @@ export default function AdultLearnersScholarshipPage() {
 
             {/* CTA Button */}
             <div className="pt-6">
-              <Link 
-                href="/apply" 
+              <ApplyNowButton 
                 className="inline-block bg-primary text-primary-foreground px-8 py-3 rounded-lg font-semibold hover:bg-primary/90 transition-colors"
-              >
-                Take the First Step – Apply Now
-              </Link>
+              />
             </div>
 
             {/* View All Scholarships */}

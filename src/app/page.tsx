@@ -14,6 +14,7 @@ import CloudinaryPlayer from "@/components/CloudinaryPlayer"
 import StarBorder from "@/components/StarBorder"
 import LightRays from "@/components/LightRays"
 import TextType from "@/components/TextType"
+import ApplyNowButton from "@/components/ApplyNowButton"
 import internationalStudentEurope from "@/assests/InternationalStudents/internationalStudentEurope.jpg.jpg"
 import internationalStudentUSA from "@/assests/InternationalStudents/internationalStudentUSA.jpg"
 import adultLearnersScholarship from "@/assests/InternationalStudents/adultLearnersScholarship.jpg"
@@ -1044,9 +1045,12 @@ export default function Home() {
               <p className="text-base text-[#424242] leading-relaxed mb-6">
                 Fill out our simple and easy online application, then keep an eye on your email for a response from one of our advisors.
               </p>
-              <Link href="#" className="text-[#424242] font-semibold underline text-base hover:text-primary transition-colors inline-block">
+              <ApplyNowButton 
+                href="/apply"
+                className="text-[#424242] font-semibold underline text-base hover:text-primary transition-colors inline-block"
+              >
                 Apply Now
-              </Link>
+              </ApplyNowButton>
             </div>
 
             {/* Step 4 */}

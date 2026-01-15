@@ -1,12 +1,39 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { Send, FileText } from "lucide-react"
 import type { ApplyFormData } from "@/types/apply"
+import { auth } from "@/lib/auth"
 
 export default function ApplyPage() {
+  const router = useRouter()
+  const [isCheckingAuth, setIsCheckingAuth] = useState(true)
+  
+  useEffect(() => {
+    // Check authentication on mount
+    if (typeof window !== "undefined") {
+      if (!auth.isAuthenticated()) {
+        // Redirect to login with return URL
+        router.push(`/login?redirect=${encodeURIComponent("/apply")}`)
+      } else {
+        setIsCheckingAuth(false)
+      }
+    }
+  }, [router])
+
+  // Show loading state while checking authentication
+  if (isCheckingAuth) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <p className="text-lg text-muted-foreground">Loading...</p>
+        </div>
+      </div>
+    )
+  }
   const [formData, setFormData] = useState<ApplyFormData>({
     legalFirstName: "",
     legalMiddleName: "",

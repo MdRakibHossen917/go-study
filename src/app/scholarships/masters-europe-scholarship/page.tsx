@@ -4,6 +4,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { Home, ChevronRight } from "lucide-react"
 import internationalStudentEurope from "@/assests/InternationalStudents/internationalStudentEurope.jpg.jpg"
+import ApplyNowButton from "@/components/ApplyNowButton"
 
 export default function MastersEuropeScholarshipPage() {
   return (
@@ -300,12 +301,9 @@ export default function MastersEuropeScholarshipPage() {
 
             {/* CTA Button */}
             <div className="pt-6">
-              <Link 
-                href="/apply" 
+              <ApplyNowButton 
                 className="inline-block bg-primary text-primary-foreground px-8 py-3 rounded-lg font-semibold hover:bg-primary/90 transition-colors"
-              >
-                Take the First Step – Apply Now
-              </Link>
+              />
             </div>
 
             {/* View All Scholarships */}

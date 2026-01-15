@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/carousel"
 import { ReviewsCarousel } from "@/components/reviews-carousel"
 import { DestinationsCarousel } from "@/components/destinations-carousel"
+import ApplyNowButton from "@/components/ApplyNowButton"
 import ukImage from "@/assests/Image/ukImage.jpg"
 
 export const metadata: Metadata = {
@@ -114,11 +115,14 @@ export default function UnitedKingdomPage() {
                 </p>
               </div>
               <div className="mt-6 flex flex-col sm:flex-row gap-4">
-                <Link href="/apply">
+                <ApplyNowButton 
+                  variant="button"
+                  className="inline-block"
+                >
                   <Button size="lg" className="w-full sm:w-auto">
                     APPLY NOW
                   </Button>
-                </Link>
+                </ApplyNowButton>
                 <Link href="/inquiry">
                   <Button variant="outline" size="lg" className="w-full sm:w-auto">
                     GET MORE INFO

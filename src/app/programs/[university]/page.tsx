@@ -3,6 +3,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { ArrowLeft, Calendar, DollarSign, GraduationCap, MapPin, Clock, Users, Award, Globe, Building2, BookOpen, Heart, Download, FileText, Phone, Sparkles, ArrowRight, Star, ExternalLink, Check, BookMarked, GraduationCap as GradCap, FileCheck } from "lucide-react"
+import ApplyNowButton from "@/components/ApplyNowButton"
 import universityTokyo from "@/assests/UniversityFreeImage/universityTokyo.jpg"
 import wasedaUniversity from "@/assests/UniversityFreeImage/wasedaUniversity.jpg"
 import kyotoUniversity from "@/assests/UniversityFreeImage/kyotoUniversity.jpg"
@@ -802,11 +803,14 @@ export default async function ProgramDetailPage({ params }: { params: Promise<{ 
 
               {/* Action Buttons */}
                     <div className="flex gap-1.5 md:gap-3">
-                      <Link href="/apply">
+                      <ApplyNowButton 
+                        variant="button"
+                        className="inline-block"
+                      >
                         <Button size="sm" className="bg-[#22253D] hover:bg-[#22253D]/90 text-white text-xs md:text-sm px-3 md:px-6">
-                    Apply Now
-                  </Button>
-                </Link>
+                          Apply Now
+                        </Button>
+                      </ApplyNowButton>
                       <Link href={`https://www.${program.university.toLowerCase().replace(/\s+/g, '')}.edu`} target="_blank" rel="noopener noreferrer">
                         <Button variant="outline" size="sm" className="border-2 text-xs md:text-sm px-3 md:px-6">
                           <span className="hidden sm:inline">Visit Website</span>

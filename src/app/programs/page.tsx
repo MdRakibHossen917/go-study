@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useMemo } from 'react'
+import { useState, useEffect, useMemo, Suspense } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -311,7 +311,7 @@ const fieldSlugMap: Record<string, string> = {
   'world-languages': 'World Languages',
 }
 
-export default function ProgramsPage() {
+function ProgramsPageContent() {
   const searchParams = useSearchParams()
   const router = useRouter()
   
@@ -866,5 +866,19 @@ export default function ProgramsPage() {
         </div>
       </div>
     </div>
+  )
+}
+
+export default function ProgramsPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="text-center">
+          <p className="text-lg text-muted-foreground">Loading...</p>
+        </div>
+      </div>
+    }>
+      <ProgramsPageContent />
+    </Suspense>
   )
 }
