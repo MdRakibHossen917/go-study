@@ -13,9 +13,7 @@ import { DestinationsCarousel } from "@/components/destinations-carousel"
 import { HealthNavigationTabs } from "@/components/health-navigation-tabs"
 import useEmblaCarousel from "embla-carousel-react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
-// TODO: Replace with actual health.jpg image file
-// Temporarily using Education.jpg as placeholder - replace with health.jpg when available
-import health from "@/assests/Subjects/Education.jpg"
+import health from "@/assests/Subjects/health.jpg"
 import lciBarcelona from "@/assests/UniversityCampus/LCI Barcelona.jpg"
 import universityOfPecs from "@/assests/UniversityCampus/University of Pécs.jpg"
 import universidadLCI from "@/assests/UniversityCampus/Universidad LCI.jpg"

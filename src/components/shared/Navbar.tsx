@@ -604,7 +604,7 @@ const Navbar = () => {
             ) : (
               <Link
                 href="/login"
-                className="flex items-center gap-3 py-3 px-4 text-white text-sm font-semibold uppercase border-b border-teal-600/50 hover:bg-teal-600/50 transition-colors"
+                className="flex items-center gap-3 py-3 px-4 text-white text-sm font-semibold uppercase border-b border-teal-600/50 bg-[#1BB685] hover:bg-[#1BB685]/90 transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 <LogIn className="h-5 w-5" />
@@ -1252,7 +1252,7 @@ const Navbar = () => {
                 </div>
               ) : (
                 <Link href="/login">
-                  <Button variant="default" size="sm" className="text-xs sm:text-sm bg-[#282F4A] hover:bg-[#282F4A]/90 text-white">
+                  <Button variant="default" size="sm" className="text-xs sm:text-sm bg-[#1BB685] hover:bg-[#1BB685]/90 text-white">
                     <LogIn className="h-3 w-3 sm:h-4 sm:w-4 mr-1" />
                     LOGIN
                   </Button>
