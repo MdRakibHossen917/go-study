@@ -11,29 +11,6 @@ import { auth } from "@/lib/auth"
 export default function ApplyPage() {
   const router = useRouter()
   const [isCheckingAuth, setIsCheckingAuth] = useState(true)
-  
-  useEffect(() => {
-    // Check authentication on mount
-    if (typeof window !== "undefined") {
-      if (!auth.isAuthenticated()) {
-        // Redirect to login with return URL
-        router.push(`/login?redirect=${encodeURIComponent("/apply")}`)
-      } else {
-        setIsCheckingAuth(false)
-      }
-    }
-  }, [router])
-
-  // Show loading state while checking authentication
-  if (isCheckingAuth) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <p className="text-lg text-muted-foreground">Loading...</p>
-        </div>
-      </div>
-    )
-  }
   const [formData, setFormData] = useState<ApplyFormData>({
     legalFirstName: "",
     legalMiddleName: "",
@@ -80,6 +57,29 @@ export default function ApplyPage() {
 
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [errors, setErrors] = useState<Record<string, string>>({})
+
+  useEffect(() => {
+    // Check authentication on mount
+    if (typeof window !== "undefined") {
+      if (!auth.isAuthenticated()) {
+        // Redirect to login with return URL
+        router.push(`/login?redirect=${encodeURIComponent("/apply")}`)
+      } else {
+        setIsCheckingAuth(false)
+      }
+    }
+  }, [router])
+
+  // Show loading state while checking authentication
+  if (isCheckingAuth) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <p className="text-lg text-muted-foreground">Loading...</p>
+        </div>
+      </div>
+    )
+  }
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>

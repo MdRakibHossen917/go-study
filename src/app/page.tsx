@@ -715,7 +715,7 @@ export default function Home() {
       </section>
 
       {/* Featured Study Abroad Programs Section */}
-      <section className="w-full ">
+      <section id="featured-programs" className="w-full ">
         <div className="container mx-auto  ">
           <div className="text-left space-y-6 mb-8">
             <h2 className="text-3xl md:text-4xl font-bold text-[#424242]">
@@ -729,6 +729,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               {
+                slug: "udayana-university-bali",
                 image: udayanaUniversity,
                 title: "Study Abroad at Udayana University in Bali",
                 duration: "Fall Semester, Spring Semester",
@@ -736,6 +737,7 @@ export default function Home() {
                 price: "Semester: $9,995"
               },
               {
+                slug: "lci-barcelona-spain",
                 image: lciBarcelona,
                 title: "Study Abroad at LCI Barcelona in Spain",
                 duration: "Fall Semester, Spring Semester",
@@ -743,6 +745,7 @@ export default function Home() {
                 price: "Semester: $14,495"
               },
               {
+                slug: "university-of-pecs-hungary",
                 image: universityOfPecs,
                 title: "Study Abroad at University of Pécs in Hungary",
                 duration: "Fall Semester, Spring Semester, Summer Break",
@@ -750,6 +753,7 @@ export default function Home() {
                 price: "Semester: $8,495"
               },
               {
+                slug: "universidad-lci-veritas-costa-rica",
                 image: universidadLCI,
                 title: "Study Abroad at Universidad LCI Veritas in Costa Rica",
                 duration: "Fall Semester, Spring Semester, Summer Break, Winter Break",
@@ -757,6 +761,7 @@ export default function Home() {
                 price: "Semester: $10,995"
               },
               {
+                slug: "al-akhawayn-university-morocco",
                 image: alAkhawaynUniversity,
                 title: "Study Abroad at Al Akhawayn University in Morocco",
                 duration: "Fall Semester, Spring Semester",
@@ -764,6 +769,7 @@ export default function Home() {
                 price: "Semester: $10,995"
               },
               {
+                slug: "mahidol-university-thailand",
                 image: mahidolUniversity,
                 title: "Study Abroad at Mahidol University in Thailand",
                 duration: "Fall Semester, Spring Semester, Summer Break",
@@ -771,41 +777,39 @@ export default function Home() {
                 price: "Semester: $8,495"
               }
             ].map((program, index) => (
-              <div
+              <Link
                 key={index}
-                className="border border-border rounded-lg overflow-hidden bg-background hover:shadow-lg transition-shadow group flex flex-col"
+                href={`/featured-programs/${program.slug}`}
+                className="group relative border border-border/60 rounded-xl overflow-hidden bg-background hover:border-primary/30 hover:shadow-xl transition-all duration-300 flex flex-col cursor-pointer transform hover:-translate-y-1"
               >
-                <div className="relative w-full h-48">
+                <div className="relative w-full h-52 overflow-hidden">
                   <Image
                     src={program.image}
                     alt={program.title}
                     fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    className="object-cover group-hover:scale-110 transition-transform duration-500"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
                 <div className="p-6 flex flex-col flex-grow">
-                  <h3 className="text-xl font-bold text-[#424242] mb-2">
+                  <h3 className="text-xl font-bold text-[#424242] mb-2 group-hover:text-primary transition-colors duration-300">
                     {program.title}
                   </h3>
-                  <p className="text-sm text-muted-foreground mb-3">
+                  <p className="text-sm text-muted-foreground mb-3 flex items-center gap-1">
+                    <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#1BB685]"></span>
                     {program.duration}
                   </p>
-                  <p className="text-base text-[#424242] leading-relaxed mb-4 flex-grow">
+                  <p className="text-base text-[#424242] leading-relaxed mb-4 flex-grow line-clamp-2">
                     {program.description}
                   </p>
-                  <div className="mt-auto">
-                    <p className="text-lg font-semibold text-[#424242] bg-[#E7E7E7] px-4 py-2 rounded inline-block">
+                  <div className="mt-auto pt-4 border-t border-border/50">
+                    <p className="text-lg font-semibold text-[#1BB685] bg-[#1BB685]/10 hover:bg-[#1BB685]/20 px-4 py-2.5 rounded-lg inline-block transition-colors duration-300">
                       {program.price}
                     </p>
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
-          </div>
-          <div className="text-right mt-8">
-            <Link href="#" className="text-[#1BB685] font-medium underline text-base inline-flex items-center gap-1 hover:text-[#1BB685]/80 transition-colors">
-              VIEW ALL AVAILABLE PROGRAMS
-            </Link>
           </div>
         </div>
       </section>
@@ -1536,7 +1540,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-4xl mx-auto" suppressHydrationWarning>
             <Accordion type="single" collapsible className="w-full space-y-4">
               <AccordionItem value="item-1" className="border border-gray-200 rounded-lg px-6 bg-white shadow-sm">
                 <AccordionTrigger className="text-left text-lg font-semibold text-[#424242] hover:no-underline">

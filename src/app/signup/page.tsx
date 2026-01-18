@@ -12,8 +12,7 @@ import { auth } from "@/lib/auth"
 import { useAuth } from "@/contexts/AuthContext"
 
 export default function SignupPage() {
-  const router = useRouter()
-  const { login: contextLogin } = useAuth()
+  const { signup } = useAuth()
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -57,27 +56,10 @@ export default function SignupPage() {
     setIsLoading(true)
     
     try {
-      const result = await auth.register(
-        formData.name,
-        formData.email,
-        formData.password
-      )
-      
-      if (!result.success) {
-        setError(result.message || "Registration failed. Please try again.")
-        setIsLoading(false)
-        return
-      }
-      
-      // Registration successful, update global auth state if token was returned
-      if (result.token && result.user) {
-        contextLogin(result.user, result.token)
-      }
-      
-      // Redirect to home page
-      router.push("/")
+      await signup(formData.name, formData.email, formData.password)
+      // signup() already handles redirect to /profile
     } catch (err) {
-      setError("An unexpected error occurred. Please try again.")
+      setError(err instanceof Error ? err.message : "Registration failed. Please try again.")
       setIsLoading(false)
     }
   }

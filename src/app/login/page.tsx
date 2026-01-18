@@ -14,7 +14,7 @@ import { useAuth } from "@/contexts/AuthContext"
 function LoginForm() {
   const router = useRouter()
   const searchParams = useSearchParams()
-  const { login: contextLogin } = useAuth()
+  const { login } = useAuth()
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [showPassword, setShowPassword] = useState(false)
@@ -26,10 +26,8 @@ function LoginForm() {
     // Check if user was redirected from signup
     if (searchParams.get("registered") === "true") {
       setSuccessMessage("Account created successfully! Please sign in.")
-      // Clear the query parameter from URL
-      router.replace("/login", { scroll: false })
     }
-  }, [searchParams, router])
+  }, [searchParams])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -37,26 +35,21 @@ function LoginForm() {
     setIsLoading(true)
     
     try {
-      const result = await auth.login(email, password)
+      const redirectUrl = searchParams.get("redirect")
+      await login(email, password)
       
-      if (!result.success) {
-        setError(result.message || "Login failed. Please check your credentials.")
-        setIsLoading(false)
-        return
+      // Check for redirect parameter and redirect accordingly
+      // Use a slightly longer delay to ensure auth state is updated
+      if (redirectUrl) {
+        // Decode the redirect URL and navigate there
+        const decodedUrl = decodeURIComponent(redirectUrl)
+        setTimeout(() => {
+          router.replace(decodedUrl)
+        }, 200)
       }
-      
-      // Update global auth state
-      if (result.user && result.token) {
-        contextLogin(result.user, result.token)
-      }
-      
-      // Get redirect URL from query params, default to /profile
-      const redirectUrl = searchParams.get("redirect") || "/profile"
-      
-      // Redirect to the intended page or profile page
-      router.push(decodeURIComponent(redirectUrl))
+      // If no redirect URL, the AuthContext will redirect to "/" (home page)
     } catch (err) {
-      setError("An unexpected error occurred. Please try again.")
+      setError(err instanceof Error ? err.message : "Login failed. Please check your credentials.")
       setIsLoading(false)
     }
   }

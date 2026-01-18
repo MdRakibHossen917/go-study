@@ -1,87 +1,164 @@
 "use client"
 
 import { createContext, useContext, useState, useEffect, ReactNode } from "react"
-import { auth, User } from "@/lib/auth"
+import { useRouter } from "next/navigation"
 
-interface AuthContextType {
-  isAuthenticated: boolean
-  user: User | null
-  login: (user: User, token: string) => void
-  logout: () => void
-  updateUser: (user: User) => void
-  refreshAuth: () => void
+interface User {
+  id?: string
+  name?: string
+  email: string
 }
 
-const AuthContext = createContext<AuthContextType | undefined>(undefined)
+interface AuthContextType {
+  user: User | null
+  token: string | null
+  login: (email: string, password: string) => Promise<void>
+  signup: (name: string, email: string, password: string) => Promise<void>
+  logout: () => void
+}
+
+const AuthContext = createContext<AuthContextType>({} as AuthContextType)
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const router = useRouter()
   const [user, setUser] = useState<User | null>(null)
+  const [token, setToken] = useState<string | null>(null)
 
-  // Check authentication status on mount and when needed
-  const refreshAuth = () => {
-    const authenticated = auth.isAuthenticated()
-    const currentUser = auth.getUser()
-    setIsAuthenticated(authenticated)
-    setUser(currentUser)
-  }
-
+  // Load user on mount and listen for storage changes
   useEffect(() => {
-    refreshAuth()
-    
-    // Listen for storage changes (for logout from other tabs)
-    const handleStorageChange = (e: StorageEvent) => {
-      if (e.key === "bideshstudy_token" || e.key === "bideshstudy_user") {
-        refreshAuth()
+    const loadUser = () => {
+      if (typeof window !== "undefined") {
+        const savedToken = localStorage.getItem("bideshstudy_token")
+        const savedUser = localStorage.getItem("bideshstudy_user")
+        if (savedToken && savedUser && savedUser !== "undefined" && savedUser !== "null") {
+          try {
+            const parsedUser = JSON.parse(savedUser)
+            if (parsedUser && typeof parsedUser === "object") {
+              setToken(savedToken)
+              setUser(parsedUser)
+            } else {
+              setToken(null)
+              setUser(null)
+            }
+          } catch (error) {
+            console.error("Error parsing saved user:", error)
+            // Clear invalid data
+            localStorage.removeItem("bideshstudy_token")
+            localStorage.removeItem("bideshstudy_user")
+            localStorage.removeItem("bideshstudy_auth")
+            setToken(null)
+            setUser(null)
+          }
+        } else {
+          setToken(null)
+          setUser(null)
+        }
       }
     }
-    
+
+    // Load immediately
+    loadUser()
+
+    // Listen for storage changes (for cross-tab sync and immediate updates)
+    const handleStorageChange = (e: StorageEvent) => {
+      if (e.key === "bideshstudy_token" || e.key === "bideshstudy_user" || e.key === "bideshstudy_auth") {
+        loadUser()
+      }
+    }
+
+    // Listen for custom auth events (for same-tab updates)
+    const handleAuthEvent = () => {
+      loadUser()
+    }
+
     window.addEventListener("storage", handleStorageChange)
-    
-    // Check auth status periodically
-    const interval = setInterval(refreshAuth, 2000)
-    
+    window.addEventListener("authStateChanged", handleAuthEvent)
+
     return () => {
       window.removeEventListener("storage", handleStorageChange)
-      clearInterval(interval)
+      window.removeEventListener("authStateChanged", handleAuthEvent)
     }
   }, [])
 
-  const login = (userData: User, token: string) => {
-    // Store user and token in localStorage
-    if (typeof window !== "undefined") {
-      localStorage.setItem("bideshstudy_auth", "true")
-      localStorage.setItem("bideshstudy_user", JSON.stringify(userData))
-      localStorage.setItem("bideshstudy_token", token)
+  const login = async (email: string, password: string) => {
+    const baseUrl = typeof window !== "undefined" ? window.location.origin : ""
+    const res = await fetch(`${baseUrl}/api/auth/login`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password }),
+    })
+
+    const data = await res.json()
+
+    if (data.success) {
+      // Update state first - use functional updates to ensure state is set
+      setUser(data.user)
+      setToken(data.token)
+      if (typeof window !== "undefined") {
+        localStorage.setItem("bideshstudy_token", data.token)
+        localStorage.setItem("bideshstudy_user", JSON.stringify(data.user))
+        localStorage.setItem("bideshstudy_auth", "true")
+        // Dispatch event multiple times to ensure all components catch it
+        window.dispatchEvent(new Event("authStateChanged"))
+        setTimeout(() => {
+          window.dispatchEvent(new Event("authStateChanged"))
+        }, 50)
+      }
+      // Small delay to ensure state propagates before redirect
+      setTimeout(() => {
+        router.push("/")
+      }, 150)
+    } else {
+      throw new Error(data.message || "Login failed")
     }
-    setIsAuthenticated(true)
-    setUser(userData)
+  }
+
+  const signup = async (name: string, email: string, password: string) => {
+    const baseUrl = typeof window !== "undefined" ? window.location.origin : ""
+    const res = await fetch(`${baseUrl}/api/auth/register`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, email, password }),
+    })
+
+    const data = await res.json()
+
+    if (data.success) {
+      // Update state first - use functional updates to ensure state is set
+      setUser(data.user)
+      setToken(data.token)
+      if (typeof window !== "undefined") {
+        localStorage.setItem("bideshstudy_token", data.token)
+        localStorage.setItem("bideshstudy_user", JSON.stringify(data.user))
+        localStorage.setItem("bideshstudy_auth", "true")
+        // Dispatch event multiple times to ensure all components catch it
+        window.dispatchEvent(new Event("authStateChanged"))
+        setTimeout(() => {
+          window.dispatchEvent(new Event("authStateChanged"))
+        }, 50)
+      }
+      // Small delay to ensure state propagates before redirect
+      setTimeout(() => {
+        router.push("/")
+      }, 150)
+    } else {
+      throw new Error(data.message || "Registration failed")
+    }
   }
 
   const logout = () => {
-    auth.logout()
-    setIsAuthenticated(false)
     setUser(null)
-  }
-
-  const updateUser = (userData: User) => {
-    setUser(userData)
+    setToken(null)
     if (typeof window !== "undefined") {
-      localStorage.setItem("bideshstudy_user", JSON.stringify(userData))
+      localStorage.removeItem("bideshstudy_token")
+      localStorage.removeItem("bideshstudy_user")
+      localStorage.removeItem("bideshstudy_auth")
     }
+    router.push("/")
   }
 
   return (
-    <AuthContext.Provider
-      value={{
-        isAuthenticated,
-        user,
-        login,
-        logout,
-        updateUser,
-        refreshAuth,
-      }}
-    >
+    <AuthContext.Provider value={{ user, token, login, signup, logout }}>
       {children}
     </AuthContext.Provider>
   )

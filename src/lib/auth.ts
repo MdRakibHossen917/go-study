@@ -31,7 +31,9 @@ export const auth = {
   isAuthenticated: (): boolean => {
     if (typeof window === "undefined") return false
     const token = localStorage.getItem(AUTH_TOKEN_KEY)
-    return !!token
+    const authFlag = localStorage.getItem(AUTH_KEY)
+    // Check both token and auth flag for reliability
+    return !!(token && authFlag === "true")
   },
 
   // Get current user

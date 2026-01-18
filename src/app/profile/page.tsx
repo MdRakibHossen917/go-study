@@ -6,9 +6,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Label } from "@/components/ui/label"
-import { Save, LogOut, GraduationCap, BookOpen, Award, Briefcase, TrendingUp } from "lucide-react"
+import { Save, LogOut, GraduationCap, BookOpen, Award, Briefcase, TrendingUp, User, Mail, Calendar } from "lucide-react"
 import { useAuth } from "@/contexts/AuthContext"
-import { auth } from "@/lib/auth"
 
 interface ProfileData {
   ssc?: string
@@ -20,9 +19,15 @@ interface ProfileData {
 
 export default function ProfilePage() {
   const router = useRouter()
-  const { isAuthenticated, logout } = useAuth()
+  const { user, token, logout } = useAuth()
+  
+  // Initialize state first
   const [isLoading, setIsLoading] = useState(true)
   const [isSaving, setIsSaving] = useState(false)
+  
+  // Use user directly from context
+  const currentUser = user
+  
   const [formData, setFormData] = useState<ProfileData>({
     ssc: "",
     hsc: "",
@@ -35,15 +40,16 @@ export default function ProfilePage() {
   const [completionPercentage, setCompletionPercentage] = useState(0)
 
   useEffect(() => {
-    // Check authentication
-    if (!isAuthenticated) {
+    if (!user || !token) {
       router.push("/login?redirect=/profile")
       return
     }
 
-    // Fetch profile data from API
+    // Stop loading and fetch profile data
+    setIsLoading(false)
     fetchProfile()
-  }, [isAuthenticated, router])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user, token, router])
 
   // Calculate completion percentage
   useEffect(() => {
@@ -54,15 +60,14 @@ export default function ProfilePage() {
   }, [formData])
 
   const fetchProfile = async () => {
+    if (!token) {
+      setIsLoading(false)
+      return
+    }
+
     try {
       const baseUrl = typeof window !== "undefined" ? window.location.origin : ""
-      const token = auth.getToken()
       
-      if (!token) {
-        setIsLoading(false)
-        return
-      }
-
       const response = await fetch(`${baseUrl}/api/profile`, {
         method: "GET",
         headers: {
@@ -82,9 +87,12 @@ export default function ProfilePage() {
             projects: data.profile.projects || "",
           })
         }
+      } else {
+        // If profile doesn't exist yet, that's okay - user can create it
       }
     } catch (error) {
       console.error("Error fetching profile:", error)
+      // Don't redirect on error, just log it - user might not have profile yet
     } finally {
       setIsLoading(false)
     }
@@ -109,14 +117,13 @@ export default function ProfilePage() {
     setIsSaving(true)
 
     try {
-      const baseUrl = typeof window !== "undefined" ? window.location.origin : ""
-      const token = auth.getToken()
-
       if (!token) {
         setError("You must be logged in to save your profile")
         setIsSaving(false)
         return
       }
+
+      const baseUrl = typeof window !== "undefined" ? window.location.origin : ""
 
       // Check if profile exists (GET request)
       const checkResponse = await fetch(`${baseUrl}/api/profile`, {
@@ -176,6 +183,7 @@ export default function ProfilePage() {
     return (
       <div className="min-h-[calc(100vh-200px)] flex items-center justify-center py-12 px-4">
         <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#1BB685] mx-auto mb-4"></div>
           <p className="text-lg text-muted-foreground">Loading profile...</p>
         </div>
       </div>
@@ -202,6 +210,56 @@ export default function ProfilePage() {
             Logout
           </Button>
         </div>
+
+        {/* User Information Card */}
+        <Card className="border-2 shadow-lg bg-gradient-to-br from-[#1BB685]/5 to-[#0D9488]/5">
+          <CardHeader>
+            <CardTitle className="text-xl text-[#424242] flex items-center gap-2">
+              <User className="h-5 w-5 text-[#1BB685]" />
+              User Information
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="space-y-1">
+                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <User className="h-4 w-4" />
+                  <span>Full Name</span>
+                </div>
+                <p className="text-lg font-semibold text-[#424242]">
+                  {user?.name || "Not provided"}
+                </p>
+              </div>
+              <div className="space-y-1">
+                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <Mail className="h-4 w-4" />
+                  <span>Email Address</span>
+                </div>
+                <p className="text-lg font-semibold text-[#424242]">
+                  {user?.email || "Not provided"}
+                </p>
+              </div>
+              <div className="space-y-1">
+                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <Calendar className="h-4 w-4" />
+                  <span>Account Status</span>
+                </div>
+                <p className="text-lg font-semibold text-green-600">
+                  {user && token ? "Active" : "Inactive"}
+                </p>
+              </div>
+              <div className="space-y-1">
+                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <Award className="h-4 w-4" />
+                  <span>User ID</span>
+                </div>
+                <p className="text-lg font-semibold text-[#424242]">
+                  {user?.id || user?.email?.split("@")[0] || "N/A"}
+                </p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
 
         {/* Profile Completion Card */}
         <Card className="border-2 shadow-lg bg-gradient-to-r from-[#1BB685]/10 to-[#0D9488]/10">

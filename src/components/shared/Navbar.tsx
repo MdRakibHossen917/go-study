@@ -23,14 +23,70 @@ import {
 
 const Navbar = () => {
   const router = useRouter()
-  const { isAuthenticated, user, logout } = useAuth()
+  const { user, token, logout } = useAuth()
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const [isHovering, setIsHovering] = useState(false)
   const [isTransitioning, setIsTransitioning] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [openMobileSubmenu, setOpenMobileSubmenu] = useState<string | null>(null)
   const [isScrolled, setIsScrolled] = useState(false)
+  const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false)
   const destinationImages = [imageUniOne, imageUniTwo, imageUniThree]
+
+  // Get auth state directly - check both context and localStorage
+  const getAuthState = () => {
+    // First check context (most reliable)
+    if (user && token) {
+      return { isAuthenticated: true, currentUser: user }
+    }
+    
+    // Fallback to localStorage (updated immediately on login)
+    if (typeof window !== "undefined") {
+      try {
+        const savedUser = localStorage.getItem("bideshstudy_user")
+        const savedToken = localStorage.getItem("bideshstudy_token")
+        
+        if (savedToken && savedUser && savedUser !== "undefined" && savedUser !== "null") {
+          try {
+            const parsedUser = JSON.parse(savedUser)
+            if (parsedUser && typeof parsedUser === "object") {
+              return { isAuthenticated: true, currentUser: parsedUser }
+            }
+          } catch (e) {
+            // Parsing failed
+          }
+        }
+      } catch (error) {
+        // Error reading from localStorage
+      }
+    }
+    
+    return { isAuthenticated: false, currentUser: null }
+  }
+
+  // Force re-render on auth changes
+  const [, forceUpdate] = useState(0)
+  
+  useEffect(() => {
+    const handleAuthChange = () => {
+      forceUpdate(prev => prev + 1)
+    }
+    
+    window.addEventListener("authStateChanged", handleAuthChange)
+    
+    // Check very frequently to catch updates
+    const interval = setInterval(() => {
+      forceUpdate(prev => prev + 1)
+    }, 100)
+    
+    return () => {
+      window.removeEventListener("authStateChanged", handleAuthChange)
+      clearInterval(interval)
+    }
+  }, [])
+
+  // Get current auth state
+  const { isAuthenticated, currentUser } = getAuthState()
 
   const handleLogout = () => {
     logout()
@@ -524,16 +580,7 @@ const Navbar = () => {
             </div>
 
             {/* Simple Links */}
-            <Link
-              href="/search"
-              className="flex items-center gap-3 py-3 px-4 text-white text-sm font-semibold uppercase border-b border-teal-600/50 hover:bg-teal-600/50 transition-colors"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              <Search className="h-5 w-5" />
-              SEARCH
-            </Link>
-
-            {isAuthenticated ? (
+              {isAuthenticated && currentUser ? (
               <>
                 <Link
                   href="/profile"
@@ -1159,31 +1206,53 @@ const Navbar = () => {
 
             {/* Right side - Action buttons (hidden on mobile) */}
             <div className="hidden md:flex items-center gap-4">
-              <Button variant="ghost" size="sm" className="text-xs sm:text-sm">
-                <Search className="h-3 w-3 sm:h-4 sm:w-4" />
-                <span className="hidden sm:inline">SEARCH</span>
-              </Button>
-              {isAuthenticated ? (
-                <>
+              {isAuthenticated && currentUser ? (
+                <div className="relative">
                   <Link href="/profile">
-                    <Button variant="default" size="sm" className="text-xs sm:text-sm">
-                      <User className="h-3 w-3 sm:h-4 sm:w-4 mr-1" />
+                    <Button 
+                      variant="default" 
+                      size="sm" 
+                      className="text-xs sm:text-sm flex items-center gap-1"
+                      onMouseEnter={() => setIsProfileDropdownOpen(true)}
+                      onMouseLeave={() => setIsProfileDropdownOpen(false)}
+                    >
+                      <User className="h-3 w-3 sm:h-4 sm:w-4" />
                       PROFILE
+                      <ChevronDown className="h-3 w-3 sm:h-4 sm:w-4" />
                     </Button>
                   </Link>
-                  <Button 
-                    variant="outline" 
-                    size="sm" 
-                    className="text-xs sm:text-sm"
-                    onClick={handleLogout}
-                  >
-                    <LogOut className="h-3 w-3 sm:h-4 sm:w-4 mr-1" />
-                    LOGOUT
-                  </Button>
-                </>
+                  {isProfileDropdownOpen && (
+                    <div 
+                      className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg border border-gray-200 z-50"
+                      onMouseEnter={() => setIsProfileDropdownOpen(true)}
+                      onMouseLeave={() => setIsProfileDropdownOpen(false)}
+                    >
+                      <div className="py-1">
+                        <div className="px-4 py-2 border-b border-gray-100">
+                          <p className="text-sm font-medium text-[#424242]">
+                            {currentUser?.name || currentUser?.email || user?.name || user?.email}
+                          </p>
+                          <p className="text-xs text-muted-foreground">
+                            {currentUser?.email || user?.email}
+                          </p>
+                        </div>
+                        <button
+                          onClick={() => {
+                            handleLogout()
+                            setIsProfileDropdownOpen(false)
+                          }}
+                          className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 flex items-center gap-2"
+                        >
+                          <LogOut className="h-4 w-4" />
+                          LOGOUT
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                </div>
               ) : (
                 <Link href="/login">
-                  <Button variant="default" size="sm" className="text-xs sm:text-sm">
+                  <Button variant="default" size="sm" className="text-xs sm:text-sm bg-[#282F4A] hover:bg-[#282F4A]/90 text-white">
                     <LogIn className="h-3 w-3 sm:h-4 sm:w-4 mr-1" />
                     LOGIN
                   </Button>
