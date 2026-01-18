@@ -1,14 +1,17 @@
 "use client"
 
 import { useState } from "react"
+import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Label } from "@/components/ui/label"
 import { Eye, EyeOff, Mail, Lock, User } from "lucide-react"
+import { auth } from "@/lib/auth"
 
 export default function SignupPage() {
+  const router = useRouter()
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -19,36 +22,63 @@ export default function SignupPage() {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [acceptTerms, setAcceptTerms] = useState(false)
+  const [error, setError] = useState("")
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     })
+    // Clear error when user starts typing
+    if (error) setError("")
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    setError("")
     
     if (formData.password !== formData.confirmPassword) {
-      alert("Passwords do not match")
+      setError("Passwords do not match")
+      return
+    }
+
+    if (formData.password.length < 8) {
+      setError("Password must be at least 8 characters long")
       return
     }
 
     if (!acceptTerms) {
-      alert("Please accept the terms and conditions")
+      setError("Please accept the terms and conditions")
       return
     }
 
     setIsLoading(true)
     
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1000))
-    
-    // TODO: Implement actual signup logic
-    console.log("Signup attempt:", formData)
-    
-    setIsLoading(false)
+    try {
+      const result = await auth.register(
+        formData.name,
+        formData.email,
+        formData.password
+      )
+      
+      if (!result.success) {
+        setError(result.message || "Registration failed. Please try again.")
+        setIsLoading(false)
+        return
+      }
+      
+      // Registration successful, redirect to login or apply page
+      // If token was returned, user is already logged in
+      if (result.token) {
+        router.push("/apply")
+      } else {
+        // Redirect to login page with success message
+        router.push("/login?registered=true")
+      }
+    } catch (err) {
+      setError("An unexpected error occurred. Please try again.")
+      setIsLoading(false)
+    }
   }
 
   return (
@@ -168,6 +198,12 @@ export default function SignupPage() {
                   </button>
                 </div>
               </div>
+
+              {error && (
+                <div className="p-3 text-sm text-red-600 bg-red-50 border border-red-200 rounded-md">
+                  {error}
+                </div>
+              )}
 
               <div className="flex items-start">
                 <input

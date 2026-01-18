@@ -17,24 +17,41 @@ function LoginForm() {
   const [password, setPassword] = useState("")
   const [showPassword, setShowPassword] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState("")
+  const [successMessage, setSuccessMessage] = useState("")
+
+  useEffect(() => {
+    // Check if user was redirected from signup
+    if (searchParams.get("registered") === "true") {
+      setSuccessMessage("Account created successfully! Please sign in.")
+      // Clear the query parameter from URL
+      router.replace("/login", { scroll: false })
+    }
+  }, [searchParams, router])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    setError("")
     setIsLoading(true)
     
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1000))
-    
-    // Login user (in production, this would verify credentials with backend)
-    auth.login({ email, name: email.split("@")[0] })
-    
-    // Get redirect URL from query params, default to /apply
-    const redirectUrl = searchParams.get("redirect") || "/apply"
-    
-    setIsLoading(false)
-    
-    // Redirect to the intended page or apply page
-    router.push(decodeURIComponent(redirectUrl))
+    try {
+      const result = await auth.login(email, password)
+      
+      if (!result.success) {
+        setError(result.message || "Login failed. Please check your credentials.")
+        setIsLoading(false)
+        return
+      }
+      
+      // Get redirect URL from query params, default to /apply
+      const redirectUrl = searchParams.get("redirect") || "/apply"
+      
+      // Redirect to the intended page or apply page
+      router.push(decodeURIComponent(redirectUrl))
+    } catch (err) {
+      setError("An unexpected error occurred. Please try again.")
+      setIsLoading(false)
+    }
   }
 
   return (
@@ -98,6 +115,18 @@ function LoginForm() {
                   </button>
                 </div>
               </div>
+
+              {successMessage && (
+                <div className="p-3 text-sm text-green-600 bg-green-50 border border-green-200 rounded-md">
+                  {successMessage}
+                </div>
+              )}
+
+              {error && (
+                <div className="p-3 text-sm text-red-600 bg-red-50 border border-red-200 rounded-md">
+                  {error}
+                </div>
+              )}
 
               <div className="flex items-center justify-between">
                 <div className="flex items-center">
