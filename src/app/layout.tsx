@@ -5,6 +5,7 @@ import "./globals.css";
 import Navbar from "@/components/shared/Navbar";
 import Footer from "@/components/shared/Footer";
 import { SocialCard } from "@/components/social-card";
+import { AuthProviderWrapper } from "@/components/providers/AuthProviderWrapper";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -37,12 +38,14 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         suppressHydrationWarning
       >
-        <Navbar/>
-        <main className="min-h-screen max-w-7xl mx-auto px-4 pt-16">
-        {children}
-        </main>
-        <SocialCard />
-        <Footer/>
+        <AuthProviderWrapper>
+          <Navbar/>
+          <main className="min-h-screen max-w-7xl mx-auto px-4 pt-16">
+          {children}
+          </main>
+          <SocialCard />
+          <Footer/>
+        </AuthProviderWrapper>
         {/* Cloudinary Upload Widget */}
         <Script 
           src="https://widget.cloudinary.com/v2.0/global/all.js" 

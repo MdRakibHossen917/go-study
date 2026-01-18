@@ -2,9 +2,11 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import { Search, Menu, X, Facebook, Youtube, Instagram, Mail, Globe, BookOpen, Calendar, Settings, Info, FileText, ChevronDown, ChevronUp, LogIn } from "lucide-react"
+import { Search, Menu, X, Facebook, Youtube, Instagram, Mail, Globe, BookOpen, Calendar, Settings, Info, FileText, ChevronDown, ChevronUp, LogIn, User, LogOut } from "lucide-react"
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
+import { useAuth } from "@/contexts/AuthContext"
+import { useRouter } from "next/navigation"
 import imageUniOne from "@/assests/Image/imageUniOne.jpg"
 import imageUniTwo from "@/assests/Image/imageUniTwo.jpg"
 import imageUniThree from "@/assests/Image/imageUniThree.jpg"
@@ -20,6 +22,8 @@ import {
 } from "@/components/ui/navigation-menu"
 
 const Navbar = () => {
+  const router = useRouter()
+  const { isAuthenticated, user, logout } = useAuth()
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const [isHovering, setIsHovering] = useState(false)
   const [isTransitioning, setIsTransitioning] = useState(false)
@@ -27,6 +31,11 @@ const Navbar = () => {
   const [openMobileSubmenu, setOpenMobileSubmenu] = useState<string | null>(null)
   const [isScrolled, setIsScrolled] = useState(false)
   const destinationImages = [imageUniOne, imageUniTwo, imageUniThree]
+
+  const handleLogout = () => {
+    logout()
+    router.push("/")
+  }
 
   const toggleMobileSubmenu = (menu: string) => {
     setOpenMobileSubmenu(openMobileSubmenu === menu ? null : menu)
@@ -524,14 +533,37 @@ const Navbar = () => {
               SEARCH
             </Link>
 
-            <Link
-              href="/login"
-              className="flex items-center gap-3 py-3 px-4 text-white text-sm font-semibold uppercase border-b border-teal-600/50 hover:bg-teal-600/50 transition-colors"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              <LogIn className="h-5 w-5" />
-              LOGIN
-            </Link>
+            {isAuthenticated ? (
+              <>
+                <Link
+                  href="/profile"
+                  className="flex items-center gap-3 py-3 px-4 text-white text-sm font-semibold uppercase border-b border-teal-600/50 hover:bg-teal-600/50 transition-colors"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  <User className="h-5 w-5" />
+                  PROFILE
+                </Link>
+                <button
+                  onClick={() => {
+                    handleLogout()
+                    setIsMobileMenuOpen(false)
+                  }}
+                  className="flex items-center gap-3 py-3 px-4 text-white text-sm font-semibold uppercase border-b border-teal-600/50 hover:bg-teal-600/50 transition-colors w-full text-left"
+                >
+                  <LogOut className="h-5 w-5" />
+                  LOGOUT
+                </button>
+              </>
+            ) : (
+              <Link
+                href="/login"
+                className="flex items-center gap-3 py-3 px-4 text-white text-sm font-semibold uppercase border-b border-teal-600/50 hover:bg-teal-600/50 transition-colors"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                <LogIn className="h-5 w-5" />
+                LOGIN
+              </Link>
+            )}
           </div>
 
           {/* Social Media Icons */}
@@ -1131,11 +1163,32 @@ const Navbar = () => {
                 <Search className="h-3 w-3 sm:h-4 sm:w-4" />
                 <span className="hidden sm:inline">SEARCH</span>
               </Button>
-              <Link href="/login">
-                <Button variant="default" size="sm" className="text-xs sm:text-sm">
-                  LOGIN
-                </Button>
-              </Link>
+              {isAuthenticated ? (
+                <>
+                  <Link href="/profile">
+                    <Button variant="default" size="sm" className="text-xs sm:text-sm">
+                      <User className="h-3 w-3 sm:h-4 sm:w-4 mr-1" />
+                      PROFILE
+                    </Button>
+                  </Link>
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    className="text-xs sm:text-sm"
+                    onClick={handleLogout}
+                  >
+                    <LogOut className="h-3 w-3 sm:h-4 sm:w-4 mr-1" />
+                    LOGOUT
+                  </Button>
+                </>
+              ) : (
+                <Link href="/login">
+                  <Button variant="default" size="sm" className="text-xs sm:text-sm">
+                    <LogIn className="h-3 w-3 sm:h-4 sm:w-4 mr-1" />
+                    LOGIN
+                  </Button>
+                </Link>
+              )}
             </div>
 
             {/* Mobile Hamburger Menu Button */}

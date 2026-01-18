@@ -9,10 +9,12 @@ import { Button } from "@/components/ui/button"
 import { Label } from "@/components/ui/label"
 import { Eye, EyeOff, Mail, Lock } from "lucide-react"
 import { auth } from "@/lib/auth"
+import { useAuth } from "@/contexts/AuthContext"
 
 function LoginForm() {
   const router = useRouter()
   const searchParams = useSearchParams()
+  const { login: contextLogin } = useAuth()
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [showPassword, setShowPassword] = useState(false)
@@ -43,10 +45,15 @@ function LoginForm() {
         return
       }
       
-      // Get redirect URL from query params, default to /apply
-      const redirectUrl = searchParams.get("redirect") || "/apply"
+      // Update global auth state
+      if (result.user && result.token) {
+        contextLogin(result.user, result.token)
+      }
       
-      // Redirect to the intended page or apply page
+      // Get redirect URL from query params, default to /profile
+      const redirectUrl = searchParams.get("redirect") || "/profile"
+      
+      // Redirect to the intended page or profile page
       router.push(decodeURIComponent(redirectUrl))
     } catch (err) {
       setError("An unexpected error occurred. Please try again.")

@@ -9,9 +9,11 @@ import { Button } from "@/components/ui/button"
 import { Label } from "@/components/ui/label"
 import { Eye, EyeOff, Mail, Lock, User } from "lucide-react"
 import { auth } from "@/lib/auth"
+import { useAuth } from "@/contexts/AuthContext"
 
 export default function SignupPage() {
   const router = useRouter()
+  const { login: contextLogin } = useAuth()
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -67,14 +69,13 @@ export default function SignupPage() {
         return
       }
       
-      // Registration successful, redirect to login or apply page
-      // If token was returned, user is already logged in
-      if (result.token) {
-        router.push("/apply")
-      } else {
-        // Redirect to login page with success message
-        router.push("/login?registered=true")
+      // Registration successful, update global auth state if token was returned
+      if (result.token && result.user) {
+        contextLogin(result.user, result.token)
       }
+      
+      // Redirect to home page
+      router.push("/")
     } catch (err) {
       setError("An unexpected error occurred. Please try again.")
       setIsLoading(false)
