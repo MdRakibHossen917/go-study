@@ -3,7 +3,8 @@
 const AUTH_KEY = "bideshstudy_auth"
 const AUTH_USER_KEY = "bideshstudy_user"
 const AUTH_TOKEN_KEY = "bideshstudy_token"
-const API_BASE_URL = "https://go-study-backend.vercel.app"
+// Use Next.js API routes as proxy to avoid CORS issues
+const API_BASE_URL = typeof window !== "undefined" ? window.location.origin : ""
 
 export interface User {
   email: string
@@ -54,7 +55,8 @@ export const auth = {
   // Login user via API
   login: async (email: string, password: string): Promise<LoginResponse> => {
     try {
-      const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
+      const baseUrl = typeof window !== "undefined" ? window.location.origin : ""
+      const response = await fetch(`${baseUrl}/api/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -62,12 +64,30 @@ export const auth = {
         body: JSON.stringify({ email, password }),
       })
 
-      const data = await response.json()
-
-      if (!response.ok) {
+      // Check if response is ok before trying to parse JSON
+      let data
+      try {
+        data = await response.json()
+      } catch (parseError) {
+        console.error("Failed to parse response:", parseError)
         return {
           success: false,
-          message: data.message || "Login failed. Please check your credentials.",
+          message: "Invalid response from server. Please try again.",
+        }
+      }
+
+      if (!response.ok) {
+        // Check for specific error messages and provide user-friendly alternatives
+        let errorMessage = data.message || `Login failed (${response.status}). Please check your credentials.`
+        
+        // Provide more user-friendly messages for common backend errors
+        if (errorMessage.toLowerCase().includes("database")) {
+          errorMessage = "The service is temporarily unavailable due to a database issue. Please try again in a few moments."
+        }
+        
+        return {
+          success: false,
+          message: errorMessage,
         }
       }
 
@@ -90,9 +110,18 @@ export const auth = {
       }
     } catch (error) {
       console.error("Login error:", error)
+      
+      // Provide more specific error messages
+      if (error instanceof TypeError && error.message === "Failed to fetch") {
+        return {
+          success: false,
+          message: "Unable to connect to server. Please check your internet connection or try again later.",
+        }
+      }
+      
       return {
         success: false,
-        message: "Network error. Please try again later.",
+        message: error instanceof Error ? error.message : "Network error. Please try again later.",
       }
     }
   },
@@ -104,7 +133,8 @@ export const auth = {
     password: string
   ): Promise<RegisterResponse> => {
     try {
-      const response = await fetch(`${API_BASE_URL}/api/auth/register`, {
+      const baseUrl = typeof window !== "undefined" ? window.location.origin : ""
+      const response = await fetch(`${baseUrl}/api/auth/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -112,12 +142,30 @@ export const auth = {
         body: JSON.stringify({ name, email, password }),
       })
 
-      const data = await response.json()
-
-      if (!response.ok) {
+      // Check if response is ok before trying to parse JSON
+      let data
+      try {
+        data = await response.json()
+      } catch (parseError) {
+        console.error("Failed to parse response:", parseError)
         return {
           success: false,
-          message: data.message || "Registration failed. Please try again.",
+          message: "Invalid response from server. Please try again.",
+        }
+      }
+
+      if (!response.ok) {
+        // Check for specific error messages and provide user-friendly alternatives
+        let errorMessage = data.message || `Registration failed (${response.status}). Please try again.`
+        
+        // Provide more user-friendly messages for common backend errors
+        if (errorMessage.toLowerCase().includes("database")) {
+          errorMessage = "The service is temporarily unavailable due to a database issue. Please try again in a few moments."
+        }
+        
+        return {
+          success: false,
+          message: errorMessage,
         }
       }
 
@@ -140,9 +188,18 @@ export const auth = {
       }
     } catch (error) {
       console.error("Registration error:", error)
+      
+      // Provide more specific error messages
+      if (error instanceof TypeError && error.message === "Failed to fetch") {
+        return {
+          success: false,
+          message: "Unable to connect to server. Please check your internet connection or try again later.",
+        }
+      }
+      
       return {
         success: false,
-        message: "Network error. Please try again later.",
+        message: error instanceof Error ? error.message : "Network error. Please try again later.",
       }
     }
   },
@@ -153,7 +210,8 @@ export const auth = {
       const token = auth.getToken()
       if (!token) return null
 
-      const response = await fetch(`${API_BASE_URL}/api/auth/me`, {
+      const baseUrl = typeof window !== "undefined" ? window.location.origin : ""
+      const response = await fetch(`${baseUrl}/api/auth/me`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
