@@ -8,6 +8,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { Search, MapPin, ChevronLeft, ChevronRight, X, Compass, ClipboardCheck, FileText, Luggage } from "lucide-react"
 import logo from "@/assests/MainImage/logo.png"
 import { useState, useRef, useEffect } from "react"
+import { useRouter } from "next/navigation"
 import useEmblaCarousel from "embla-carousel-react"
 import { BookOpen, Users, Star, MessageCircle, Quote } from "lucide-react"
 import CloudinaryPlayer from "@/components/CloudinaryPlayer"
@@ -499,6 +500,7 @@ const ImageCarousel = () => {
 }
 
 export default function Home() {
+  const router = useRouter()
   const [selectedLocation, setSelectedLocation] = useState("")
   const [selectedField, setSelectedField] = useState("")
   const scrollContainerRef = useRef<HTMLDivElement>(null)
@@ -608,7 +610,13 @@ export default function Home() {
               color="#6AAFAC"
               speed="4s"
             >
-              <Button size="lg" className="w-full h-full text-base md:text-lg px-6 py-4 flex items-center justify-center gap-2 bg-[#282F4A] hover:bg-[#282F4A]/90 transition-colors text-white rounded-[20px]">
+              <Button 
+                size="lg" 
+                className="w-full h-full text-base md:text-lg px-6 py-4 flex items-center justify-center gap-2 bg-[#282F4A] hover:bg-[#282F4A]/90 transition-colors text-white rounded-[20px]"
+                onClick={() => {
+                  router.push("/search?filter-term=1695")
+                }}
+              >
                 <Search className="h-5 w-5" />
                 Search
               </Button>
@@ -680,7 +688,7 @@ export default function Home() {
       </div>
 
       {/* University Logos Marquee - Right to Left */}
-      <section className="bg-background w-full -mt-[32px] md:-mt-[122px]">
+      <section className="bg-background w-full -mt-[32px] md:-mt-[140px]">
         <div className="flex flex-col items-center md:pt-8">
           <span className="text-sm font-medium text-muted-foreground mb-4">
             Trusted by 13,000+ universities worldwide

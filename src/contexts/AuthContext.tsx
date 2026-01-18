@@ -71,12 +71,19 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       loadUser()
     }
 
+    // Listen for localStorage change events (for same-tab updates)
+    const handleLocalStorageChange = () => {
+      loadUser()
+    }
+
     window.addEventListener("storage", handleStorageChange)
     window.addEventListener("authStateChanged", handleAuthEvent)
+    window.addEventListener("localStorageChange", handleLocalStorageChange)
 
     return () => {
       window.removeEventListener("storage", handleStorageChange)
       window.removeEventListener("authStateChanged", handleAuthEvent)
+      window.removeEventListener("localStorageChange", handleLocalStorageChange)
     }
   }, [])
 
@@ -98,16 +105,27 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         localStorage.setItem("bideshstudy_token", data.token)
         localStorage.setItem("bideshstudy_user", JSON.stringify(data.user))
         localStorage.setItem("bideshstudy_auth", "true")
-        // Dispatch event multiple times to ensure all components catch it
+        // Dispatch multiple events to ensure all components catch it
         window.dispatchEvent(new Event("authStateChanged"))
+        window.dispatchEvent(new Event("localStorageChange"))
         setTimeout(() => {
           window.dispatchEvent(new Event("authStateChanged"))
+          window.dispatchEvent(new Event("localStorageChange"))
         }, 50)
+        setTimeout(() => {
+          window.dispatchEvent(new Event("authStateChanged"))
+          window.dispatchEvent(new Event("localStorageChange"))
+        }, 100)
+        setTimeout(() => {
+          window.dispatchEvent(new Event("authStateChanged"))
+          window.dispatchEvent(new Event("localStorageChange"))
+        }, 200)
       }
       // Small delay to ensure state propagates before redirect
       setTimeout(() => {
         router.push("/")
-      }, 150)
+        router.refresh()
+      }, 250)
     } else {
       throw new Error(data.message || "Login failed")
     }
@@ -131,16 +149,27 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         localStorage.setItem("bideshstudy_token", data.token)
         localStorage.setItem("bideshstudy_user", JSON.stringify(data.user))
         localStorage.setItem("bideshstudy_auth", "true")
-        // Dispatch event multiple times to ensure all components catch it
+        // Dispatch multiple events to ensure all components catch it
         window.dispatchEvent(new Event("authStateChanged"))
+        window.dispatchEvent(new Event("localStorageChange"))
         setTimeout(() => {
           window.dispatchEvent(new Event("authStateChanged"))
+          window.dispatchEvent(new Event("localStorageChange"))
         }, 50)
+        setTimeout(() => {
+          window.dispatchEvent(new Event("authStateChanged"))
+          window.dispatchEvent(new Event("localStorageChange"))
+        }, 100)
+        setTimeout(() => {
+          window.dispatchEvent(new Event("authStateChanged"))
+          window.dispatchEvent(new Event("localStorageChange"))
+        }, 200)
       }
       // Small delay to ensure state propagates before redirect
       setTimeout(() => {
         router.push("/")
-      }, 150)
+        router.refresh()
+      }, 250)
     } else {
       throw new Error(data.message || "Registration failed")
     }
@@ -153,8 +182,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       localStorage.removeItem("bideshstudy_token")
       localStorage.removeItem("bideshstudy_user")
       localStorage.removeItem("bideshstudy_auth")
+      // Dispatch events to notify all components of logout
+      window.dispatchEvent(new Event("authStateChanged"))
+      window.dispatchEvent(new Event("localStorageChange"))
     }
     router.push("/")
+    router.refresh()
   }
 
   return (

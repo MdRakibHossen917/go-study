@@ -31,16 +31,12 @@ const Navbar = () => {
   const [openMobileSubmenu, setOpenMobileSubmenu] = useState<string | null>(null)
   const [isScrolled, setIsScrolled] = useState(false)
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false)
+  const [updateTrigger, setUpdateTrigger] = useState(0)
   const destinationImages = [imageUniOne, imageUniTwo, imageUniThree]
 
-  // Get auth state directly - check both context and localStorage
+  // Get auth state - prioritize localStorage (updated immediately) then context
   const getAuthState = () => {
-    // First check context (most reliable)
-    if (user && token) {
-      return { isAuthenticated: true, currentUser: user }
-    }
-    
-    // Fallback to localStorage (updated immediately on login)
+    // First check localStorage (updated immediately on login/signup)
     if (typeof window !== "undefined") {
       try {
         const savedUser = localStorage.getItem("bideshstudy_user")
@@ -61,32 +57,133 @@ const Navbar = () => {
       }
     }
     
+    // Fallback to context (may be slower to update)
+    if (user && token) {
+      return { isAuthenticated: true, currentUser: user }
+    }
+    
     return { isAuthenticated: false, currentUser: null }
   }
 
+  // Store auth state in state to force re-renders
+  const [authState, setAuthState] = useState(() => getAuthState())
+
   // Force re-render on auth changes
-  const [, forceUpdate] = useState(0)
-  
   useEffect(() => {
+    const updateAuthState = () => {
+      // Get fresh state - this will check both localStorage and context
+      const newState = getAuthState()
+      setAuthState(newState)
+      setUpdateTrigger(prev => prev + 1)
+    }
+
     const handleAuthChange = () => {
-      forceUpdate(prev => prev + 1)
+      updateAuthState()
     }
     
     window.addEventListener("authStateChanged", handleAuthChange)
     
-    // Check very frequently to catch updates
+    // Listen for storage changes (cross-tab sync)
+    const handleStorageChange = (e: StorageEvent) => {
+      if (e.key === "bideshstudy_token" || e.key === "bideshstudy_user" || e.key === "bideshstudy_auth") {
+        updateAuthState()
+      }
+    }
+    
+    // Listen for same-tab localStorage changes via custom event
+    const handleLocalStorageChange = () => {
+      updateAuthState()
+    }
+    
+    window.addEventListener("storage", handleStorageChange)
+    window.addEventListener("localStorageChange", handleLocalStorageChange)
+    
+    // Check frequently to catch updates (fallback - ensures we catch localStorage changes in same tab)
     const interval = setInterval(() => {
-      forceUpdate(prev => prev + 1)
+      updateAuthState()
     }, 100)
+    
+    // Initial update
+    updateAuthState()
     
     return () => {
       window.removeEventListener("authStateChanged", handleAuthChange)
+      window.removeEventListener("storage", handleStorageChange)
+      window.removeEventListener("localStorageChange", handleLocalStorageChange)
       clearInterval(interval)
+    }
+  }, [user, token])
+
+  // Also update authState when user/token changes from context (separate effect for immediate updates)
+  useEffect(() => {
+    const newState = getAuthState()
+    setAuthState(newState)
+  }, [user, token])
+
+  // Force update on mount and when page becomes visible (handles page refresh/navigation)
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible') {
+        setAuthState(getAuthState())
+      }
+    }
+    
+    const handleFocus = () => {
+      setAuthState(getAuthState())
+    }
+    
+    window.addEventListener('visibilitychange', handleVisibilityChange)
+    window.addEventListener('focus', handleFocus)
+    
+    // Initial check
+    setAuthState(getAuthState())
+    
+    return () => {
+      window.removeEventListener('visibilitychange', handleVisibilityChange)
+      window.removeEventListener('focus', handleFocus)
     }
   }, [])
 
-  // Get current auth state
-  const { isAuthenticated, currentUser } = getAuthState()
+  // Get current auth state - check directly in render for immediate updates (prioritize localStorage check)
+  // Always prefer direct check from getAuthState() which reads from localStorage first
+  const authStateResult = getAuthState()
+  const { isAuthenticated, currentUser } = authStateResult
+  
+  // Determine if user is authenticated - check both localStorage and context
+  // More lenient check - if we have token OR user from either source, consider authenticated
+  const checkAuth = () => {
+    // Check localStorage directly (most reliable)
+    if (typeof window !== "undefined") {
+      const savedToken = localStorage.getItem("bideshstudy_token")
+      const savedUser = localStorage.getItem("bideshstudy_user")
+      if (savedToken && savedUser && savedUser !== "undefined" && savedUser !== "null") {
+        return true
+      }
+    }
+    // Check context
+    if ((isAuthenticated && currentUser) || (user && token)) {
+      return true
+    }
+    return false
+  }
+  const isUserAuthenticated = checkAuth()
+  
+  // Debug: Log auth state for troubleshooting
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const savedUser = localStorage.getItem("bideshstudy_user")
+      const savedToken = localStorage.getItem("bideshstudy_token")
+      console.log("Navbar Auth Debug:", {
+        isAuthenticated,
+        currentUser: currentUser ? { email: currentUser.email, name: currentUser.name } : null,
+        hasLocalStorageUser: !!savedUser,
+        hasLocalStorageToken: !!savedToken,
+        contextUser: user ? { email: user.email, name: user.name } : null,
+        contextToken: !!token,
+        isUserAuthenticated
+      })
+    }
+  }, [isAuthenticated, currentUser, user, token, isUserAuthenticated])
 
   const handleLogout = () => {
     logout()
@@ -395,6 +492,7 @@ const Navbar = () => {
                 </div>
               )}
             </div>
+            
 
             {/* TERMS - Expandable */}
             <div>
@@ -580,8 +678,16 @@ const Navbar = () => {
             </div>
 
             {/* Simple Links */}
-              {isAuthenticated && currentUser ? (
+              {isUserAuthenticated ? (
               <>
+                <Link
+                  href="/dashboard"
+                  className="flex items-center gap-3 py-3 px-4 text-white text-sm font-semibold uppercase border-b border-teal-600/50 hover:bg-teal-600/50 transition-colors"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  <BookOpen className="h-5 w-5" />
+                  DASHBOARD
+                </Link>
                 <Link
                   href="/profile"
                   className="flex items-center gap-3 py-3 px-4 text-white text-sm font-semibold uppercase border-b border-teal-600/50 hover:bg-teal-600/50 transition-colors"
@@ -681,23 +787,72 @@ const Navbar = () => {
       }`}>
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex h-16 items-center justify-between">
-            {/* Left side - Brand name with Logo */}
-            <Link href="/" className="flex items-center gap-2">
-              <div className="relative w-10 h-10 md:w-12 md:h-12 flex-shrink-0">
-                <Image
-                  src="/logo.svg"
-                  alt="BideshStudy Logo"
-                  fill
-                  className="object-contain"
-                  priority
-                />
-              </div>
-              <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-primary">BideshStudy</h1>
-            </Link>
+            {/* Left side - Brand name with Logo and Profile (if logged in) */}
+            <div className="flex items-center gap-4">
+              <Link href="/" className="flex items-center gap-2">
+                <div className="relative w-10 h-10 md:w-12 md:h-12 flex-shrink-0">
+                  <Image
+                    src="/logo.svg"
+                    alt="BideshStudy Logo"
+                    fill
+                    className="object-contain"
+                    priority
+                  />
+                </div>
+                <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-primary">BideshStudy</h1>
+              </Link>
+              
+              {/* Profile button on left side (desktop only) */}
+              {isUserAuthenticated && (
+                <div className="hidden md:block relative">
+                  <Link href="/profile">
+                    <Button 
+                      variant="default" 
+                      size="sm" 
+                      className="text-xs sm:text-sm flex items-center gap-1"
+                      onMouseEnter={() => setIsProfileDropdownOpen(true)}
+                      onMouseLeave={() => setIsProfileDropdownOpen(false)}
+                    >
+                      <User className="h-3 w-3 sm:h-4 sm:w-4" />
+                      PROFILE
+                      <ChevronDown className="h-3 w-3 sm:h-4 sm:w-4" />
+                    </Button>
+                  </Link>
+                  {isProfileDropdownOpen && (
+                    <div 
+                      className="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg border border-gray-200 z-50"
+                      onMouseEnter={() => setIsProfileDropdownOpen(true)}
+                      onMouseLeave={() => setIsProfileDropdownOpen(false)}
+                    >
+                      <div className="py-1">
+                        <div className="px-4 py-2 border-b border-gray-100">
+                          <p className="text-sm font-medium text-[#424242]">
+                            {currentUser?.name || currentUser?.email || user?.name || user?.email}
+                          </p>
+                          <p className="text-xs text-muted-foreground">
+                            {currentUser?.email || user?.email}
+                          </p>
+                        </div>
+                        <button
+                          onClick={() => {
+                            handleLogout()
+                            setIsProfileDropdownOpen(false)
+                          }}
+                          className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 flex items-center gap-2"
+                        >
+                          <LogOut className="h-4 w-4" />
+                          LOGOUT
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
 
             {/* Middle - Navigation items (hidden on mobile) */}
             <NavigationMenu viewport={false} className="hidden md:flex w-full ">
-              <NavigationMenuList>
+              <NavigationMenuList className="flex-1">
                 {/* Destinations */}
                 <NavigationMenuItem>
                   <NavigationMenuTrigger className="text-left text-xs sm:text-sm md:text-base bg-transparent hover:bg-transparent focus:bg-transparent data-[state=open]:bg-transparent data-[state=open]:hover:bg-transparent data-[state=open]:font-bold">DESTINATIONS</NavigationMenuTrigger>
@@ -1201,56 +1356,76 @@ const Navbar = () => {
                   </div>
                 </NavigationMenuContent>
               </NavigationMenuItem>
-            </NavigationMenuList>
-          </NavigationMenu>
 
-            {/* Right side - Action buttons (hidden on mobile) */}
-            <div className="hidden md:flex items-center gap-4">
-              {isAuthenticated && currentUser ? (
-                <div className="relative">
-                  <Link href="/profile">
-                    <Button 
-                      variant="default" 
-                      size="sm" 
-                      className="text-xs sm:text-sm flex items-center gap-1"
-                      onMouseEnter={() => setIsProfileDropdownOpen(true)}
-                      onMouseLeave={() => setIsProfileDropdownOpen(false)}
-                    >
-                      <User className="h-3 w-3 sm:h-4 sm:w-4" />
-                      PROFILE
-                      <ChevronDown className="h-3 w-3 sm:h-4 sm:w-4" />
-                    </Button>
-                  </Link>
-                  {isProfileDropdownOpen && (
-                    <div 
-                      className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg border border-gray-200 z-50"
-                      onMouseEnter={() => setIsProfileDropdownOpen(true)}
-                      onMouseLeave={() => setIsProfileDropdownOpen(false)}
-                    >
-                      <div className="py-1">
-                        <div className="px-4 py-2 border-b border-gray-100">
-                          <p className="text-sm font-medium text-[#424242]">
-                            {currentUser?.name || currentUser?.email || user?.name || user?.email}
-                          </p>
-                          <p className="text-xs text-muted-foreground">
-                            {currentUser?.email || user?.email}
-                          </p>
+               {/* PROFILE */}
+               {isUserAuthenticated && (
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger className="text-left text-xs sm:text-sm md:text-base bg-transparent hover:bg-transparent focus:bg-transparent data-[state=open]:bg-transparent data-[state=open]:hover:bg-transparent data-[state=open]:font-bold">
+                    PROFILE
+                  </NavigationMenuTrigger>
+                  <NavigationMenuContent className="group-data-[viewport=false]/navigation-menu:!top-11">
+                    <div className="w-[200px] p-4">
+                      <div className="space-y-2">
+                        <NavigationMenuLink asChild>
+                          <Link href="/profile" className="block text-xs sm:text-sm hover:text-primary">
+                            My Profile
+                          </Link>
+                        </NavigationMenuLink>
+                        <NavigationMenuLink asChild>
+                          <Link href="/profile/settings" className="block text-xs sm:text-sm hover:text-primary">
+                            Settings
+                          </Link>
+                        </NavigationMenuLink>
+                        <NavigationMenuLink asChild>
+                          <Link href="/profile/applications" className="block text-xs sm:text-sm hover:text-primary">
+                            My Applications
+                          </Link>
+                        </NavigationMenuLink>
+                        <div className="pt-2 border-t border-gray-200">
+                          <button
+                            onClick={() => {
+                              handleLogout()
+                            }}
+                            className="w-full text-left text-xs sm:text-sm text-red-600 hover:text-red-700 flex items-center gap-2"
+                          >
+                            <LogOut className="h-4 w-4" />
+                            Logout
+                          </button>
                         </div>
-                        <button
-                          onClick={() => {
-                            handleLogout()
-                            setIsProfileDropdownOpen(false)
-                          }}
-                          className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 flex items-center gap-2"
-                        >
-                          <LogOut className="h-4 w-4" />
-                          LOGOUT
-                        </button>
                       </div>
                     </div>
-                  )}
-                </div>
-              ) : (
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+              )}
+
+
+
+            </NavigationMenuList>
+            
+           
+          </NavigationMenu>
+
+            {/* Right side - Dashboard, Profile and Login buttons (hidden on mobile) */}
+            <div className="hidden md:flex items-center gap-4">
+              {/* Dashboard button - show if authenticated */}
+              {isUserAuthenticated && (
+                <Link href="/dashboard">
+                  <Button variant="default" size="sm" className="text-xs sm:text-sm">
+                    DASHBOARD
+                  </Button>
+                </Link>
+              )}
+              {/* Profile button - show if authenticated */}
+              {isUserAuthenticated && (
+                <Link href="/profile">
+                  <Button variant="default" size="sm" className="text-xs sm:text-sm">
+                    <User className="h-3 w-3 sm:h-4 sm:w-4 mr-1" />
+                    PROFILE
+                  </Button>
+                </Link>
+              )}
+              {/* Login button - show if not authenticated */}
+              {!isUserAuthenticated && (
                 <Link href="/login">
                   <Button variant="default" size="sm" className="text-xs sm:text-sm bg-[#1BB685] hover:bg-[#1BB685]/90 text-white">
                     <LogIn className="h-3 w-3 sm:h-4 sm:w-4 mr-1" />
